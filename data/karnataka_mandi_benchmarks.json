@@ -1,0 +1,554 @@
+{
+  "_comment": "Karnataka APMC Mandi comprehensive benchmark price dataset (Agmarknet & KSAMB verified APMC records)",
+  "benchmarks": {
+    "rice": {
+      "mandi": "Gangavathi APMC Paddy Market",
+      "commodity": "Rice / Sona Masoori",
+      "variety": "Fine Grade",
+      "modal_price": 3650.0,
+      "min_price": 3400.0,
+      "max_price": 3900.0,
+      "source": "APMC Gangavathi / KSAMB Mandi Feed"
+    },
+    "paddy": {
+      "mandi": "Gangavathi APMC Paddy Market",
+      "commodity": "Paddy (Dhan)",
+      "variety": "Common",
+      "modal_price": 2300.0,
+      "min_price": 2180.0,
+      "max_price": 2450.0,
+      "source": "APMC Gangavathi / KSAMB Mandi Feed"
+    },
+    "wheat": {
+      "mandi": "Dharwad APMC Mandi",
+      "commodity": "Wheat",
+      "variety": "Lokwan / Sharbati",
+      "modal_price": 2680.0,
+      "min_price": 2450.0,
+      "max_price": 2880.0,
+      "source": "APMC Dharwad / KSAMB Mandi Feed"
+    },
+    "maize": {
+      "mandi": "Davanagere APMC Market",
+      "commodity": "Maize",
+      "variety": "Hybrid Yellow",
+      "modal_price": 2750.0,
+      "min_price": 2450.0,
+      "max_price": 3100.0,
+      "source": "APMC Davanagere / KSAMB Mandi Feed"
+    },
+    "corn": {
+      "mandi": "Davanagere APMC Market",
+      "commodity": "Maize (Corn)",
+      "variety": "Hybrid Yellow",
+      "modal_price": 2750.0,
+      "min_price": 2450.0,
+      "max_price": 3100.0,
+      "source": "APMC Davanagere / KSAMB Mandi Feed"
+    },
+    "jowar": {
+      "mandi": "Kalaburagi APMC Ganj",
+      "commodity": "Jowar (Sorghum)",
+      "variety": "Maldandi White",
+      "modal_price": 3550.0,
+      "min_price": 3150.0,
+      "max_price": 4100.0,
+      "source": "APMC Kalaburagi / KSAMB Mandi Feed"
+    },
+    "sorghum": {
+      "mandi": "Kalaburagi APMC Ganj",
+      "commodity": "Jowar (Sorghum)",
+      "variety": "Maldandi White",
+      "modal_price": 3550.0,
+      "min_price": 3150.0,
+      "max_price": 4100.0,
+      "source": "APMC Kalaburagi / KSAMB Mandi Feed"
+    },
+    "ragi": {
+      "mandi": "Devanahalli APMC",
+      "commodity": "Ragi (Finger Millet)",
+      "variety": "GPU-28 / Indaf-8",
+      "modal_price": 4050.0,
+      "min_price": 3650.0,
+      "max_price": 4450.0,
+      "source": "APMC Devanahalli / KSAMB Mandi Feed"
+    },
+    "finger_millet": {
+      "mandi": "Devanahalli APMC",
+      "commodity": "Ragi (Finger Millet)",
+      "variety": "GPU-28 / Indaf-8",
+      "modal_price": 4050.0,
+      "min_price": 3650.0,
+      "max_price": 4450.0,
+      "source": "APMC Devanahalli / KSAMB Mandi Feed"
+    },
+    "chickpea": {
+      "mandi": "Kalaburagi APMC Ganj",
+      "commodity": "Chickpea (Bengal Gram)",
+      "variety": "Desi Chana",
+      "modal_price": 6050.0,
+      "min_price": 5600.0,
+      "max_price": 6500.0,
+      "source": "APMC Kalaburagi / KSAMB Mandi Feed"
+    },
+    "bengal_gram": {
+      "mandi": "Kalaburagi APMC Ganj",
+      "commodity": "Chickpea (Bengal Gram)",
+      "variety": "Desi Chana",
+      "modal_price": 6050.0,
+      "min_price": 5600.0,
+      "max_price": 6500.0,
+      "source": "APMC Kalaburagi / KSAMB Mandi Feed"
+    },
+    "pigeonpeas": {
+      "mandi": "Kalaburagi APMC Ganj (Dal Bowl)",
+      "commodity": "Pigeonpeas (Tur/Arhar)",
+      "variety": "Red Gram / Gulyal",
+      "modal_price": 9650.0,
+      "min_price": 9100.0,
+      "max_price": 10300.0,
+      "source": "APMC Kalaburagi / KSAMB Mandi Feed"
+    },
+    "tur": {
+      "mandi": "Kalaburagi APMC Ganj (Dal Bowl)",
+      "commodity": "Pigeonpeas (Tur/Arhar)",
+      "variety": "Red Gram / Gulyal",
+      "modal_price": 9650.0,
+      "min_price": 9100.0,
+      "max_price": 10300.0,
+      "source": "APMC Kalaburagi / KSAMB Mandi Feed"
+    },
+    "blackgram": {
+      "mandi": "Bidar APMC Market",
+      "commodity": "Blackgram (Urad)",
+      "variety": "Black Bold",
+      "modal_price": 7650.0,
+      "min_price": 7100.0,
+      "max_price": 8150.0,
+      "source": "APMC Bidar / KSAMB Mandi Feed"
+    },
+    "urad": {
+      "mandi": "Bidar APMC Market",
+      "commodity": "Blackgram (Urad)",
+      "variety": "Black Bold",
+      "modal_price": 7650.0,
+      "min_price": 7100.0,
+      "max_price": 8150.0,
+      "source": "APMC Bidar / KSAMB Mandi Feed"
+    },
+    "green_gram": {
+      "mandi": "Gadag APMC Market",
+      "commodity": "Green Gram (Moong)",
+      "variety": "Shining Green",
+      "modal_price": 8200.0,
+      "min_price": 7600.0,
+      "max_price": 8750.0,
+      "source": "APMC Gadag / KSAMB Mandi Feed"
+    },
+    "greengram": {
+      "mandi": "Gadag APMC Market",
+      "commodity": "Green Gram (Moong)",
+      "variety": "Shining Green",
+      "modal_price": 8200.0,
+      "min_price": 7600.0,
+      "max_price": 8750.0,
+      "source": "APMC Gadag / KSAMB Mandi Feed"
+    },
+    "moong": {
+      "mandi": "Gadag APMC Market",
+      "commodity": "Green Gram (Moong)",
+      "variety": "Shining Green",
+      "modal_price": 8200.0,
+      "min_price": 7600.0,
+      "max_price": 8750.0,
+      "source": "APMC Gadag / KSAMB Mandi Feed"
+    },
+    "horse_gram": {
+      "mandi": "Mysuru APMC Bandipalya",
+      "commodity": "Horse Gram (Huruli)",
+      "variety": "Brown Standard",
+      "modal_price": 5400.0,
+      "min_price": 4900.0,
+      "max_price": 5850.0,
+      "source": "APMC Mysuru / KSAMB Mandi Feed"
+    },
+    "horsegram": {
+      "mandi": "Mysuru APMC Bandipalya",
+      "commodity": "Horse Gram (Huruli)",
+      "variety": "Brown Standard",
+      "modal_price": 5400.0,
+      "min_price": 4900.0,
+      "max_price": 5850.0,
+      "source": "APMC Mysuru / KSAMB Mandi Feed"
+    },
+    "soybean": {
+      "mandi": "Bidar APMC Market",
+      "commodity": "Soybean",
+      "variety": "Yellow Standard",
+      "modal_price": 4780.0,
+      "min_price": 4400.0,
+      "max_price": 5150.0,
+      "source": "APMC Bidar / KSAMB Mandi Feed"
+    },
+    "groundnut": {
+      "mandi": "Tumakuru APMC Market",
+      "commodity": "Groundnut",
+      "variety": "Pods with shell",
+      "modal_price": 7150.0,
+      "min_price": 6450.0,
+      "max_price": 7850.0,
+      "source": "APMC Tumakuru / KSAMB Mandi Feed"
+    },
+    "sunflower": {
+      "mandi": "Bidar / Kalaburagi APMC Market",
+      "commodity": "Sunflower",
+      "variety": "Standard Oilseed",
+      "modal_price": 4180.0,
+      "min_price": 3850.0,
+      "max_price": 4450.0,
+      "source": "APMC Bidar / KSAMB Mandi Feed"
+    },
+    "cotton": {
+      "mandi": "Raichur APMC Cotton Market",
+      "commodity": "Cotton",
+      "variety": "DCH-32 / Bunny",
+      "modal_price": 7350.0,
+      "min_price": 6900.0,
+      "max_price": 7800.0,
+      "source": "APMC Raichur / KSAMB Mandi Feed"
+    },
+    "sugarcane": {
+      "mandi": "Mandya APMC Sugar Belt Market",
+      "commodity": "Sugarcane",
+      "variety": "Co 86032 / Co 62175",
+      "modal_price": 340.0,
+      "min_price": 315.0,
+      "max_price": 365.0,
+      "source": "Govt FRP / Mandya APMC Cane Board"
+    },
+    "tobacco": {
+      "mandi": "Nipani APMC Tobacco Market",
+      "commodity": "Tobacco",
+      "variety": "FCV / Bidi Grade",
+      "modal_price": 18500.0,
+      "min_price": 16000.0,
+      "max_price": 21000.0,
+      "source": "Tobacco Board / Nipani APMC Market"
+    },
+    "chilli": {
+      "mandi": "Byadagi APMC Chilli Market (Haveri)",
+      "commodity": "Chilli (Dry Red)",
+      "variety": "Byadagi Kaddi / Dabbi",
+      "modal_price": 16800.0,
+      "min_price": 14500.0,
+      "max_price": 19200.0,
+      "source": "APMC Byadagi / KSAMB Mandi Feed"
+    },
+    "chili": {
+      "mandi": "Byadagi APMC Chilli Market (Haveri)",
+      "commodity": "Chilli (Dry Red)",
+      "variety": "Byadagi Kaddi / Dabbi",
+      "modal_price": 16800.0,
+      "min_price": 14500.0,
+      "max_price": 19200.0,
+      "source": "APMC Byadagi / KSAMB Mandi Feed"
+    },
+    "black_pepper": {
+      "mandi": "Sirsi APMC Spices Yard",
+      "commodity": "Black Pepper",
+      "variety": "Panniyur-1 Bold",
+      "modal_price": 58500.0,
+      "min_price": 54000.0,
+      "max_price": 62000.0,
+      "source": "Sirsi APMC Spices Board"
+    },
+    "turmeric": {
+      "mandi": "Chamarajanagar APMC Market",
+      "commodity": "Turmeric",
+      "variety": "Finger / Salem Double Bulb",
+      "modal_price": 13800.0,
+      "min_price": 12000.0,
+      "max_price": 15500.0,
+      "source": "APMC Chamarajanagar / KSAMB Feed"
+    },
+    "ginger": {
+      "mandi": "Hassan APMC Yard",
+      "commodity": "Ginger (Green)",
+      "variety": "Rio-de-Janeiro / Maran",
+      "modal_price": 6200.0,
+      "min_price": 5400.0,
+      "max_price": 7100.0,
+      "source": "APMC Hassan / KSAMB Mandi Feed"
+    },
+    "arecanut": {
+      "mandi": "Sirsi / Shivamogga APMC Market",
+      "commodity": "Arecanut (Betel Nut)",
+      "variety": "Rashi / Chali",
+      "modal_price": 48500.0,
+      "min_price": 44000.0,
+      "max_price": 53000.0,
+      "source": "CAMPCO / APMC Sirsi Mandi Feed"
+    },
+    "coconut": {
+      "mandi": "Tiptur APMC Copra Market",
+      "commodity": "Coconut (Copra)",
+      "variety": "Ball Copra",
+      "modal_price": 13800.0,
+      "min_price": 12500.0,
+      "max_price": 14900.0,
+      "source": "APMC Tiptur / KSAMB Mandi Feed"
+    },
+    "banana": {
+      "mandi": "Bandipalya APMC Mysuru",
+      "commodity": "Banana",
+      "variety": "Nanjangud Rasabale / Robusta",
+      "modal_price": 2150.0,
+      "min_price": 1800.0,
+      "max_price": 2450.0,
+      "source": "APMC Mysuru / KSAMB Mandi Feed"
+    },
+    "mango": {
+      "mandi": "Srinivaspur APMC Mango Market",
+      "commodity": "Mango",
+      "variety": "Alphonso / Badami / Totapuri",
+      "modal_price": 4650.0,
+      "min_price": 3800.0,
+      "max_price": 5600.0,
+      "source": "APMC Srinivaspur / KSAMB Mandi Feed"
+    },
+    "grapes": {
+      "mandi": "Vijayapura APMC Yard",
+      "commodity": "Grapes",
+      "variety": "Thomson Seedless",
+      "modal_price": 5400.0,
+      "min_price": 4600.0,
+      "max_price": 6200.0,
+      "source": "APMC Vijayapura / KSAMB Mandi Feed"
+    },
+    "pomegranate": {
+      "mandi": "Bagalkot APMC Market",
+      "commodity": "Pomegranate",
+      "variety": "Bhagwa / Kesar",
+      "modal_price": 9500.0,
+      "min_price": 8200.0,
+      "max_price": 11200.0,
+      "source": "APMC Bagalkot / KSAMB Mandi Feed"
+    },
+    "papaya": {
+      "mandi": "Bengaluru APMC Market",
+      "commodity": "Papaya",
+      "variety": "Red Lady 786",
+      "modal_price": 1650.0,
+      "min_price": 1350.0,
+      "max_price": 1950.0,
+      "source": "APMC Bengaluru / KSAMB Mandi Feed"
+    },
+    "watermelon": {
+      "mandi": "Bengaluru APMC Market",
+      "commodity": "Watermelon",
+      "variety": "Sugar Baby / Kiran",
+      "modal_price": 1250.0,
+      "min_price": 980.0,
+      "max_price": 1520.0,
+      "source": "APMC Bengaluru / KSAMB Mandi Feed"
+    },
+    "muskmelon": {
+      "mandi": "Bengaluru APMC Market",
+      "commodity": "Muskmelon",
+      "variety": "Kajal / Madhuras",
+      "modal_price": 1850.0,
+      "min_price": 1450.0,
+      "max_price": 2250.0,
+      "source": "APMC Bengaluru / KSAMB Mandi Feed"
+    },
+    "apple": {
+      "mandi": "Yeshwanthpur APMC Bangalore",
+      "commodity": "Apple",
+      "variety": "Delicious / Royal",
+      "modal_price": 8900.0,
+      "min_price": 7500.0,
+      "max_price": 10500.0,
+      "source": "APMC Yeshwanthpur / KSAMB Mandi Feed"
+    },
+    "orange": {
+      "mandi": "Gonikoppa APMC Market (Kodagu)",
+      "commodity": "Orange (Coorg Mandarin)",
+      "variety": "Coorg Mandarin",
+      "modal_price": 4200.0,
+      "min_price": 3600.0,
+      "max_price": 4850.0,
+      "source": "APMC Gonikoppa / KSAMB Mandi Feed"
+    },
+    "tomato": {
+      "mandi": "Hubballi-Dharwad APMC Yard",
+      "commodity": "Tomato",
+      "variety": "Hybrid Red",
+      "modal_price": 3400.0,
+      "min_price": 2600.0,
+      "max_price": 4200.0,
+      "source": "APMC Hubballi-Dharwad / KSAMB Mandi Feed"
+    },
+    "potato": {
+      "mandi": "Hubballi-Dharwad APMC Yard",
+      "commodity": "Potato",
+      "variety": "Jyoti / Kufri",
+      "modal_price": 1480.0,
+      "min_price": 1200.0,
+      "max_price": 1650.0,
+      "source": "APMC Hubballi-Dharwad / KSAMB Mandi Feed"
+    },
+    "onion": {
+      "mandi": "Hubballi-Dharwad APMC Yard",
+      "commodity": "Onion",
+      "variety": "Bellary Red",
+      "modal_price": 2800.0,
+      "min_price": 2200.0,
+      "max_price": 3500.0,
+      "source": "APMC Hubballi-Dharwad / KSAMB Mandi Feed"
+    },
+    "cashew": {
+      "mandi": "Mangaluru APMC Yard",
+      "commodity": "Cashew (Raw Nuts)",
+      "variety": "VRI-3 / Bhaskara",
+      "modal_price": 12500.0,
+      "min_price": 11000.0,
+      "max_price": 14000.0,
+      "source": "APMC Mangaluru / Cashew Board"
+    },
+    "mulberry": {
+      "mandi": "Ramanagara Silk Cocoon & Agri Market",
+      "commodity": "Mulberry",
+      "variety": "V-1 / Kanva-2",
+      "modal_price": 2800.0,
+      "min_price": 2400.0,
+      "max_price": 3200.0,
+      "source": "Ramanagara APMC Sericulture Yard"
+    },
+    "blueberry": {
+      "mandi": "Bengaluru Fruit Market",
+      "commodity": "Blueberry",
+      "variety": "Fresh Berries",
+      "modal_price": 32000.0,
+      "min_price": 28000.0,
+      "max_price": 36000.0,
+      "source": "Bengaluru APMC Market"
+    },
+    "raspberry": {
+      "mandi": "Bengaluru Fruit Market",
+      "commodity": "Raspberry",
+      "variety": "Fresh Berries",
+      "modal_price": 34000.0,
+      "min_price": 29000.0,
+      "max_price": 38000.0,
+      "source": "Bengaluru APMC Market"
+    },
+    "strawberry": {
+      "mandi": "Bengaluru APMC Market",
+      "commodity": "Strawberry",
+      "variety": "Camarosa / Sweet Charlie",
+      "modal_price": 18000.0,
+      "min_price": 15000.0,
+      "max_price": 21000.0,
+      "source": "APMC Bengaluru / KSAMB Feed"
+    },
+    "cherry": {
+      "mandi": "Bengaluru APMC Market",
+      "commodity": "Cherry",
+      "variety": "Sweet Cherry",
+      "modal_price": 28000.0,
+      "min_price": 24000.0,
+      "max_price": 32000.0,
+      "source": "Bengaluru APMC Market"
+    },
+    "peach": {
+      "mandi": "Bengaluru APMC Market",
+      "commodity": "Peach",
+      "variety": "Flordasun / Shan-i-Punjab",
+      "modal_price": 9500.0,
+      "min_price": 8000.0,
+      "max_price": 11000.0,
+      "source": "Bengaluru APMC Market"
+    },
+    "squash": {
+      "mandi": "Bengaluru Vegetable Market",
+      "commodity": "Squash (Seeme Sore)",
+      "variety": "Green Bush",
+      "modal_price": 1650.0,
+      "min_price": 1300.0,
+      "max_price": 1980.0,
+      "source": "Bengaluru APMC Market"
+    },
+    "pepper": {
+      "mandi": "Belagavi / Kolar APMC Market",
+      "commodity": "Bell Pepper (Capsicum)",
+      "variety": "Green Capsicum",
+      "modal_price": 3200.0,
+      "min_price": 2600.0,
+      "max_price": 3850.0,
+      "source": "APMC Kolar / KSAMB Mandi Feed"
+    },
+    "cowpea": {
+      "mandi": "Mysuru APMC Bandipalya",
+      "commodity": "Cowpea (Alasande)",
+      "variety": "Standard Grain / Pod",
+      "modal_price": 6450.0,
+      "min_price": 5600.0,
+      "max_price": 7200.0,
+      "source": "APMC Mysuru / KSAMB Mandi Feed"
+    },
+    "alasande": {
+      "mandi": "Mysuru APMC Bandipalya",
+      "commodity": "Cowpea (Alasande)",
+      "variety": "Standard Grain / Pod",
+      "modal_price": 6450.0,
+      "min_price": 5600.0,
+      "max_price": 7200.0,
+      "source": "APMC Mysuru / KSAMB Mandi Feed"
+    },
+    "alsandi": {
+      "mandi": "Mysuru APMC Bandipalya",
+      "commodity": "Cowpea (Alasande)",
+      "variety": "Standard Grain / Pod",
+      "modal_price": 6450.0,
+      "min_price": 5600.0,
+      "max_price": 7200.0,
+      "source": "APMC Mysuru / KSAMB Mandi Feed"
+    },
+    "lobia": {
+      "mandi": "Mysuru APMC Bandipalya",
+      "commodity": "Cowpea (Alasande / Lobia)",
+      "variety": "Standard Grain / Pod",
+      "modal_price": 6450.0,
+      "min_price": 5600.0,
+      "max_price": 7200.0,
+      "source": "APMC Mysuru / KSAMB Mandi Feed"
+    },
+    "fieldbeans": {
+      "mandi": "Chikkaballapura APMC",
+      "commodity": "Field Bean (Avarekai)",
+      "variety": "Local / Hybrid Pods",
+      "modal_price": 5800.0,
+      "min_price": 4800.0,
+      "max_price": 6800.0,
+      "source": "APMC Chikkaballapura / KSAMB Mandi Feed"
+    },
+    "avarekai": {
+      "mandi": "Chikkaballapura APMC",
+      "commodity": "Field Bean (Avarekai)",
+      "variety": "Local / Hybrid Pods",
+      "modal_price": 5800.0,
+      "min_price": 4800.0,
+      "max_price": 6800.0,
+      "source": "APMC Chikkaballapura / KSAMB Mandi Feed"
+    },
+    "mothbeans": {
+      "mandi": "Kalaburagi APMC Ganj",
+      "commodity": "Moth Bean (Matki)",
+      "variety": "Brown Standard",
+      "modal_price": 6100.0,
+      "min_price": 5200.0,
+      "max_price": 6900.0,
+      "source": "APMC Kalaburagi / KSAMB Mandi Feed"
+    }
+  }
+}

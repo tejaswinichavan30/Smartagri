@@ -1,0 +1,336 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-10-01",
+  "guidelines": {
+    "coconut": {
+      "crop_name": "Coconut (Cocos nucifera)",
+      "water_requirement": {
+        "value": "40 - 55",
+        "unit": "litres/palm/day (drip) or 80 - 100 litres every 2-3 days (basin)",
+        "assumptions": "Mature bearing palm (8+ years old) in sandy loam / red loam soil during dry season",
+        "verified_by_expert": false,
+        "source": "UAS Bangalore / CPCRI Coconut Management Guidelines",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "spacing": {
+        "value": "7.5 x 7.5",
+        "unit": "meters",
+        "assumptions": "Square planting system in open field",
+        "verified_by_expert": false,
+        "source": "ICAR-CPCRI",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "fertilizer_annual_dose_per_palm": {
+        "value": "500g N (1.1kg Urea) : 320g P2O5 (1.6kg SSP) : 1200g K2O (2.0kg MOP)",
+        "unit": "per bearing palm/year in 2 split doses (May-June & Sept-Oct)",
+        "assumptions": "Bearing palm under irrigated conditions with 50kg farmyard manure (FYM)",
+        "verified_by_expert": false,
+        "source": "ICAR-CPCRI / KAU Package of Practices",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      }
+    },
+    "arecanut": {
+      "crop_name": "Arecanut (Areca catechu)",
+      "water_requirement": {
+        "value": "15 - 20",
+        "unit": "litres/palm/day (drip) or 30 - 40 litres every 3 days (basin)",
+        "assumptions": "Bearing palm in laterite/loamy soil during summer",
+        "verified_by_expert": false,
+        "source": "ICAR-CPCRI Regional Station Vittal",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "spacing": {
+        "value": "2.7 x 2.7",
+        "unit": "meters",
+        "assumptions": "Standard square planting",
+        "verified_by_expert": false,
+        "source": "ICAR-CPCRI",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "fertilizer_annual_dose_per_palm": {
+        "value": "100g N (220g Urea) : 40g P2O5 (200g Rock Phosphate) : 140g K2O (230g MOP)",
+        "unit": "per bearing palm/year in 2 splits with 10-15kg green leaf / FYM",
+        "assumptions": "Bearing palm aged 5+ years",
+        "verified_by_expert": false,
+        "source": "UAS Dharwad / ICAR-CPCRI",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      }
+    },
+    "tomato": {
+      "crop_name": "Tomato (Solanum lycopersicum)",
+      "water_requirement": {
+        "value": "3 - 5",
+        "unit": "mm/day (approx 2 - 3 litres/plant/day during peak fruiting)",
+        "assumptions": "Drip irrigated indeterminate / determinate hybrid under mulch in summer",
+        "verified_by_expert": false,
+        "source": "IIHR Bengaluru / ICAR-IIVR",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "spacing": {
+        "value": "60 x 45",
+        "unit": "cm (or 90 x 45 cm for staked hybrids)",
+        "assumptions": "Row to row x plant to plant",
+        "verified_by_expert": false,
+        "source": "IIHR Bengaluru",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "fertilizer_recommended_dose": {
+        "value": "150 : 100 : 100",
+        "unit": "kg N : P2O5 : K2O per acre (fertigation schedule over 90 days)",
+        "assumptions": "High yielding hybrid in medium fertility loamy soil with 10 tonnes/acre FYM",
+        "verified_by_expert": false,
+        "source": "IIHR Bengaluru Package of Practices",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      }
+    },
+    "maize": {
+      "crop_name": "Maize (Zea mays)",
+      "water_requirement": {
+        "value": "450 - 550",
+        "unit": "mm total crop water requirement across 100-115 day cycle (irrigate at critical stages: tasseling & silking)",
+        "assumptions": "Kharif/Rabi hybrid in well-drained loamy soil",
+        "verified_by_expert": false,
+        "source": "ICAR-IIMR (Indian Institute of Maize Research)",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "spacing": {
+        "value": "60 x 20",
+        "unit": "cm",
+        "assumptions": "Standard ridge and furrow planting",
+        "verified_by_expert": false,
+        "source": "ICAR-IIMR",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "fertilizer_recommended_dose": {
+        "value": "150 : 60 : 40",
+        "unit": "kg N : P2O5 : K2O per hectare (N in 3 splits: basal, knee-high, tasseling)",
+        "assumptions": "Hybrid grain maize under irrigated conditions",
+        "verified_by_expert": false,
+        "source": "UAS Bengaluru / ICAR-IIMR",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      }
+    },
+    "rice": {
+      "crop_name": "Paddy / Rice (Oryza sativa)",
+      "water_requirement": {
+        "value": "1100 - 1250",
+        "unit": "mm total seasonal water (AWD: Alternate Wetting and Drying saves 25% water)",
+        "assumptions": "Transplanted puddled rice in clayey/clay-loam soil",
+        "verified_by_expert": false,
+        "source": "ICAR-NRRI (National Rice Research Institute)",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "spacing": {
+        "value": "20 x 15",
+        "unit": "cm",
+        "assumptions": "2-3 seedlings per hill",
+        "verified_by_expert": false,
+        "source": "ICAR-NRRI",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "fertilizer_recommended_dose": {
+        "value": "100 : 50 : 50",
+        "unit": "kg N : P2O5 : K2O per hectare (N in 3 equal splits: basal, tillering, panicle initiation)",
+        "assumptions": "Medium duration variety in wetland ecosystem",
+        "verified_by_expert": false,
+        "source": "UAS Dharwad / ICAR-NRRI",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      }
+    },
+    "cotton": {
+      "crop_name": "Cotton (Gossypium hirsutum)",
+      "water_requirement": {
+        "value": "600 - 750",
+        "unit": "mm total crop water requirement (critical at square formation & boll development)",
+        "assumptions": "Bt hybrid in deep black cotton soil / vertisol",
+        "verified_by_expert": false,
+        "source": "ICAR-CICR Nagpur",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "spacing": {
+        "value": "90 x 60",
+        "unit": "cm (or 120 x 45 cm for robust Bt hybrids)",
+        "assumptions": "Row to row x plant to plant",
+        "verified_by_expert": false,
+        "source": "ICAR-CICR",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "fertilizer_recommended_dose": {
+        "value": "120 : 60 : 60",
+        "unit": "kg N : P2O5 : K2O per hectare (N in 3 splits with 25kg ZnSO4 basal)",
+        "assumptions": "Bt Cotton hybrid under irrigated / protective irrigation",
+        "verified_by_expert": false,
+        "source": "UAS Raichur / ICAR-CICR",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      }
+    },
+    "chilli": {
+      "crop_name": "Chilli / Pepper (Capsicum annuum)",
+      "water_requirement": {
+        "value": "400 - 600",
+        "unit": "mm total seasonal water (2 - 3 litres/plant/day via drip)",
+        "assumptions": "Transplanted crop on raised beds with drip irrigation",
+        "verified_by_expert": false,
+        "source": "IIHR Bengaluru",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "spacing": {
+        "value": "60 x 45",
+        "unit": "cm",
+        "assumptions": "Standard spacing for green/dry chilli",
+        "verified_by_expert": false,
+        "source": "IIHR Bengaluru",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "fertilizer_recommended_dose": {
+        "value": "100 : 50 : 50",
+        "unit": "kg N : P2O5 : K2O per hectare",
+        "assumptions": "Irrigated crop in red sandy loam",
+        "verified_by_expert": false,
+        "source": "UAS Dharwad",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      }
+    },
+    "wheat": {
+      "crop_name": "Wheat (Triticum aestivum)",
+      "water_requirement": {
+        "value": "400 - 450",
+        "unit": "mm across 4-6 irrigations (Crown Root Initiation CRI at 21 days is mandatory)",
+        "assumptions": "Semi-dwarf high yielding variety in loamy soil",
+        "verified_by_expert": false,
+        "source": "ICAR-IIWBR Karnal",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "spacing": {
+        "value": "20 - 22.5",
+        "unit": "cm row-to-row spacing",
+        "assumptions": "Continuous line drilling at 4-5 cm depth",
+        "verified_by_expert": false,
+        "source": "ICAR-IIWBR",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "fertilizer_recommended_dose": {
+        "value": "120 : 60 : 40",
+        "unit": "kg N : P2O5 : K2O per hectare (half N + full P & K basal, half N at first irrigation)",
+        "assumptions": "Timely sown irrigated wheat",
+        "verified_by_expert": false,
+        "source": "ICAR-IIWBR",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      }
+    },
+    "potato": {
+      "crop_name": "Potato (Solanum tuberosum)",
+      "water_requirement": {
+        "value": "40 - 50",
+        "unit": "mm/irrigation event (approx 160,000 - 200,000 litres/acre) at 7-10 day intervals",
+        "assumptions": "Early/medium duration crop in well-drained sandy loam soil; total seasonal requirement 350 - 500 mm across 6-8 irrigations (critical at stolon formation and tuber bulking)",
+        "verified_by_expert": false,
+        "source": "ICAR-CPRI Shimla / UAS Bangalore Package of Practices",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "spacing": {
+        "value": "60 x 20",
+        "unit": "cm (ridges and furrows)",
+        "assumptions": "Medium sized seed tubers (30-40g)",
+        "verified_by_expert": false,
+        "source": "ICAR-CPRI",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "fertilizer_recommended_dose": {
+        "value": "120 : 100 : 120",
+        "unit": "kg N : P2O5 : K2O per hectare (half N + full P & K basal, half N at earthing up 30 DAP)",
+        "assumptions": "Irrigated crop in fertile sandy loam with 25 tonnes/ha FYM",
+        "verified_by_expert": false,
+        "source": "ICAR-CPRI / UAS Bangalore Package of Practices",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      }
+    },
+    "banana": {
+      "crop_name": "Banana (Musa acuminata / paradisiaca)",
+      "water_requirement": {
+        "value": "15 - 25",
+        "unit": "litres/plant/day (drip) or 40 - 50 mm every 4-5 days (basin)",
+        "assumptions": "Grand Naine / Robusta tissue culture plant under summer conditions",
+        "verified_by_expert": false,
+        "source": "ICAR-NRCB Trichy",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "spacing": {
+        "value": "1.8 x 1.8",
+        "unit": "meters",
+        "assumptions": "Standard square planting for dwarf/semi-dwarf varieties",
+        "verified_by_expert": false,
+        "source": "ICAR-NRCB",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "fertilizer_recommended_dose": {
+        "value": "200g N : 60g P2O5 : 300g K2O",
+        "unit": "per plant across 4 split applications",
+        "assumptions": "High density planting with organic mulching",
+        "verified_by_expert": false,
+        "source": "UAS Bangalore / ICAR-NRCB",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      }
+    },
+    "onion": {
+      "crop_name": "Onion (Allium cepa)",
+      "water_requirement": {
+        "value": "350 - 450",
+        "unit": "mm total water (irrigate at 7-10 day intervals; stop 15 days before harvest)",
+        "assumptions": "Rabi/Kharif bulb crop in friable loam soil",
+        "verified_by_expert": false,
+        "source": "ICAR-DOGR Pune",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "spacing": {
+        "value": "15 x 10",
+        "unit": "cm on raised beds",
+        "assumptions": "Transplanted 45-day seedlings",
+        "verified_by_expert": false,
+        "source": "ICAR-DOGR",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      },
+      "fertilizer_recommended_dose": {
+        "value": "100 : 50 : 50",
+        "unit": "kg N : P2O5 : K2O per hectare with 30 kg Sulphur/ha",
+        "assumptions": "Medium fertility soil",
+        "verified_by_expert": false,
+        "source": "UAS Dharwad / ICAR-DOGR",
+        "source_type": "reviewed_guideline",
+        "source_date": "2026-10-01"
+      }
+    }
+  }
+}

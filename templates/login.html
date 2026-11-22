@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartAgri AI — Enterprise Portal Login</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1b5e20;
+            --primary-light: #2e7d32;
+            --primary-lighter: #43a047;
+            --primary-dark: #0d3b13;
+            --accent: #fbc02d;
+            --accent-glow: rgba(251, 192, 45, 0.3);
+            --bg-gradient: linear-gradient(135deg, #0b2e13 0%, #14461b 35%, #1b5e20 70%, #0d3b13 100%);
+            --card-bg: rgba(255, 255, 255, 0.96);
+            --text-main: #1c2e1f;
+            --text-muted: #526354;
+            --border-color: #d7ebd8;
+            --focus-ring: rgba(46, 125, 50, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--bg-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow-x: hidden;
+            padding: 24px 16px;
+        }
+
+        /* Ambient Glow & Decorative Elements */
+        .ambient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.6;
+            animation: orbFloat 14s ease-in-out infinite alternate;
+        }
+
+        .orb-1 {
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.35) 0%, rgba(27, 94, 32, 0) 70%);
+            top: -80px;
+            left: -100px;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(251, 192, 45, 0.2) 0%, rgba(27, 94, 32, 0) 70%);
+            bottom: -100px;
+            right: -120px;
+            animation-delay: -7s;
+        }
+
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -20px) scale(1.08); }
+            100% { transform: translate(-20px, 30px) scale(0.95); }
+        }
+
+        .login-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 460px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Language Switcher */
+        .lang-bar {
+            display: inline-flex;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 4px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 12.5px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .lang-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .lang-btn.active {
+            background: #ffffff;
+            color: var(--primary-dark);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+        }
+
+        /* Login Card */
+        .login-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 36px 32px 28px 32px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 25px 60px -15px rgba(0, 30, 10, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        /* Header / Logo */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .logo-emblem {
+            width: 58px;
+            height: 58px;
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border: 2px solid #a5d6a7;
+            border-radius: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 8px 16px rgba(46, 125, 50, 0.18);
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .logo-emblem::after {
+            content: '✨';
+            position: absolute;
+            font-size: 14px;
+            top: -4px;
+            right: -4px;
+        }
+
+        .brand-header h1 {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .brand-header .badge-tag {
+            background: #e8f5e9;
+            color: var(--primary-light);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 6px;
+            border: 1px solid #c8e6c9;
+            vertical-align: middle;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-header p {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* Role Switcher (Segmented Control) */
+        .role-selector {
+            display: flex;
+            background: #eef7ee;
+            border: 1.5px solid #d4ebd5;
+            padding: 4px;
+            border-radius: 14px;
+            margin-bottom: 22px;
+            gap: 4px;
+        }
+
+        .role-tab {
+            flex: 1;
+            padding: 9px 6px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .role-tab:hover {
+            color: var(--primary-dark);
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .role-tab.active {
+            background: #ffffff;
+            color: var(--primary);
+            box-shadow: 0 2px 8px rgba(27, 94, 32, 0.15);
+            font-weight: 700;
+        }
+
+        /* Form Controls */
+        .form-group {
+            margin-bottom: 18px;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #2e6033;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 6px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 14px;
+            font-size: 16px;
+            color: #6c8c6f;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gov-input {
+            width: 100%;
+            padding: 12px 42px 12px 40px;
+            border: 1.5px solid var(--border-color);
+            background: #ffffff;
+            border-radius: 12px;
+            font-size: 14px;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        .gov-input::placeholder {
+            color: #9cb59e;
+            font-weight: 400;
+        }
+
+        .gov-input:hover {
+            border-color: #a5d6a7;
+        }
+
+        .gov-input:focus {
+            border-color: var(--primary-light);
+            background: #ffffff;
+            box-shadow: 0 0 0 4px var(--focus-ring);
+        }
+
+        .password-toggle-btn {
+            position: absolute;
+            right: 12px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            font-size: 16px;
+            color: #607d64;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            transition: color 0.2s, background 0.2s;
+        }
+
+        .password-toggle-btn:hover {
+            color: var(--primary);
+            background: #e8f5e9;
+        }
+
+        /* Options Row (Remember / Forgot) */
+        .form-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px;
+            font-size: 13px;
+        }
+
+        .remember-checkbox {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            cursor: pointer;
+            user-select: none;
+            font-weight: 500;
+        }
+
+        .remember-checkbox input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 17px;
+            height: 17px;
+            border: 1.8px solid #9cb59e;
+            border-radius: 5px;
+            outline: none;
+            background: #ffffff;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s;
+            display: grid;
+            place-content: center;
+        }
+
+        .remember-checkbox input[type="checkbox"]:checked {
+            background: var(--primary-light);
+            border-color: var(--primary-light);
+        }
+
+        .remember-checkbox input[type="checkbox"]:checked::after {
+            content: "✓";
+            color: white;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .forgot-link {
+            color: var(--primary-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 12.5px;
+            transition: color 0.2s;
+        }
+
+        .forgot-link:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: 13px 20px;
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(27, 94, 32, 0.35);
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #388e3c 0%, #2e7d32 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(27, 94, 32, 0.45);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(27, 94, 32, 0.3);
+        }
+
+        /* Quick Demo Fill Pills */
+        .demo-credentials-box {
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px dashed #cde3ce;
+            text-align: center;
+        }
+
+        .demo-title {
+            font-size: 11.5px;
+            font-weight: 700;
+            color: #557558;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .demo-pills {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .demo-pill {
+            background: #f1f8f2;
+            border: 1px solid #c8e6c9;
+            color: #27622d;
+            font-size: 11.5px;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .demo-pill:hover {
+            background: #e8f5e9;
+            border-color: var(--primary-light);
+            color: var(--primary-dark);
+            transform: scale(1.03);
+        }
+
+        /* Footer Link */
+        .card-footer-links {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .card-footer-links a {
+            color: var(--primary-light);
+            font-weight: 700;
+            text-decoration: none;
+            margin-left: 4px;
+        }
+
+        .card-footer-links a:hover {
+            text-decoration: underline;
+            color: var(--primary-dark);
+        }
+
+        /* Alert Banners */
+        .alert-toast {
+            padding: 11px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-align: left;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .alert-toast.error {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+
+        .alert-toast.success {
+            background: #e8f5e9;
+            color: #1b5e20;
+            border: 1px solid #c8e6c9;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-page-footer {
+            margin-top: 22px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .login-page-footer strong {
+            color: #ffffff;
+        }
+
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 28px 20px 22px 20px;
+            }
+            .role-tab {
+                font-size: 12px;
+                padding: 8px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Visual Orbs -->
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+
+    <div class="login-wrapper">
+
+        <!-- Top Floating Multilingual Language Selector -->
+        <div class="lang-bar" aria-label="Language Selector">
+            <button type="button" class="lang-btn active" onclick="switchLoginLang('en', this)">🇬🇧 English</button>
+            <button type="button" class="lang-btn" onclick="switchLoginLang('kn', this)">🇮🇳 ಕನ್ನಡ</button>
+            <button type="button" class="lang-btn" onclick="switchLoginLang('hi', this)">🇮🇳 हिंदी</button>
+        </div>
+
+        <!-- Main Glassmorphic Portal Card -->
+        <div class="login-card">
+
+            <!-- Brand Header -->
+            <div class="brand-header">
+                <div class="logo-emblem">🌾</div>
+                <h1>
+                    SmartAgri AI
+                    <span class="badge-tag">Portal</span>
+                </h1>
+                <p data-en="Agent-Based AI System for Farmer Decision Support"
+                   data-kn="ರೈತ ನಿರ್ಧಾರ ಬೆಂಬಲಕ್ಕಾಗಿ AI ವ್ಯವಸ್ಥೆ"
+                   data-hi="किसान निर्णय समर्थन के लिए AI प्रणाली">
+                   Agent-Based AI System for Farmer Decision Support
+                </p>
+            </div>
+
+            <!-- Role Selector (Segmented Pill) -->
+            <div class="role-selector" role="tablist">
+                <button type="button" class="role-tab active" onclick="setUserType('farmer', this)"
+                    data-en="👨‍🌾 Farmer"
+                    data-kn="👨‍🌾 ರೈತ"
+                    data-hi="👨‍🌾 किसान">
+                    👨‍🌾 Farmer
+                </button>
+                <button type="button" class="role-tab" onclick="setUserType('officer', this)"
+                    data-en="👨‍💼 Officer"
+                    data-kn="👨‍💼 ಅಧಿಕಾರಿ"
+                    data-hi="👨‍💼 अधिकारी">
+                    👨‍💼 Officer
+                </button>
+                <button type="button" class="role-tab" onclick="setUserType('admin', this)"
+                    data-en="⚙ Admin"
+                    data-kn="⚙ ನಿರ್ವಾಹಕ"
+                    data-hi="⚙ व्यवस्थापक">
+                    ⚙ Admin
+                </button>
+            </div>
+
+            <!-- Server Flash / Alert Messages -->
+            {% if error %}
+            <div class="alert-toast error">
+                <span>⚠️</span>
+                <span>{{ error }}</span>
+            </div>
+            {% endif %}
+
+            {% if success %}
+            <div class="alert-toast success">
+                <span>✅</span>
+                <span>{{ success }}</span>
+            </div>
+            {% endif %}
+
+            <!-- Login Form -->
+            <form action="/login" method="POST" id="loginForm">
+                <input type="hidden" name="user_type" id="userTypeInput" value="farmer">
+                <input type="hidden" name="lang" id="langInput" value="en">
+
+                <!-- Username / Mobile -->
+                <div class="form-group">
+                    <label class="form-label"
+                        data-en="Username / Mobile Number"
+                        data-kn="ಬಳಕೆದಾರ ಹೆಸರು / ಮೊಬೈಲ್ ಸಂಖ್ಯೆ"
+                        data-hi="उपयोगकर्ता नाम / मोबाइल नंबर">
+                        Username / Mobile Number
+                    </label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">👤</span>
+                        <input type="text" name="username" id="usernameInput" class="gov-input"
+                            data-placeholder-en="Enter username or mobile number"
+                            data-placeholder-kn="ಬಳಕೆದಾರ ಹೆಸರು ಅಥವಾ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ"
+                            data-placeholder-hi="उपयोगकर्ता नाम या मोबाइल नंबर दर्ज करें"
+                            placeholder="Enter username or mobile number"
+                            autocomplete="username" required>
+                    </div>
+                </div>
+
+                <!-- Password with In-line Eye Toggle -->
+                <div class="form-group">
+                    <label class="form-label"
+                        data-en="Password"
+                        data-kn="ಪಾಸ್‌ವರ್ಡ್"
+                        data-hi="पासवर्ड">
+                        Password
+                    </label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" name="password" id="passwordInput" class="gov-input"
+                            data-placeholder-en="Enter your secure password"
+                            data-placeholder-kn="ನಿಮ್ಮ ರಹಸ್ಯ ಪಾಸ್‌ವರ್ಡ್ ನಮೂದಿಸಿ"
+                            data-placeholder-hi="अपना सुरक्षित पासवर्ड दर्ज करें"
+                            placeholder="Enter your secure password"
+                            autocomplete="current-password" required>
+                        <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility()" title="Show/Hide Password" id="pwdToggleBtn">
+                            👁️
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Options Row -->
+                <div class="form-options">
+                    <label class="remember-checkbox">
+                        <input type="checkbox" name="remember" id="rememberMe">
+                        <span data-en="Remember me" data-kn="ನನ್ನನ್ನು ನೆನಪಿಸಿಕೊಳ್ಳಿ" data-hi="मुझे याद रखें">Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-link"
+                        data-en="Forgot Password?"
+                        data-kn="ಪಾಸ್‌ವರ್ಡ್ ಮರೆತಿರಾ?"
+                        data-hi="पासवर्ड भूल गए?">
+                        Forgot Password?
+                    </a>
+                </div>
+
+                <!-- Main Login CTA -->
+                <button type="submit" class="submit-btn" id="loginSubmitBtn">
+                    <span>🔐</span>
+                    <span data-en="Login to Dashboard" data-kn="ಡ್ಯಾಶ್‌ಬೋರ್ಡ್‌ಗೆ ಲಾಗಿನ್" data-hi="डैशबोर्ड में लॉगिन करें">Login to Dashboard</span>
+                </button>
+            </form>
+
+            <!-- Quick Demo Credentials for Fast Testing -->
+            <div class="demo-credentials-box">
+                <div class="demo-title">
+                    <span>⚡</span>
+                    <span data-en="Quick Demo 1-Click Login:" data-kn="ತ್ವರಿತ ಡೆಮೊ ಲಾಗಿನ್:" data-hi="त्वरित डेमो लॉगिन:">Quick Demo 1-Click Login:</span>
+                </div>
+                <div class="demo-pills">
+                    <button type="button" class="demo-pill" onclick="quickFill('farmer', 'farmer1', 'farmer123')">
+                        👨‍🌾 Farmer
+                    </button>
+                    <button type="button" class="demo-pill" onclick="quickFill('officer', 'officer1', 'officer123')">
+                        👨‍💼 Officer
+                    </button>
+                    <button type="button" class="demo-pill" onclick="quickFill('admin', 'admin', 'admin123')">
+                        ⚙ Admin
+                    </button>
+                </div>
+            </div>
+
+            <!-- Registration Link -->
+            <div class="card-footer-links">
+                <span data-en="Don't have an account?"
+                      data-kn="ಖಾತೆ ಇಲ್ಲವೇ?"
+                      data-hi="खाता नहीं है?">Don't have an account?</span>
+                <a href="/register"
+                   data-en="Create Account →"
+                   data-kn="ಖಾತೆ ರಚಿಸಿ →"
+                   data-hi="खाता बनाएं →">Create Account →</a>
+            </div>
+
+        </div>
+
+        <!-- Outer Page Footer -->
+        <div class="login-page-footer">
+            <p><strong>SmartAgri AI</strong> — Karnataka State Agricultural Decision Support</p>
+            <p>Powered by Deep Learning CNNs & Random Forest Models</p>
+        </div>
+
+    </div>
+
+    <!-- Interactive Client Script -->
+    <script>
+        // ── User Type Role Selection ──────────────────────────────────────────
+        function setUserType(type, btn) {
+            document.getElementById('userTypeInput').value = type;
+            document.querySelectorAll('.role-tab').forEach(t => t.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+        }
+
+        // ── In-line Password Visibility Toggle ─────────────────────────────────
+        function togglePasswordVisibility() {
+            const pwd = document.getElementById('passwordInput');
+            const btn = document.getElementById('pwdToggleBtn');
+            if (pwd.type === 'password') {
+                pwd.type = 'text';
+                btn.textContent = '🙈';
+                btn.title = 'Hide Password';
+            } else {
+                pwd.type = 'password';
+                btn.textContent = '👁️';
+                btn.title = 'Show Password';
+            }
+        }
+
+        // ── Quick Demo Auto-Fill ───────────────────────────────────────────────
+        function quickFill(role, user, pass) {
+            setUserType(role);
+            // Highlight matching role tab
+            const tabs = document.querySelectorAll('.role-tab');
+            tabs.forEach(tab => {
+                if (tab.getAttribute('onclick').includes(role)) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+            document.getElementById('usernameInput').value = user;
+            document.getElementById('passwordInput').value = pass;
+        }
+
+        // ── Multilingual Translation Switcher ──────────────────────────────────
+        function switchLoginLang(lang, btn) {
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            const langField = document.getElementById('langInput');
+            if (langField) langField.value = lang;
+
+            // Translate Text
+            document.querySelectorAll('[data-en]').forEach(el => {
+                if (el.tagName === 'INPUT') return;
+                const text = el.getAttribute('data-' + lang);
+                if (text) el.textContent = text;
+            });
+
+            // Translate Placeholders
+            document.querySelectorAll('[data-placeholder-en]').forEach(el => {
+                const ph = el.getAttribute('data-placeholder-' + lang);
+                if (ph) el.placeholder = ph;
+            });
+
+            // Remember in localStorage for cross-page persistence
+            try {
+                localStorage.setItem('smartagri_lang', lang);
+            } catch (e) {}
+        }
+
+        // Restore saved language on load
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                const saved = localStorage.getItem('smartagri_lang');
+                if (saved && ['en', 'kn', 'hi'].includes(saved)) {
+                    const targetBtn = Array.from(document.querySelectorAll('.lang-btn')).find(b => b.getAttribute('onclick').includes(`'${saved}'`));
+                    if (targetBtn) switchLoginLang(saved, targetBtn);
+                }
+            } catch (e) {}
+        });
+    </script>
+</body>
+</html>

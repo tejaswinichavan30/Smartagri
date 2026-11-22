@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartAgri AI — Farmer Decision Support System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="gov-header">
+        <div class="header-top">
+            <div class="header-logo" role="img" aria-label="Wheat sheaf icon">🌾</div>
+            <div class="header-text">
+                <h1>SmartAgri AI</h1>
+                <p data-en="Agent-Based Intelligent System for Farmer Decision Support"
+                    data-kn="ರೈತ ನಿರ್ಧಾರ ಬೆಂಬಲಕ್ಕಾಗಿ ಏಜೆಂಟ್-ಆಧಾರಿತ ಬುದ್ಧಿವಂತ ವ್ಯವಸ್ಥೆ"
+                    data-hi="किसान निर्णय समर्थन के लिए एजेंट-आधारित बुद्धिमान प्रणाली">
+                    Agent-Based Intelligent System for Farmer Decision Support
+                </p>
+            </div>
+            <div class="header-emblem" role="img" aria-label="Indian flag">🇮🇳</div>
+        </div>
+        <!-- Add inside header-top div -->
+        <div class="header-user">
+            <span data-en="👤 Welcome, {{ user_name }}!" data-kn="👤 ಸ್ವಾಗತ, {{ user_name }}!" data-hi="👤 स्वागत है, {{ user_name }}!">👤 Welcome, {{ user_name }}!</span>
+            <a href="/logout" class="logout-btn" data-en="🚪 Logout" data-kn="🚪 ಲಾಗ್ ಔಟ್" data-hi="🚪 लॉग आउट">🚪 Logout</a>
+        </div>
+        <nav class="gov-nav">
+            <a href="#voice" data-en="🎤 Voice Query" data-kn="🎤 ಧ್ವನಿ ಪ್ರಶ್ನೆ" data-hi="🎤 वॉयस क्वेरी">🎤 Voice Query</a>
+            <a href="#crop" data-en="🌱 Crop Recommendation" data-kn="🌱 ಬೆಳೆ ಶಿಫಾರಸು" data-hi="🌱 फसल अनुशंसा">🌱 Crop
+                Recommendation</a>
+            <a href="#price" data-en="💰 Market Price" data-kn="💰 ಮಾರುಕಟ್ಟೆ ಬೆಲೆ" data-hi="💰 बाजार मूल्य">💰 Market
+                Price</a>
+            <a href="#disease" data-en="🍃 Disease Detection" data-kn="🍃 ರೋಗ ಪತ್ತೆ" data-hi="🍃 रोग पहचान">🍃 Disease
+                Detection</a>
+            <a href="#irrigation" data-en="💧 Smart Irrigation" data-kn="💧 ಸ್ಮಾರ್ಟ್ ನೀರಾವರಿ" data-hi="💧 स्मार्ट सिंचाई">💧 Smart
+                Irrigation</a>
+            <a href="#planner" data-en="🤖 Planner Agent" data-kn="🤖 ಯೋಜಕ ಏಜೆಂಟ್" data-hi="🤖 योजनाकार एजेंट">🤖
+                Planner Agent</a>
+        </nav>
+    </header>
+
+    <!-- ================= MARQUEE (accessible CSS version, no deprecated <marquee> tag) ================= -->
+    <div class="marquee-bar" aria-label="Announcements">
+        <div class="marquee-track">
+            <span id="marqueeText"
+                data-en="🌾 Welcome to SmartAgri AI — Empowering Farmers with Artificial Intelligence | 🌱 Crop Recommendations | 💰 Market Prices | 🍃 Leaf Diseases | 💧 Smart Irrigation | 🤖 AI Farm Planner"
+                data-kn="🌾 ಸ್ಮಾರ್ಟ್‌ಆಗ್ರಿ AIಗೆ ಸ್ವಾಗತ — ಕೃತಕ ಬುದ್ಧಿಮತ್ತೆಯಿಂದ ರೈತರನ್ನು ಸಶಕ್ತಗೊಳಿಸುವುದು | 🌱 ಬೆಳೆ ಶಿಫಾರಸು | 💰 ಮಾರುಕಟ್ಟೆ ಬೆಲೆ | 🍃 ರೋಗ ಪತ್ತೆ | 💧 ಸ್ಮಾರ್ಟ್ ನೀರಾವರಿ | 🤖 AI ಯೋಜಕ"
+                data-hi="🌾 स्मार्टएग्री AI में आपका स्वागत है — कृत्रिम बुद्धिमत्ता से किसानों को सशक्त बनाना | 🌱 फसल अनुशंसा | 💰 बाजार भाव | 🍃 रोग पहचान | 💧 स्मार्ट सिंचाई | 🤖 AI खेत योजनाकार">
+                🌾 Welcome to SmartAgri AI — Empowering Farmers with Artificial Intelligence | 🌱 Crop Recommendations | 💰 Market Prices | 🍃 Leaf Diseases | 💧 Smart Irrigation | 🤖 AI Farm Planner
+            </span>
+        </div>
+    </div>
+
+    <!-- ================= LANGUAGE SWITCHER ================= -->
+    <div class="lang-switcher">
+        <span class="lang-note"
+            data-en="🌐 Language: English | ಕನ್ನಡ | हिंदी (All results appear in selected language)"
+            data-kn="🌐 ಭಾಷೆ: English | ಕನ್ನಡ | हिंदी (ಎಲ್ಲಾ ಫಲಿತಾಂಶಗಳು ಆಯ್ಕೆಮಾಡಿದ ಭಾಷೆಯಲ್ಲಿ ಗೋಚರಿಸುತ್ತವೆ)"
+            data-hi="🌐 भाषा: English | ಕನ್ನಡ | हिंदी (सभी परिणाम चुनी गई भाषा में प्रदर्शित होते हैं)">
+            🌐 Language: English | ಕನ್ನಡ | हिंदी (All results appear in selected language)
+        </span>
+        <button class="lang-btn active" onclick="switchLang('en', event)">🇬🇧 English</button>
+        <button class="lang-btn" onclick="switchLang('kn', event)">🇮🇳 ಕನ್ನಡ</button>
+        <button class="lang-btn" onclick="switchLang('hi', event)">🇮🇳 हिंदी</button>
+    </div>
+
+    <div class="main-container">
+
+        <!-- Session reset -->
+        <div style="text-align:right; margin-bottom:8px;">
+            <form action="/reset" method="POST" style="display:inline;">
+                <input type="hidden" name="lang" class="lang-field" value="{{ lang or 'en' }}">
+                <button type="submit" class="gov-btn reset-btn"
+                    onclick="return confirm('Start a new session? This clears all current results.');"
+                    data-en="🔄 Start New Session" data-kn="🔄 ಹೊಸ ಸೆಶನ್ ಪ್ರಾರಂಭಿಸಿ" data-hi="🔄 नया सत्र शुरू करें">
+                    🔄 Start New Session
+                </button>
+            </form>
+        </div>
+
+        <!-- ================= VOICE QUERY ================= -->
+        <div class="section-box" id="voice">
+            <div class="section-header">
+                <span class="section-icon" role="img" aria-label="Microphone">🎤</span>
+                <div>
+                    <h2 data-en="Voice Query Assistant" data-kn="ಧ್ವನಿ ಪ್ರಶ್ನೆ ಸಹಾಯಕ" data-hi="वॉयस क्वेरी सहायक">Voice
+                        Query Assistant</h2>
+                    <p class="section-desc" data-en="Ask any farming question in English, Kannada or Hindi"
+                        data-kn="ಇಂಗ್ಲಿಷ್, ಕನ್ನಡ ಅಥವಾ ಹಿಂದಿಯಲ್ಲಿ ಯಾವುದೇ ಕೃಷಿ ಪ್ರಶ್ನೆ ಕೇಳಿ"
+                        data-hi="अंग्रेजी, कन्नड़ या हिंदी में कोई भी कृषि प्रश्न पूछें">
+                        Ask any farming question in English, Kannada or Hindi
+                    </p>
+                </div>
+            </div>
+
+            <form action="/answer_query" method="POST">
+                <input type="hidden" name="lang" class="lang-field" value="{{ lang or 'en' }}">
+                <div class="form-group">
+                    <textarea id="voiceText" name="query"
+                        data-placeholder-en="e.g. Which crop should I grow? / What fertilizer for tomato? / ಹತ್ತಿ ಕೀಟಗಳು ಯಾವುವು?"
+                        data-placeholder-kn="ಉದಾ. ಯಾವ ಬೆಳೆ ಬೆಳೆಯಬೇಕು? / ಟೊಮೆಟೊಗೆ ಯಾವ ಗೊಬ್ಬರ? / ಹತ್ತಿ ಕೀಟಗಳು ಯಾವುವು?"
+                        data-placeholder-hi="जैसे कौन सी फसल उगाएं? / टमाटर के लिए कौन सा खाद? / कपास के कीट क्या हैं?"
+                        placeholder="e.g. Which crop should I grow? / What fertilizer for tomato? / ಹತ್ತಿ ಕೀಟಗಳು ಯಾವುವು?">{{ query_text or '' }}</textarea>
+                </div>
+
+                <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                    <button type="button" id="voiceBtn" class="gov-btn" onclick="startVoice()"
+                        data-en="🎤 Start Voice Input" data-kn="🎤 ಧ್ವನಿ ಇನ್‌ಪುಟ್ ಪ್ರಾರಂಭಿಸಿ"
+                        data-hi="🎤 वॉयस इनपुट शुरू करें">
+                        🎤 Start Voice Input
+                    </button>
+                    <button type="submit" class="gov-btn" style="background: linear-gradient(135deg, #1565c0, #1976d2);"
+                        data-en="🔍 Get Answer" data-kn="🔍 ಉತ್ತರ ಪಡೆಯಿರಿ" data-hi="🔍 उत्तर पाएं">
+                        🔍 Get Answer
+                    </button>
+                </div>
+            </form>
+
+            {% if query_answer %}
+            <div class="query-answer-box">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
+                    <div class="query-answer-title" style="margin-bottom:0;"
+                        data-en="🤖 SmartAgri AI Answer:"
+                        data-kn="🤖 ಸ್ಮಾರ್ಟ್‌ಆಗ್ರಿ AI ಉತ್ತರ:"
+                        data-hi="🤖 स्मार्टएग्री AI उत्तर:">
+                        🤖 SmartAgri AI Answer:
+                    </div>
+                    <button type="button" id="speakBtn" class="gov-btn" onclick="toggleSpeakAnswer()"
+                        style="padding: 5px 14px; font-size: 13px; background: linear-gradient(135deg, #2e7d32, #388e3c); box-shadow: 0 2px 8px rgba(46,125,50,0.3); margin:0;"
+                        data-en="🔊 Read Aloud"
+                        data-kn="🔊 ಧ್ವನಿಯಲ್ಲಿ ಕೇಳಿ"
+                        data-hi="🔊 बोलकर सुनाएं">
+                        🔊 Read Aloud
+                    </button>
+                </div>
+                <div class="query-answer-body" id="queryAnswerText"
+                    data-en="{{ query_answer_en or query_answer }}"
+                    data-kn="{{ query_answer_kn or query_answer }}"
+                    data-hi="{{ query_answer_hi or query_answer }}">
+                    {{ query_answer }}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- ================= CROP RECOMMENDATION ================= -->
+        <div class="section-box" id="crop">
+            <div class="section-header">
+                <span class="section-icon">🌱</span>
+                <div>
+                    <h2 data-en="Crop Recommendation" data-kn="ಬೆಳೆ ಶಿಫಾರಸು" data-hi="फसल अनुशंसा">Crop Recommendation
+                    </h2>
+                    <p class="section-desc"
+                        data-en="Get AI-powered crop suggestions based on soil and live weather data"
+                        data-kn="ಮಣ್ಣು ಮತ್ತು ನೇರ ಹವಾಮಾನ ಡೇಟಾ ಆಧರಿಸಿ AI ಬೆಳೆ ಸಲಹೆಗಳನ್ನು ಪಡೆಯಿರಿ"
+                        data-hi="मिट्टी और लाइव मौसम डेटा के आधार पर AI फसल सुझाव प्राप्त करें">
+                        Get AI-powered crop suggestions based on soil and live weather data
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 1 & 2: Form with District and Season -->
+            <form action="/predict_crop" method="POST">
+                <input type="hidden" name="lang" class="lang-field" value="{{ lang or 'en' }}">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" data-en="Select District (Auto-fill soil values)"
+                            data-kn="ಜಿಲ್ಲೆ ಆಯ್ಕೆ ಮಾಡಿ (ಮಣ್ಣಿನ ಮೌಲ್ಯ ತಂತಾನೇ ತುಂಬುತ್ತದೆ)"
+                            data-hi="जिला चुनें (मिट्टी के मान स्वचालित भरें)">
+                            Select District (Auto-fill soil values)
+                        </label>
+                        <select name="district" id="district" class="gov-select" onchange="autoFillSoilData(this.value)"
+                            required>
+                            <option value="" data-en="-- Select District --" data-kn="-- ಜಿಲ್ಲೆ ಆಯ್ಕೆ ಮಾಡಿ --" data-hi="-- जिला चुनें --">-- Select District --</option>
+                            {% for d in districts %}
+                            {% set d_tr = district_translations.get(d, {}) if district_translations else {} %}
+                            <option value="{{ d }}"
+                                data-en="{{ d_tr.get('en', d) }}"
+                                data-kn="{{ d_tr.get('kn', d) }}"
+                                data-hi="{{ d_tr.get('hi', d) }}"
+                                {% if selected_district==d or city==d or crop_form_data.district==d %}selected{% endif %}>
+                                {% if lang == 'kn' %}{{ d_tr.get('kn', d) }}{% elif lang == 'hi' %}{{ d_tr.get('hi', d) }}{% else %}{{ d_tr.get('en', d) }}{% endif %}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" data-en="Farming Season" data-kn="ಕೃಷಿ ಋತು" data-hi="कृषि मौसम / ऋतु">
+                            Farming Season
+                        </label>
+                        <select name="season" id="season" class="gov-select">
+                            <option value="auto" {% if not selected_season or selected_season=='auto' %}selected{% endif
+                                %} data-en="🌤 Auto Detect (Current Season: Kharif - Monsoon)"
+                                data-kn="🌤 ಸ್ವಯಂಚಾಲಿತ (ಪ್ರಸ್ತುತ ತಿಂಗಳು: ಖಾರೀಫ್ - ಮುಂಗಾರು)"
+                                data-hi="🌤 स्वचालित पहचान (वर्तमान माह: खरीफ - मानसून)">
+                                🌤 Auto Detect (Current Season: Kharif - Monsoon)
+                            </option>
+                            <option value="Kharif" {% if selected_season=='Kharif' %}selected{% endif %}
+                                data-en="🌧 Kharif (Monsoon: June - October)"
+                                data-kn="🌧 ಖಾರೀಫ್ (ಮುಂಗಾರು: ಜೂನ್ - ಅಕ್ಟೋಬರ್)"
+                                data-hi="🌧 खरीफ (मानसून: जून - अक्टूबर)">
+                                🌧 Kharif (Monsoon: June - October)
+                            </option>
+                            <option value="Rabi" {% if selected_season=='Rabi' %}selected{% endif %}
+                                data-en="❄ Rabi (Winter: October - March)" data-kn="❄ ರಬಿ (ಹಿಂಗಾರು: ಅಕ್ಟೋಬರ್ - ಮಾರ್ಚ್)"
+                                data-hi="❄ रबी (सर्दियां: अक्टूबर - मार्च)">
+                                ❄ Rabi (Winter: October - March)
+                            </option>
+                            <option value="Zaid" {% if selected_season=='Zaid' %}selected{% endif %}
+                                data-en="☀ Zaid (Summer: March - June)" data-kn="☀ ಜೈದ್ (ಬೇಸಿಗೆ: ಮಾರ್ಚ್ - ಜೂನ್)"
+                                data-hi="☀ जायद (गर्मी: मार्च - जून)">
+                                ☀ Zaid (Summer: March - June)
+                            </option>
+                            <option value="Whole Year" {% if selected_season=='Whole Year' %}selected{% endif %}
+                                data-en="🌱 Whole Year / Perennial" data-kn="🌱 ವರ್ಷಪೂರ್ತಿ / ದೀರ್ಘಕಾಲೀನ ಬೆಳೆ"
+                                data-hi="🌱 पूरे साल / बारहमासी">
+                                🌱 Whole Year / Perennial
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" data-en="Nitrogen (N)" data-kn="ಸಾರಜನಕ (N)"
+                            data-hi="नाइट्रोजन (N)">Nitrogen (N)</label>
+                        <input type="number" name="nitrogen" id="nitrogen" value="{{ crop_form_data.nitrogen or '' }}"
+                            data-placeholder-en="0-150" data-placeholder-kn="0-150" data-placeholder-hi="0-150"
+                            placeholder="0-150" required class="gov-input">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" data-en="Phosphorus (P)" data-kn="ರಂಜಕ (P)"
+                            data-hi="फास्फोरस (P)">Phosphorus (P)</label>
+                        <input type="number" name="phosphorus" id="phosphorus"
+                            value="{{ crop_form_data.phosphorus or '' }}"
+                            data-placeholder-en="0-150" data-placeholder-kn="0-150" data-placeholder-hi="0-150"
+                            placeholder="0-150" required class="gov-input">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" data-en="Potassium (K)" data-kn="ಪೊಟ್ಯಾಸಿಯಮ್ (K)"
+                            data-hi="पोटेशियम (K)">Potassium (K)</label>
+                        <input type="number" name="potassium" id="potassium"
+                            value="{{ crop_form_data.potassium or '' }}"
+                            data-placeholder-en="0-150" data-placeholder-kn="0-150" data-placeholder-hi="0-150"
+                            placeholder="0-150" required class="gov-input">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" data-en="pH Value" data-kn="pH ಮೌಲ್ಯ" data-hi="pH मान">pH Value</label>
+                        <input type="number" step="0.1" name="ph" id="ph" value="{{ crop_form_data.ph or '' }}"
+                            data-placeholder-en="0-14" data-placeholder-kn="0-14" data-placeholder-hi="0-14"
+                            placeholder="0-14" required class="gov-input">
+                    </div>
+                    <div class="form-group" style="grid-column: span 2;">
+                        <label class="form-label" data-en="Rainfall (mm)" data-kn="ಮಳೆ (mm)"
+                            data-hi="वर्षा (mm)">Rainfall (mm)</label>
+                        <input type="number" step="0.1" name="rainfall" id="rainfall"
+                            value="{{ crop_form_data.rainfall or '' }}"
+                            data-placeholder-en="e.g. 80" data-placeholder-kn="ಉದಾ. 80" data-placeholder-hi="उदा. 80"
+                            placeholder="e.g. 80" required class="gov-input">
+                    </div>
+                    <input type="hidden" name="city" id="city" value="{{ selected_district or city or '' }}">
+                </div>
+                <button type="submit" class="gov-btn" data-en="🌾 Recommend Crop" data-kn="🌾 ಬೆಳೆ ಶಿಫಾರಸು ಮಾಡಿ"
+                    data-hi="🌾 फसल की सिफारिश करें">🌾 Recommend Crop</button>
+            </form>
+
+            {% if weather_info %}
+            <div class="weather-info"
+                data-en="🌤 {{ weather_info_en or weather_info }}"
+                data-kn="🌤 {{ weather_info_kn or weather_info }}"
+                data-hi="🌤 {{ weather_info_hi or weather_info }}">
+                🌤 {{ weather_info }}
+            </div>
+            {% endif %}
+
+            {% if crop_result %}
+            <div class="result-card crop-result" id="cropResultCard"
+                style="display:flex; flex-direction:column; align-items:flex-start; gap:12px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; width:100%; flex-wrap:wrap; gap:8px;">
+                    <div style="display:flex; align-items:center; gap:10px; font-size:18px;">
+                        <span class="result-icon">🌟</span>
+                        <div>
+                            <span style="display:inline-block; font-size:11px; text-transform:uppercase; font-weight:bold; letter-spacing:0.5px; background:#e8f5e9; color:#1b5e20; padding:2px 8px; border-radius:12px; margin-bottom:4px; border:1px solid #c8e6c9;"
+                                data-en="🌟 #1 Most Preferred for Current Weather"
+                                data-kn="🌟 #1 ಪ್ರಸ್ತುತ ಹವಾಮಾನಕ್ಕೆ ಅತ್ಯಂತ ಸೂಕ್ತ ಬೆಳೆ"
+                                data-hi="🌟 #1 वर्तमान मौसम के अनुसार सर्वाधिक उपयुक्त फसल">
+                                🌟 #1 Most Preferred for Current Weather
+                            </span>
+                            <br>
+                            <strong data-en="{{ crop_result_en or crop_result }}"
+                                    data-kn="{{ crop_result_kn or crop_result }}"
+                                    data-hi="{{ crop_result_hi or crop_result }}">{{ crop_result }}</strong>
+                        </div>
+                    </div>
+                </div>
+
+                {% if preferred_crop_reason %}
+                <div style="font-size:13.5px; font-weight:500; color:#1b5e20; background:rgba(232, 245, 233, 0.85); padding:10px 14px; border-radius:8px; width:100%; border-left:4px solid #2e7d32; line-height:1.45;"
+                    data-en="{{ preferred_crop_reason_en or preferred_crop_reason }}"
+                    data-kn="{{ preferred_crop_reason_kn or preferred_crop_reason }}"
+                    data-hi="{{ preferred_crop_reason_hi or preferred_crop_reason }}">
+                    {{ preferred_crop_reason }}
+                </div>
+                {% endif %}
+
+                {% if recommended_crop_season %}
+                <div style="font-size:14px; font-weight:600; color:#2e7d32;"
+                    data-en="{{ recommended_crop_season_en or recommended_crop_season }}"
+                    data-kn="{{ recommended_crop_season_kn or recommended_crop_season }}"
+                    data-hi="{{ recommended_crop_season_hi or recommended_crop_season }}">
+                    {{ recommended_crop_season }}
+                </div>
+                {% endif %}
+                {% if season_advice %}
+                <div style="font-size:13px; font-weight:normal; color:#33691e; background:rgba(255,255,255,0.7); padding:8px 12px; border-radius:6px; width:100%; border:1px dashed #a5d6a7; line-height:1.4;"
+                    data-en="💡 {{ season_advice_en or season_advice }}"
+                    data-kn="💡 {{ season_advice_kn or season_advice }}"
+                    data-hi="💡 {{ season_advice_hi or season_advice }}">
+                    💡 {{ season_advice }}
+                </div>
+                {% endif %}
+
+                <!-- Top 3 Regionally Suited Crops & Weather Suitability Cards -->
+                {% if top_crops and top_crops|length > 1 %}
+                <div style="width:100%; margin-top:10px; border-top:1px solid #c8e6c9; padding-top:12px;">
+                    <div style="font-size:14px; font-weight:bold; color:#1b5e20; margin-bottom:10px; display:flex; align-items:center; gap:6px;"
+                        data-en="🌾 Top 3 Crops Grown in This District & Weather Match:"
+                        data-kn="🌾 ಈ ಜಿಲ್ಲೆಯಲ್ಲಿ ಬೆಳೆಯುವ ಪ್ರಮುಖ 2-3 ಬೆಳೆಗಳು ಮತ್ತು ಹವಾಮಾನ ಹೊಂದಾಣಿಕೆ:"
+                        data-hi="🌾 इस जिले की शीर्ष 2-3 फसलें और मौसम अनुकूलता:">
+                        🌾 Top 3 Crops Grown in This District & Weather Match:
+                    </div>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:10px; width:100%;">
+                        {% for c in top_crops %}
+                        <div style="background:#ffffff; border:1px solid {% if c.is_preferred %}#66bb6a{% else %}#e0e0e0{% endif %}; border-radius:8px; padding:12px; box-shadow:0 1px 3px rgba(0,0,0,0.05); display:flex; flex-direction:column; gap:6px;">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <span style="font-size:11px; font-weight:bold; padding:2px 8px; border-radius:10px; {% if c.is_preferred %}background:#e8f5e9; color:#2e7d32; border:1px solid #a5d6a7;{% else %}background:#f5f5f5; color:#616161; border:1px solid #e0e0e0;{% endif %}"
+                                    data-en="{% if c.is_preferred %}🌟 #1 Most Preferred{% else %}🌱 #{{ c.rank }} Alternative{% endif %}"
+                                    data-kn="{% if c.is_preferred %}🌟 #1 ಅತ್ಯಂತ ಸೂಕ್ತ{% else %}🌱 #{{ c.rank }} ಪರ್ಯಾಯ ಬೆಳೆ{% endif %}"
+                                    data-hi="{% if c.is_preferred %}🌟 #1 सर्वाधिक उपयुक्त{% else %}🌱 #{{ c.rank }} वैकल्पिक फसल{% endif %}">
+                                    {% if c.is_preferred %}🌟 #1 Most Preferred{% else %}🌱 #{{ c.rank }} Alternative{% endif %}
+                                </span>
+                                <span style="font-size:12px; font-weight:bold; color:{% if c.score >= 85 %}#2e7d32{% elif c.score >= 70 %}#f57f17{% else %}#e65100{% endif %};">
+                                    {{ c.score }}% Match
+                                </span>
+                            </div>
+                            <div style="font-size:16px; font-weight:bold; color:#2e7d32;"
+                                data-en="{{ c.name_en }}"
+                                data-kn="{{ c.name_kn }}"
+                                data-hi="{{ c.name_hi }}">
+                                {% if lang == 'kn' %}{{ c.name_kn }}{% elif lang == 'hi' %}{{ c.name_hi }}{% else %}{{ c.name_en }}{% endif %}
+                            </div>
+                            <!-- Weather Match Bar -->
+                            <div style="width:100%; background:#eeeeee; height:6px; border-radius:3px; overflow:hidden;">
+                                <div style="width:{{ c.score }}%; background:{% if c.score >= 85 %}#43a047{% elif c.score >= 70 %}#fbc02d{% else %}#fb8c00{% endif %}; height:100%;"></div>
+                            </div>
+                            <div style="font-size:12px; color:#37474f; line-height:1.35; margin-top:2px;"
+                                data-en="{{ c.reason_en }}"
+                                data-kn="{{ c.reason_kn }}"
+                                data-hi="{{ c.reason_hi }}">
+                                {% if lang == 'kn' %}{{ c.reason_kn }}{% elif lang == 'hi' %}{{ c.reason_hi }}{% else %}{{ c.reason_en }}{% endif %}
+                            </div>
+                            <div style="font-size:11px; color:#616161; display:flex; gap:8px; margin-top:4px; flex-wrap:wrap;">
+                                <span style="background:#f1f8e9; padding:2px 6px; border-radius:4px;"
+                                    data-en="🗓 Sowing: {{ c.sowing_en }}"
+                                    data-kn="🗓 ಬಿತ್ತನೆ: {{ c.sowing_kn }}"
+                                    data-hi="🗓 बुवाई: {{ c.sowing_hi }}">
+                                    🗓 Sowing: {% if lang == 'kn' %}{{ c.sowing_kn }}{% elif lang == 'hi' %}{{ c.sowing_hi }}{% else %}{{ c.sowing_en }}{% endif %}
+                                </span>
+                                <span style="background:#f1f8e9; padding:2px 6px; border-radius:4px;"
+                                    data-en="🌾 Harvest: {{ c.harvest_en }}"
+                                    data-kn="🌾 ಕೊಯ್ಲು: {{ c.harvest_kn }}"
+                                    data-hi="🌾 कटाई: {{ c.harvest_hi }}">
+                                    🌾 Harvest: {% if lang == 'kn' %}{{ c.harvest_kn }}{% elif lang == 'hi' %}{{ c.harvest_hi }}{% else %}{{ c.harvest_en }}{% endif %}
+                                </span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- ================= MARKET PRICE PREDICTION ================= -->
+        <div class="section-box" id="price">
+            <div class="section-header">
+                <span class="section-icon">💰</span>
+                <div>
+                    <h2 data-en="Market Price Prediction" data-kn="ಮಾರುಕಟ್ಟೆ ಬೆಲೆ ಮುನ್ಸೂಚನೆ"
+                        data-hi="बाजार मूल्य पूर्वानुमान">Market Price Prediction</h2>
+                    <p class="section-desc" data-en="Predict mandi prices before selling your crop"
+                        data-kn="ನಿಮ್ಮ ಬೆಳೆ ಮಾರಾಟ ಮಾಡುವ ಮೊದಲು ಮಂಡಿ ಬೆಲೆಗಳನ್ನು ಊಹಿಸಿ"
+                        data-hi="अपनी फसल बेचने से पहले मंडी की कीमतों का अनुमान लगाएं">
+                        Predict mandi prices before selling your crop
+                    </p>
+                </div>
+            </div>
+            <form action="/predict_price" method="POST">
+                <input type="hidden" name="lang" class="lang-field" value="{{ lang or 'en' }}">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" data-en="Select Crop" data-kn="ಬೆಳೆ ಆಯ್ಕೆ ಮಾಡಿ"
+                            data-hi="फसल चुनें">Select Crop</label>
+                        <select name="crop" required class="gov-select">
+                            <option value="" data-en="-- Select Crop --" data-kn="-- ಬೆಳೆ ಆಯ್ಕೆ ಮಾಡಿ --"
+                                data-hi="-- फसल चुनें --">-- Select Crop --</option>
+                            {% for crop in crops %}
+                            {% set c_tr = commodity_translations.get(crop, {}) if commodity_translations else {} %}
+                            {% set target_c = price_form_data.crop or price_crop or recommended_crop or '' %}
+                            {% set tc_norm = target_c|lower|replace(' ', '')|replace('-', '')|replace('_', '')|replace('(', '')|replace(')', '') %}
+                            {% set c_norm = crop|lower|replace(' ', '')|replace('-', '')|replace('_', '')|replace('(', '')|replace(')', '') %}
+                            <option value="{{ crop }}"
+                                data-en="{{ c_tr.get('en', crop) }}"
+                                data-kn="{{ c_tr.get('kn', crop) }}"
+                                data-hi="{{ c_tr.get('hi', crop) }}"
+                                {% if target_c and (tc_norm == c_norm or c_norm in tc_norm or tc_norm in c_norm) %}selected{% endif %}>
+                                {% if lang == 'kn' %}{{ c_tr.get('kn', crop) }}{% elif lang == 'hi' %}{{ c_tr.get('hi', crop) }}{% else %}{{ c_tr.get('en', crop) }}{% endif %}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" data-en="Select District" data-kn="ಜಿಲ್ಲೆ ಆಯ್ಕೆ ಮಾಡಿ"
+                            data-hi="जिला चुनें">Select District</label>
+                        <select name="district" required class="gov-select">
+                            <option value="" data-en="-- Select District --" data-kn="-- ಜಿಲ್ಲೆ ಆಯ್ಕೆ ಮಾಡಿ --"
+                                data-hi="-- जिला चुनें --">-- Select District --</option>
+                            {% for district in districts %}
+                            {% set d_tr = district_translations.get(district, {}) if district_translations else {} %}
+                            {% set target_d = price_form_data.district or selected_district or city or '' %}
+                            {% set td_norm = target_d|lower|replace(' ', '')|replace('-', '')|replace('_', '') %}
+                            {% set d_norm = district|lower|replace(' ', '')|replace('-', '')|replace('_', '') %}
+                            <option value="{{ district }}"
+                                data-en="{{ d_tr.get('en', district) }}"
+                                data-kn="{{ d_tr.get('kn', district) }}"
+                                data-hi="{{ d_tr.get('hi', district) }}"
+                                {% if target_d and (td_norm == d_norm or d_norm in td_norm or td_norm in d_norm) %}selected{% endif %}>
+                                {% if lang == 'kn' %}{{ d_tr.get('kn', district) }}{% elif lang == 'hi' %}{{ d_tr.get('hi', district) }}{% else %}{{ d_tr.get('en', district) }}{% endif %}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" data-en="Select Month" data-kn="ತಿಂಗಳು ಆಯ್ಕೆ ಮಾಡಿ"
+                            data-hi="महीना चुनें">Select Month</label>
+                        <select name="month" required class="gov-select">
+                            <option value="1" {% if price_form_data.month == '1' or price_month == 1 %}selected{% endif %} data-en="January" data-kn="ಜನವರಿ" data-hi="जनवरी">January</option>
+                            <option value="2" {% if price_form_data.month == '2' or price_month == 2 %}selected{% endif %} data-en="February" data-kn="ಫೆಬ್ರವರಿ" data-hi="फरवरी">February</option>
+                            <option value="3" {% if price_form_data.month == '3' or price_month == 3 %}selected{% endif %} data-en="March" data-kn="ಮಾರ್ಚ್" data-hi="मार्च">March</option>
+                            <option value="4" {% if price_form_data.month == '4' or price_month == 4 %}selected{% endif %} data-en="April" data-kn="ಏಪ್ರಿಲ್" data-hi="अप्रैल">April</option>
+                            <option value="5" {% if price_form_data.month == '5' or price_month == 5 %}selected{% endif %} data-en="May" data-kn="ಮೇ" data-hi="मई">May</option>
+                            <option value="6" {% if price_form_data.month == '6' or price_month == 6 %}selected{% endif %} data-en="June" data-kn="ಜೂನ್" data-hi="जून">June</option>
+                            <option value="7" {% if price_form_data.month == '7' or price_month == 7 %}selected{% endif %} data-en="July" data-kn="ಜುಲೈ" data-hi="जुलाई">July</option>
+                            <option value="8" {% if price_form_data.month == '8' or price_month == 8 %}selected{% endif %} data-en="August" data-kn="ಆಗಸ್ಟ್" data-hi="अगस्त">August</option>
+                            <option value="9" {% if price_form_data.month == '9' or price_month == 9 %}selected{% endif %} data-en="September" data-kn="ಸೆಪ್ಟೆಂಬರ್" data-hi="सितंबर">September</option>
+                            <option value="10" {% if price_form_data.month == '10' or price_month == 10 %}selected{% endif %} data-en="October" data-kn="ಅಕ್ಟೋಬರ್" data-hi="अक्टूबर">October</option>
+                            <option value="11" {% if price_form_data.month == '11' or price_month == 11 %}selected{% endif %} data-en="November" data-kn="ನವೆಂಬರ್" data-hi="नवंबर">November</option>
+                            <option value="12" {% if price_form_data.month == '12' or price_month == 12 %}selected{% endif %} data-en="December" data-kn="ಡಿಸೆಂಬರ್" data-hi="दिसंबर">December</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" data-en="Year" data-kn="ವರ್ಷ" data-hi="वर्ष">Year</label>
+                        <input type="number" name="year" min="2020" max="2035"
+                            value="{{ price_form_data.year or price_year or 2025 }}"
+                            placeholder="2025" required class="gov-input">
+                    </div>
+                </div>
+                <button type="submit" class="gov-btn" data-en="🔮 Predict Price" data-kn="🔮 ಬೆಲೆ ಊಹಿಸಿ"
+                    data-hi="🔮 मूल्य का अनुमान लगाएं">🔮 Predict Price</button>
+            </form>
+
+            {% if price_result %}
+            <div class="result-card price-result" id="priceResultCard"
+                style="display:flex; flex-direction:column; align-items:flex-start; gap:8px;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span class="result-icon">💰</span>
+                    <strong data-en="Predicted Mandi Price:" data-kn="ಅಂದಾಜು ಮಂಡಿ ಬೆಲೆ:" data-hi="अनुमानित मंडी मूल्य:">Predicted Mandi Price:</strong>
+                    <span style="font-size: 1.25rem; font-weight: 700; color: #15803d;">{{ price_result }}</span>
+                </div>
+                {% if price_confidence %}
+                <div style="font-size: 0.85rem; color: #64748b;">
+                    <span data-en="Confidence:" data-kn="ವಿಶ್ವಾಸಾರ್ಹತೆ:" data-hi="सटीकता:">Confidence:</span>
+                    <strong>{{ price_confidence }}</strong>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- ================= LEAF DISEASE DETECTION ================= -->
+        <div class="section-box" id="disease">
+            <div class="section-header">
+                <span class="section-icon">🔬</span>
+                <div>
+                    <h2 data-en="Leaf Disease Detection" data-kn="ಎಲೆ ರೋಗ ಪತ್ತೆ" data-hi="पत्ती रोग पहचान">Leaf Disease Detection</h2>
+                    <p class="section-desc" data-en="Upload a leaf image to detect plant diseases using AI"
+                        data-kn="AI ಬಳಸಿ ಸಸ್ಯ ರೋಗಗಳನ್ನು ಪತ್ತೆ ಮಾಡಲು ಎಲೆ ಚಿತ್ರವನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ"
+                        data-hi="AI का उपयोग करके पौधों की बीमारियों का पता लगाने के लिए पत्ती की छवि अपलोड करें">
+                        Upload a leaf image to detect plant diseases using AI
+                    </p>
+                </div>
+            </div>
+            <p class="info-note" data-en="📌 Select crop type to verify photo diagnosis availability or explore common symptoms"
+                data-kn="📌 ಫೋಟೋ ರೋಗ ಪತ್ತೆ ಲಭ್ಯತೆಯನ್ನು ಪರಿಶೀಲಿಸಲು ಅಥವಾ ಸಾಮಾನ್ಯ ರೋಗಲಕ್ಷಣಗಳನ್ನು ವೀಕ್ಷಿಸಲು ಬೆಳೆ ಪ್ರಕಾರವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
+                data-hi="📌 फोटो रोग निदान उपलब्धता की जांच करने या सामान्य लक्षणों को देखने के लिए फसल का प्रकार चुनें">
+                📌 Select crop type to verify photo diagnosis availability or explore common symptoms
+            </p>
+            <form action="/predict_disease" method="POST" enctype="multipart/form-data" id="diseaseForm">
+                <input type="hidden" name="lang" class="lang-field" value="{{ lang or 'en' }}">
+                <div class="form-grid" style="margin-bottom: 15px;">
+                    <div class="form-group">
+                        <label class="form-label" data-en="Select Crop / Plant Type" data-kn="ಬೆಳೆ / ಸಸ್ಯದ ಪ್ರಕಾರ ಆಯ್ಕೆ ಮಾಡಿ" data-hi="फसल / पौधे का प्रकार चुनें">Select Crop / Plant Type</label>
+                        <select name="crop_type" id="diseaseCropSelect" class="gov-select" onchange="handleDiseaseCropChange(this.value)">
+                            {% if disease_crops_grouped %}
+                            <optgroup label="{{ disease_crops_grouped.photo_diagnosis.label }}">
+                                {% for crop in disease_crops_grouped.photo_diagnosis.crops %}
+                                <option value="{{ crop.key }}" data-is-diagnosable="true" data-en="{{ crop.name_en }}" data-kn="{{ crop.name_kn }}" data-hi="{{ crop.name_hi }}" {% if (disease_form_data.crop_type == crop.key) or (not disease_form_data.crop_type and (recommended_crop|lower == crop.key or loop.first)) %}selected{% endif %}>
+                                    {{ crop.name }} {% if crop.karnataka %}⭐{% endif %}
+                                </option>
+                                {% endfor %}
+                            </optgroup>
+                            <optgroup label="{{ disease_crops_grouped.reference_only.label }}">
+                                {% for crop in disease_crops_grouped.reference_only.crops %}
+                                <option value="{{ crop.key }}" data-is-diagnosable="false" data-en="{{ crop.name_en }}" data-kn="{{ crop.name_kn }}" data-hi="{{ crop.name_hi }}" {% if disease_form_data.crop_type == crop.key or (not disease_form_data.crop_type and recommended_crop|lower == crop.key) %}selected{% endif %}>
+                                    {{ crop.name }} {% if crop.karnataka %}⭐{% endif %}
+                                </option>
+                                {% endfor %}
+                            </optgroup>
+                            {% else %}
+                            <option value="tomato" data-is-diagnosable="true">Tomato</option>
+                            <option value="potato" data-is-diagnosable="true">Potato</option>
+                            <option value="rice" data-is-diagnosable="true">Rice / Paddy</option>
+                            <option value="wheat" data-is-diagnosable="true">Wheat</option>
+                            <option value="corn" data-is-diagnosable="true">Corn / Maize</option>
+                            <option value="soybean" data-is-diagnosable="false">Soybean</option>
+                            <option value="chilli" data-is-diagnosable="false">Chilli</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="form-group" id="leafUploadContainer">
+                        <label class="form-label" data-en="Select Leaf Image" data-kn="ಎಲೆ ಚಿತ್ರ ಆಯ್ಕೆ ಮಾಡಿ"
+                            data-hi="पत्ती की छवि चुनें">Select Leaf Image</label>
+                        <input type="file" name="image" id="leafImageInput" accept=".jpg,.jpeg,.png,image/jpeg,image/png" required
+                            class="file-input">
+                    </div>
+                    <div class="form-group" id="referenceOnlyNotice" style="display: none;">
+                        <label class="form-label" data-en="Guide Mode" data-kn="ಮಾರ್ಗದರ್ಶಿ ಮೋಡ್" data-hi="मार्गदर्शिका मोड">Guide Mode</label>
+                        <div style="background: #f8fafc; border: 1px dashed #cbd5e1; padding: 12px 14px; border-radius: 8px; font-size: 13px; color: #64748b;">
+                            📖 <strong data-en="Reference Guide Only:" data-kn="ಉಲ್ಲೇಖ ಮಾರ್ಗದರ್ಶಿ ಮಾತ್ರ:" data-hi="केवल संदर्भ मार्गदर्शिका:">Reference Guide Only:</strong>
+                            <span data-en="No photo upload needed. View the typical symptoms guide below." data-kn="ಫೋಟೋ ಅಪ್‌ಲೋಡ್ ಅಗತ್ಯವಿಲ್ಲ. ಕೆಳಗಿನ ರೋಗ ಲಕ್ಷಣಗಳನ್ನು ವೀಕ್ಷಿಸಿ." data-hi="फोटो अपलोड की आवश्यकता नहीं है। नीचे लक्षण गाइड देखें।">No photo upload needed. View the typical symptoms guide below.</span>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" id="diseaseSubmitBtn" class="gov-btn" data-en="🔍 Detect Disease" data-kn="🔍 ರೋಗ ಪತ್ತೆ ಮಾಡಿ"
+                    data-hi="🔍 रोग पहचानें">🔍 Detect Disease</button>
+            </form>
+
+            {% if disease_result %}
+            <div class="result-card disease-result" id="diseaseResultCard" style="display:flex; align-items:center; gap:8px;">
+                <span class="result-icon">🔬</span>
+                <span data-en="{{ disease_result_en or disease_result }}"
+                      data-kn="{{ disease_result_kn or disease_result }}"
+                      data-hi="{{ disease_result_hi or disease_result }}">{{ disease_result }}</span>
+            </div>
+            {% endif %}
+
+            {% if uploaded_image %}
+            <div class="image-preview">
+                <p class="preview-label" data-en="Uploaded Image:" data-kn="ಅಪ್‌ಲೋಡ್ ಮಾಡಿದ ಚಿತ್ರ:"
+                    data-hi="अपलोड की गई छवि:">Uploaded Image:</p>
+                <img src="/{{ uploaded_image }}" width="280" alt="Uploaded leaf image">
+            </div>
+            {% endif %}
+
+            <!-- ================= Common Diseases Reference Gallery ================= -->
+            {% if crop_disease_samples %}
+            <div class="disease-samples-section" style="margin-top: 28px; padding-top: 20px; border-top: 1px solid #e0e6ed;">
+                <div style="margin-bottom: 14px;">
+                    <h3 style="font-size: 17px; font-weight: 700; color: #1b5e20; margin: 0 0 6px 0;"
+                        data-en="🍃 Common diseases of {{ recommended_crop_en or recommended_crop }} (reference guide)"
+                        data-kn="🍃 {{ recommended_crop_kn or recommended_crop }} ಬೆಳೆಯ ಸಾಮಾನ್ಯ ರೋಗಗಳು (ಉಲ್ಲೇಖ ಮಾರ್ಗದರ್ಶಿ)"
+                        data-hi="🍃 {{ recommended_crop_hi or recommended_crop }} के सामान्य रोग (संदर्भ मार्गदर्शिका)">
+                        🍃 Common diseases of {{ recommended_crop_en or recommended_crop }} (reference guide)
+                    </h3>
+                    <p style="font-size: 13px; color: #475569; margin: 0 0 8px 0; line-height: 1.5; background: #fffbeb; padding: 10px 14px; border-radius: 8px; border-left: 4px solid #f59e0b;"
+                       data-en="{{ disease_notice_en or disease_notice }}"
+                       data-kn="{{ disease_notice_kn or disease_notice }}"
+                       data-hi="{{ disease_notice_hi or disease_notice }}">
+                       {{ disease_notice }}
+                    </p>
+                    <div style="font-size: 12px; color: #0f766e; background: #f0fdfa; padding: 8px 12px; border-radius: 6px; border: 1px solid #ccfbf1; font-weight: 500;"
+                         data-en="{{ disease_coverage_line_en or disease_coverage_line }}"
+                         data-kn="{{ disease_coverage_line_kn or disease_coverage_line }}"
+                         data-hi="{{ disease_coverage_line_hi or disease_coverage_line }}">
+                        {{ disease_coverage_line }}
+                    </div>
+                </div>
+
+                <div class="disease-samples-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; align-items: start;">
+                    {% for sample in crop_disease_samples %}
+                    <div class="disease-sample-card" style="background: #ffffff; border-radius: 10px; border: 1px solid #dcdfe6; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                        {% if sample.image_status == 'ok' %}
+                        <div style="position: relative; width: 100%; height: 150px; background: #f0f0f0; overflow: hidden;">
+                            <img src="/{{ sample.image }}" alt="{{ sample.name }}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+                            <span style="position: absolute; top: 8px; right: 8px; background: rgba(15, 23, 42, 0.85); color: #fef08a; font-size: 11px; font-weight: 700; padding: 4px 9px; border-radius: 6px; backdrop-filter: blur(4px); border: 1px solid rgba(254, 240, 138, 0.4);"
+                                  data-en="🖼️ {{ sample.provenance_badge_en or 'Reference image (source not yet verified)' }}"
+                                  data-kn="🖼️ {{ sample.provenance_badge_kn or 'ಉಲ್ಲೇಖ ಚಿತ್ರ (ಮೂಲ ಪರಿಶೀಲಿಸಬೇಕಿದೆ)' }}"
+                                  data-hi="🖼️ {{ sample.provenance_badge_hi or 'संदर्भ छवि (स्रोत अभी सत्यापित नहीं है)' }}">
+                                🖼️ {{ sample.provenance_badge or 'Reference image (source not yet verified)' }}
+                            </span>
+                        </div>
+                        {% endif %}
+                        <div style="padding: 14px; display: flex; flex-direction: column; flex-grow: 1;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 6px; margin-bottom: 6px;">
+                                <h4 style="margin: 0; font-size: 15px; font-weight: 700; color: #1e293b;"
+                                    data-en="{{ sample.name_en }}"
+                                    data-kn="{{ sample.name_kn }}"
+                                    data-hi="{{ sample.name_hi }}">{{ sample.name }}</h4>
+                            </div>
+
+                            {% if not sample.verified_by_expert %}
+                            <div style="margin-bottom: 8px;">
+                                <span style="display: inline-block; font-size: 11px; background: #fef3c7; color: #92400e; font-weight: 600; padding: 2px 8px; border-radius: 4px; border: 1px solid #fde68a;"
+                                      data-en="⚠️ Pending expert review"
+                                      data-kn="⚠️ ತಜ್ಞರ ಪರಿಶೀಲನೆ ಬಾಕಿಯಿದೆ"
+                                      data-hi="⚠️ विशेषज्ञ समीक्षा लंबित">
+                                    ⚠️ Pending expert review
+                                </span>
+                            </div>
+                            {% endif %}
+
+                            <p style="font-size: 12.5px; color: #475569; margin: 0 0 10px 0; line-height: 1.45; flex-grow: 1;">
+                                <strong style="color: #334155;">🔍 Symptoms:</strong> {{ sample.symptoms }}
+                            </p>
+                            <div style="font-size: 11.5px; background: #f4fbf5; color: #166534; padding: 8px 10px; border-radius: 6px; border-left: 3px solid #22c55e; line-height: 1.4;">
+                                <strong>💊 Remedy:</strong> {{ sample.treatment }}
+                                {% if not sample.is_healthy %}
+                                <div style="font-size: 10.5px; color: #64748b; margin-top: 6px; border-top: 1px dashed #bbf7d0; padding-top: 5px; font-style: italic;"
+                                     data-en="⚠️ Check the dose on the product label and confirm with your KVK. Follow safety instructions."
+                                     data-kn="⚠️ ಉತ್ಪನ್ನದ ಲೇಬಲ್‌ನಲ್ಲಿರುವ ಪ್ರಮಾಣವನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ನಿಮ್ಮ ಕೆವಿಕೆಯೊಂದಿಗೆ ಖಚಿತಪಡಿಸಿ. ಸುರಕ್ಷತಾ ನಿಯಮಗಳನ್ನು ಪಾಲಿಸಿ."
+                                     data-hi="⚠️ उत्पाद लेबल पर दी गई मात्रा की जांच करें और अपने केवीके से पुष्टि करें। सुरक्षा निर्देशों का पालन करें।">
+                                    ⚠️ Check the dose on the product label and confirm with your KVK. Follow safety instructions.
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <!-- ================= SMART IRRIGATION AGENT ================= -->
+        <div class="section-box" id="irrigation">
+            <div class="section-header">
+                <span class="section-icon" role="img" aria-label="Water droplet">💧</span>
+                <div>
+                    <h2 data-en="Smart Irrigation Agent — Precision Water Planner"
+                        data-kn="ಸ್ಮಾರ್ಟ್ ನೀರಾವರಿ ಏಜೆಂಟ್ — ನಿಖರ ನೀರಿನ ಯೋಜನೆ"
+                        data-hi="स्मार्ट सिंचाई एजेंट — सटीक जल नियोजन">
+                        Smart Irrigation Agent — Precision Water Planner
+                    </h2>
+                    <p class="section-desc"
+                        data-en="FAO Penman-Monteith crop evapotranspiration (ETc) model integrated with live district weather and soil moisture dynamics"
+                        data-kn="ಲೈವ್ ಜಿಲ್ಲಾ ಹವಾಮಾನ ಮತ್ತು ಮಣ್ಣಿನ ತೇವಾಂಶದೊಂದಿಗೆ ಸಂಯೋಜಿತ FAO ನಿಖರ ಬೆಳೆ ನೀರಾವರಿ ಮಾದರಿ"
+                        data-hi="लाइव जिला मौसम एवं मिट्टी की नमी के साथ एकीकृत एफएओ सटीक फसल जल मॉडल">
+                        FAO Penman-Monteith crop evapotranspiration (ETc) model integrated with live district weather and soil moisture dynamics
+                    </p>
+                </div>
+            </div>
+
+            <form action="/predict_irrigation" method="POST">
+                <input type="hidden" name="lang" class="lang-field" value="{{ lang or 'en' }}">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" data-en="Select Crop" data-kn="ಬೆಳೆ ಆಯ್ಕೆ ಮಾಡಿ" data-hi="फसल चुनें">Select Crop</label>
+                        <select name="crop" required class="gov-select">
+                            <option value="" data-en="-- Select Crop --" data-kn="-- ಬೆಳೆ ಆಯ್ಕೆ ಮಾಡಿ --" data-hi="-- फसल चुनें --">-- Select Crop --</option>
+                            {% for crop_opt in crops %}
+                            {% set c_tr = commodity_translations.get(crop_opt, {}) if commodity_translations else {} %}
+                            {% set target_ic = irrigation_form_data.crop or irrigation_crop or recommended_crop or '' %}
+                            {% set tic_norm = target_ic|lower|replace(' ', '')|replace('-', '')|replace('_', '')|replace('(', '')|replace(')', '') %}
+                            {% set c_norm = crop_opt|lower|replace(' ', '')|replace('-', '')|replace('_', '')|replace('(', '')|replace(')', '') %}
+                            <option value="{{ crop_opt }}"
+                                data-en="{{ c_tr.get('en', crop_opt) }}"
+                                data-kn="{{ c_tr.get('kn', crop_opt) }}"
+                                data-hi="{{ c_tr.get('hi', crop_opt) }}"
+                                {% if target_ic and (tic_norm == c_norm or c_norm in tic_norm or tic_norm in c_norm) %}selected{% endif %}>
+                                {% if lang == 'kn' %}{{ c_tr.get('kn', crop_opt) }}{% elif lang == 'hi' %}{{ c_tr.get('hi', crop_opt) }}{% else %}{{ c_tr.get('en', crop_opt) }}{% endif %}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" data-en="Growth Stage" data-kn="ಬೆಳವಣಿಗೆಯ ಹಂತ" data-hi="फसल की अवस्था">Growth Stage</label>
+                        <select name="growth_stage" required class="gov-select">
+                            {% for st_key, st_dict in growth_stages_tr.items() %}
+                            <option value="{{ st_key }}"
+                                data-en="{{ st_dict.get('en') }}"
+                                data-kn="{{ st_dict.get('kn') }}"
+                                data-hi="{{ st_dict.get('hi') }}"
+                                {% if irrigation_form_data.growth_stage==st_key or irrigation_stage==st_key %}selected{% endif %}>
+                                {% if lang == 'kn' %}{{ st_dict.get('kn') }}{% elif lang == 'hi' %}{{ st_dict.get('hi') }}{% else %}{{ st_dict.get('en') }}{% endif %}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" data-en="Soil Texture" data-kn="ಮಣ್ಣಿನ ವಿಧ" data-hi="मिट्टी का प्रकार">Soil Texture</label>
+                        <select name="soil_type" required class="gov-select">
+                            {% for s_key, s_dict in soil_types_tr.items() %}
+                            <option value="{{ s_key }}"
+                                data-en="{{ s_dict.get('en') }}"
+                                data-kn="{{ s_dict.get('kn') }}"
+                                data-hi="{{ s_dict.get('hi') }}"
+                                {% if irrigation_form_data.soil_type==s_key or irrigation_soil==s_key %}selected{% endif %}>
+                                {% if lang == 'kn' %}{{ s_dict.get('kn') }}{% elif lang == 'hi' %}{{ s_dict.get('hi') }}{% else %}{{ s_dict.get('en') }}{% endif %}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" data-en="Land Area (Acres)" data-kn="ಜಮೀನಿನ ವಿಸ್ತೀರ್ಣ (ಎಕರೆ)" data-hi="खेत का क्षेत्रफल (एकड़)">Land Area (Acres)</label>
+                        <input type="number" step="0.1" min="0.1" max="100.0" name="area_acres"
+                            value="{{ irrigation_form_data.area_acres or irrigation_area or '1.0' }}"
+                            data-placeholder-en="e.g. 1.5"
+                            data-placeholder-kn="ಉದಾ. 1.5"  data-placeholder-hi="उदा. 1.5"
+                            placeholder="1.0" required class="gov-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" data-en="Irrigation System" data-kn="ನೀರಾವರಿ ಪದ್ಧತಿ" data-hi="सिंचाई प्रणाली">Irrigation System</label>
+                        <select name="irrigation_type" required class="gov-select">
+                            {% for m_key, m_dict in irrigation_methods_tr.items() %}
+                            <option value="{{ m_key }}"
+                                data-en="{{ m_dict.get('en') }}"
+                                data-kn="{{ m_dict.get('kn') }}"
+                                data-hi="{{ m_dict.get('hi') }}"
+                                {% if irrigation_form_data.irrigation_type==m_key or irrigation_method==m_key %}selected{% endif %}>
+                                {% if lang == 'kn' %}{{ m_dict.get('kn') }}{% elif lang == 'hi' %}{{ m_dict.get('hi') }}{% else %}{{ m_dict.get('en') }}{% endif %}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" data-en="Location District (Live Weather)" data-kn="ಜಿಲ್ಲೆ (ನೇರ ಹವಾಮಾನ)" data-hi="जिला (लाइव मौसम)">Location District</label>
+                        <select name="district" required class="gov-select">
+                            {% for district in districts %}
+                            {% set d_tr = district_translations.get(district, {}) if district_translations else {} %}
+                            {% set target_id = irrigation_form_data.district or irrigation_district or selected_district or city or '' %}
+                            {% set tid_norm = target_id|lower|replace(' ', '')|replace('-', '')|replace('_', '') %}
+                            {% set d_norm = district|lower|replace(' ', '')|replace('-', '')|replace('_', '') %}
+                            <option value="{{ district }}"
+                                data-en="{{ d_tr.get('en', district) }}"
+                                data-kn="{{ d_tr.get('kn', district) }}"
+                                data-hi="{{ d_tr.get('hi', district) }}"
+                                {% if target_id and (tid_norm == d_norm or d_norm in tid_norm or tid_norm in d_norm) %}selected{% endif %}>
+                                {% if lang == 'kn' %}{{ d_tr.get('kn', district) }}{% elif lang == 'hi' %}{{ d_tr.get('hi', district) }}{% else %}{{ d_tr.get('en', district) }}{% endif %}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" data-en="Pump Flow Rate (L/hr, optional)" data-kn="ಪಂಪ್ ಹರಿವಿನ ಪ್ರಮಾಣ (ಲೀ/ಗಂ, ಐಚ್ಛಿಕ)" data-hi="पंप प्रवाह दर (लीटर/घंटा, वैकल्पिक)">Pump Flow Rate (L/hr, optional)</label>
+                        <input type="number" step="500" min="500" max="100000" name="pump_flow_rate"
+                            value="{{ irrigation_form_data.pump_flow_rate or irrigation_pump_flow_rate or '' }}"
+                            data-placeholder-en="e.g. 10000 (default ~5 L/s)"
+                            data-placeholder-kn="ಉದಾ. 10000"
+                            data-placeholder-hi="उदा. 10000"
+                            placeholder="e.g. 10000" class="gov-input">
+                    </div>
+                </div>
+
+                <div style="margin-top: 14px;">
+                    <button type="submit" class="gov-btn"
+                        data-en="💧 Calculate Precision Irrigation Plan"
+                        data-kn="💧 ನಿಖರ ನೀರಾವರಿ ಯೋಜನೆ ಲೆಕ್ಕಾಚಾರ ಮಾಡಿ"
+                        data-hi="💧 सटीक सिंचाई योजना की गणना करें">
+                        💧 Calculate Precision Irrigation Plan
+                    </button>
+                </div>
+            </form>
+
+            {% if irrigation_data %}
+            <div class="result-card" style="margin-top: 16px; border-left: 4px solid #0284c7; background: #f0f9ff;">
+                <div style="display: flex; align-items: flex-start; gap: 12px;">
+                    <span class="result-icon" style="font-size: 26px;">💧</span>
+                    <div style="flex: 1;" id="irrigationCardText">
+                        <div style="margin-bottom:6px;">
+                            <h4 style="margin: 0; color: #0369a1;"
+                                data-en="Precision Water Requirement & Schedule"
+                                data-kn="ನಿಖರ ನೀರಿನ ಅಗತ್ಯ ಮತ್ತು ವೇಳಾಪಟ್ಟಿ"
+                                data-hi="सटीक जल आवश्यकता एवं समय सारणी">
+                                Precision Water Requirement & Schedule
+                            </h4>
+                        </div>
+                        <div style="font-size: 11.5px; color: #64748b; margin: 2px 0 8px 0;">
+                            <strong>Method:</strong> {{ irrigation_data.et0_method }}
+                        </div>
+                        <p style="margin: 4px 0; font-size: 15px; font-weight: 600; color: #0f172a;"
+                            data-en="{{ irrigation_result_en or irrigation_result }}"
+                            data-kn="{{ irrigation_result_kn or irrigation_result }}"
+                            data-hi="{{ irrigation_result_hi or irrigation_result }}">
+                            {{ irrigation_result }}
+                        </p>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; margin-top: 10px; padding: 8px; background: #ffffff; border-radius: 6px; border: 1px solid #e0f2fe;">
+                            <div>
+                                <small style="color: #64748b;" data-en="Total Daily Water" data-kn="ದೈನಂದಿನ ಒಟ್ಟು ನೀರು" data-hi="दैनिक कुल पानी">Total Daily Water</small>
+                                <div style="font-weight: 700; color: {% if irrigation_data.is_rain_paused or irrigation_data.total_litres_day == 0 %}#059669{% else %}#0284c7{% endif %};">
+                                    {% if irrigation_data.is_rain_paused or irrigation_data.total_litres_day == 0 %}0 Litres/day (Rain-Met){% else %}{{ irrigation_data.total_litres_day }} Litres/day{% endif %}
+                                </div>
+                                {% if (irrigation_data.is_rain_paused or irrigation_data.total_litres_day == 0) and irrigation_data.base_total_litres_day > 0 %}
+                                <small style="color: #0369a1; display: block; font-size: 11.5px;">Normal: {{ irrigation_data.base_total_litres_day }} L/day</small>
+                                {% endif %}
+                            </div>
+                            <div>
+                                <small style="color: #64748b;" data-en="Pump Runtime" data-kn="ಪಂಪ್ ಚಾಲನಾ ಸಮಯ" data-hi="पंप चलाने का समय">Pump Runtime</small>
+                                <div style="font-weight: 700; color: {% if irrigation_data.is_rain_paused or irrigation_data.run_mins == 0 %}#059669{% else %}#0369a1{% endif %};"
+                                    data-en="{{ irrigation_data.runtime_en }}"
+                                    data-kn="{{ irrigation_data.runtime_kn }}"
+                                    data-hi="{{ irrigation_data.runtime_hi }}">
+                                    {{ irrigation_data.runtime_en }}
+                                </div>
+                                {% if (irrigation_data.is_rain_paused or irrigation_data.run_mins == 0) and irrigation_data.base_runtime_en %}
+                                <small style="color: #0369a1; display: block; font-size: 11.5px;">Normal: {{ irrigation_data.base_runtime_en }}</small>
+                                {% endif %}
+                            </div>
+                            <div>
+                                <small style="color: #64748b;" data-en="Frequency" data-kn="ಆವರ್ತನ" data-hi="आवृत्ति">Frequency</small>
+                                <div style="font-weight: 700; color: #0f766e;"
+                                    data-en="{{ irrigation_data.frequency_en }}"
+                                    data-kn="{{ irrigation_data.frequency_kn }}"
+                                    data-hi="{{ irrigation_data.frequency_hi }}">
+                                    {{ irrigation_data.frequency_en }}
+                                </div>
+                            </div>
+                            <div>
+                                <small style="color: #64748b;" data-en="Live Weather Index" data-kn="ಲೈವ್ ಹವಾಮಾನ ಸೂಚ್ಯಂಕ" data-hi="लाइव मौसम सूचकांक">Live Weather Index</small>
+                                <div style="font-weight: 600; color: #475569;">{{ irrigation_data.temp }}°C | {{ irrigation_data.humidity }}% RH</div>
+                            </div>
+                            <div>
+                                <small style="color: #64748b;" data-en="Evapotranspiration" data-kn="ಬಾಷ್ಪೀಕರಣ" data-hi="वाष्पोत्सर्जन">Evapotranspiration</small>
+                                <div style="font-weight: 600; color: #0369a1;">ET₀: {{ irrigation_data.et0 }} mm/d | Kc: {{ irrigation_data.kc }} | ETc: {{ irrigation_data.etc_mm }} mm/d</div>
+                            </div>
+                            <div>
+                                <small style="color: #64748b;" data-en="System & Rain Dynamics" data-kn="ವ್ಯವಸ್ಥೆ ಮತ್ತು ಮಳೆ ವಿವರ" data-hi="प्रणाली एवं वर्षा">System & Rain Dynamics</small>
+                                <div style="font-weight: 600; color: #0f766e;">Eff: {{ irrigation_data.efficiency_pct }}% | Peff: {{ irrigation_data.peff_mm }} mm</div>
+                            </div>
+                        </div>
+
+                        {% if not irrigation_data.is_plausible and irrigation_data.plausibility_warning %}
+                        <div style="margin-top: 10px; padding: 8px 12px; background: #fffbeb; border: 1px solid #fde68a; border-radius: 6px; color: #92400e; font-size: 12px; font-weight: 600;">
+                            ⚠️ {{ irrigation_data.plausibility_warning }}
+                        </div>
+                        {% endif %}
+
+                        {% if irrigation_data.rain_alert %}
+                        <div style="margin-top: 10px; padding: 8px 12px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 6px; color: #991b1b; font-weight: 600;">
+                            <span data-en="{{ irrigation_data.rain_alert_en }}"
+                                  data-kn="{{ irrigation_data.rain_alert_kn }}"
+                                  data-hi="{{ irrigation_data.rain_alert_hi }}">
+                                {{ irrigation_data.rain_alert_en }}
+                            </span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- ================= PLANNER AGENT ================= -->
+        <div class="section-box" id="planner">
+            <div class="section-header">
+                <span class="section-icon" role="img" aria-label="Robot">🤖</span>
+                <div>
+                    <h2 data-en="Planner Agent — Final Farm Decision" data-kn="ಯೋಜಕ ಏಜೆಂಟ್ — ಅಂತಿಮ ಕೃಷಿ ನಿರ್ಧಾರ"
+                        data-hi="योजनाकार एजेंट — अंतिम खेत निर्णय">
+                        Planner Agent — Final Farm Decision
+                    </h2>
+                    <p class="section-desc"
+                        data-en="AI orchestration combining all module outputs for final farming advice"
+                        data-kn="ಅಂತಿಮ ಕೃಷಿ ಸಲಹೆಗಾಗಿ ಎಲ್ಲಾ ಮಾಡ್ಯೂಲ್ ಔಟ್‌ಪುಟ್‌ಗಳನ್ನು ಸಂಯೋಜಿಸುವ AI ಆರ್ಕೆಸ್ಟ್ರೇಶನ್"
+                        data-hi="अंतिम कृषि सलाह के लिए सभी मॉड्यूल आउटपुट को जोड़ने वाला AI ऑर्केस्ट्रेशन">
+                        AI orchestration combining all module outputs for final farming advice
+                    </p>
+                </div>
+            </div>
+
+            <div class="plan-card green-card">
+                <p>
+                    <strong data-en="🌱 Recommended Crop:" data-kn="🌱 ಶಿಫಾರಸು ಮಾಡಿದ ಬೆಳೆ:" data-hi="🌱 अनुशंसित फसल:">🌱 Recommended Crop:</strong>
+                    <span data-en="{{ recommended_crop_en or (recommended_crop or 'Not Available') }}"
+                          data-kn="{{ recommended_crop_kn or (recommended_crop or 'ಲಭ್ಯವಿಲ್ಲ') }}"
+                          data-hi="{{ recommended_crop_hi or (recommended_crop or 'उपलब्ध नहीं') }}">{{ recommended_crop or 'Not Available' }}</span>
+                </p>
+
+                <p>
+                    <strong data-en="💰 Market Price:" data-kn="💰 ಮಾರುಕಟ್ಟೆ ಬೆಲೆ:" data-hi="💰 बाजार मूल्य:">💰 Market Price:</strong>
+                    <span data-en="{{ price_result_en or (price_crop ~ ' : ₹ ' ~ predicted_price if price_crop and predicted_price else ('₹ ' ~ predicted_price if predicted_price else 'Not Available')) }}"
+                          data-kn="{{ price_result_kn or (price_crop_kn ~ ' : ₹ ' ~ predicted_price if price_crop and predicted_price else ('₹ ' ~ predicted_price if predicted_price else 'ಲಭ್ಯವಿಲ್ಲ')) }}"
+                          data-hi="{{ price_result_hi or (price_crop_hi ~ ' : ₹ ' ~ predicted_price if price_crop and predicted_price else ('₹ ' ~ predicted_price if predicted_price else 'उपलब्ध नहीं')) }}">
+                        {% if lang == 'kn' %}
+                            {{ price_result_kn or (price_crop_kn ~ ' : ₹ ' ~ predicted_price if price_crop and predicted_price else ('₹ ' ~ predicted_price if predicted_price else 'ಲಭ್ಯವಿಲ್ಲ')) }}
+                        {% elif lang == 'hi' %}
+                            {{ price_result_hi or (price_crop_hi ~ ' : ₹ ' ~ predicted_price if price_crop and predicted_price else ('₹ ' ~ predicted_price if predicted_price else 'उपलब्ध नहीं')) }}
+                        {% else %}
+                            {{ price_result_en or (price_crop ~ ' : ₹ ' ~ predicted_price if price_crop and predicted_price else ('₹ ' ~ predicted_price if predicted_price else 'Not Available')) }}
+                        {% endif %}
+                    </span>
+                </p>
+                <p>
+                    <strong data-en="🍃 Disease Detected:" data-kn="🍃 ರೋಗ ಪತ್ತೆ:" data-hi="🍃 पहचाना गया रोग:">🍃 Disease Detected:</strong>
+                    <span data-en="{{ predicted_disease_en or (predicted_crop ~ ' : ' ~ predicted_disease if predicted_crop and predicted_disease else (predicted_disease or 'Not Available')) }}"
+                          data-kn="{{ predicted_disease_kn or 'ಲಭ್ಯವಿಲ್ಲ' }}"
+                          data-hi="{{ predicted_disease_hi or 'उपलब्ध नहीं' }}">
+                        {% if lang == 'kn' %}
+                            {{ predicted_disease_kn or (predicted_crop ~ ' : ' ~ predicted_disease if predicted_crop and predicted_disease else (predicted_disease or 'ಲಭ್ಯವಿಲ್ಲ')) }}
+                        {% elif lang == 'hi' %}
+                            {{ predicted_disease_hi or (predicted_crop ~ ' : ' ~ predicted_disease if predicted_crop and predicted_disease else (predicted_disease or 'उपलब्ध नहीं')) }}
+                        {% else %}
+                            {{ predicted_disease_en or (predicted_crop ~ ' : ' ~ predicted_disease if predicted_crop and predicted_disease else (predicted_disease or 'Not Available')) }}
+                        {% endif %}
+                    </span>
+                </p>
+
+                <p>
+                    <strong data-en="💧 Smart Irrigation:" data-kn="💧 ಸ್ಮಾರ್ಟ್ ನೀರಾವರಿ:" data-hi="💧 स्मार्ट सिंचाई:">💧 Smart Irrigation:</strong>
+                    <span data-en="{{ irrigation_result_en or (irrigation_result or 'Not Available') }}"
+                          data-kn="{{ irrigation_result_kn or (irrigation_result or 'ಲಭ್ಯವಿಲ್ಲ') }}"
+                          data-hi="{{ irrigation_result_hi or (irrigation_result or 'उपलब्ध नहीं') }}">{{ irrigation_result or 'Not Available' }}</span>
+                </p>
+
+                <p>
+                    <strong data-en="📍 City / District:" data-kn="📍 ನಗರ / ಜಿಲ್ಲೆ:" data-hi="📍 शहर / जिला:">📍 City / District:</strong>
+                    <span data-en="{{ (district_translations.get(city, {}).get('en', city)) if (city and district_translations) else (city or 'Not Available') }}"
+                          data-kn="{{ (district_translations.get(city, {}).get('kn', city)) if (city and district_translations) else (city or 'ಲಭ್ಯವಿಲ್ಲ') }}"
+                          data-hi="{{ (district_translations.get(city, {}).get('hi', city)) if (city and district_translations) else (city or 'उपलब्ध नहीं') }}">
+                        {% if lang == 'kn' and city and district_translations and district_translations.get(city) %}
+                            {{ district_translations[city].get('kn', city) }}
+                        {% elif lang == 'hi' and city and district_translations and district_translations.get(city) %}
+                            {{ district_translations[city].get('hi', city) }}
+                        {% else %}
+                            {{ (district_translations.get(city, {}).get('en', city)) if (city and district_translations) else (city or 'Not Available') }}
+                        {% endif %}
+                    </span>
+                </p>
+            </div>
+
+            {% set has_any_input = recommended_crop or predicted_price or predicted_disease or irrigation_data %}
+
+            {% if not has_any_input %}
+            <p class="info-note" style="margin-top:12px;"
+                data-en="⚠ Run at least one module above (Crop / Price / Disease / Irrigation) before generating a plan."
+                data-kn="⚠ ಯೋಜನೆ ರಚಿಸುವ ಮೊದಲು ಮೇಲಿನ ಕನಿಷ್ಠ ಒಂದು ಮಾಡ್ಯೂಲ್ ಅನ್ನು ಚಲಾಯಿಸಿ (ಬೆಳೆ / ಬೆಲೆ / ರೋಗ / ನೀರಾವರಿ)."
+                data-hi="⚠ योजना बनाने से पहले ऊपर दिए गए कम से कम एक मॉड्यूल (फसल / भाव / रोग / सिंचाई) को चलाएं।">
+                ⚠ Run at least one module above (Crop / Price / Disease / Irrigation) before generating a plan.
+            </p>
+            {% endif %}
+
+            <form action="/planner" method="POST">
+                <input type="hidden" name="lang" class="lang-field" value="{{ lang or 'en' }}">
+                <button type="submit" class="gov-btn" {% if not has_any_input %}disabled{% endif %}
+                    data-en="🤖 Get Complete Farm Plan" data-kn="🤖 ಸಂಪೂರ್ಣ ಕೃಷಿ ಯೋಜನೆ ಪಡೆಯಿರಿ"
+                    data-hi="🤖 पूर्ण कृषि योजना प्राप्त करें">
+                    🤖 Get Complete Farm Plan
+                </button>
+            </form>
+
+            {% if planner_ai_plan or planting_schedule or planner_summary %}
+            <div id="unifiedFarmPlanCard" style="display: flex !important; flex-direction: column !important; width: 100% !important; box-sizing: border-box !important; margin-top: 24px; background: linear-gradient(180deg, #f8fbf8 0%, #ffffff 100%); border: 2px solid #81c784; border-radius: 12px; box-shadow: 0 6px 20px rgba(46, 125, 50, 0.14); padding: 22px;">
+                <!-- Unified Header -->
+                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 10px; border-bottom: 2px solid #c8e6c9; padding-bottom: 12px; box-sizing: border-box;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="font-size: 24px;">🌾</span>
+                        <h4 style="margin: 0; color: #1b5e20; font-size: 18px; font-weight: 700;"
+                            data-en="Complete 360° Farm Action Plan & Agronomist Roadmap"
+                            data-kn="ಸಮಗ್ರ 360° ಕೃಷಿ ಕ್ರಿಯಾ ಯೋಜನೆ ಮತ್ತು ತಜ್ಞರ ಮಾರ್ಗಸೂಚಿ"
+                            data-hi="संपूर्ण 360° कृषि कार्य योजना एवं विशेषज्ञ रोडमैप">
+                            Complete 360° Farm Action Plan & Agronomist Roadmap
+                        </h4>
+                        {% if planner_ai_provider %}
+                        <span class="ai-provider-badge" style="background: #2e7d32; color: #fff; font-size: 11px; padding: 3px 9px; border-radius: 12px; font-weight: 600;">
+                            ⚡ {{ planner_ai_provider }}
+                        </span>
+                        {% endif %}
+                    </div>
+                    <button type="button" id="speakUnifiedPlanBtn" class="gov-btn" onclick="toggleSpeakElement('unifiedFarmPlanCard', 'speakUnifiedPlanBtn')"
+                        style="padding: 6px 16px; font-size: 13px; background: linear-gradient(135deg, #2e7d32, #1b5e20); margin: 0;"
+                        data-en="🔊 Read Aloud" data-kn="🔊 ಧ್ವನಿಯಲ್ಲಿ ಕೇಳಿ" data-hi="🔊 बोलकर सुनाएं">
+                        🔊 Read Aloud
+                    </button>
+                </div>
+
+                <!-- Executive Summary Status Banner -->
+                {% if planner_summary %}
+                <div style="margin-top:16px; padding:12px 16px; border-radius:8px; background: {% if '🚨' in planner_summary %}#fef2f2; border: 1px solid #fecaca; color:#991b1b;{% elif '⚠' in planner_summary %}#fffbeb; border: 1px solid #fde68a; color:#92400e;{% else %}#f0fdf4; border: 1px solid #bbf7d0; color:#166534;{% endif %} font-weight:600; font-size:15px;">
+                    <span data-en="{{ planner_summary_en or planner_summary }}"
+                          data-kn="{{ planner_summary_kn or planner_summary }}"
+                          data-hi="{{ planner_summary_hi or planner_summary }}">{{ planner_summary }}</span>
+                </div>
+                {% endif %}
+
+                <!-- Plant Health & Disease Diagnosis Badge -->
+                <div style="width: 100%; box-sizing: border-box; margin-top: 14px; padding: 12px 16px; border-radius: 8px; background: {% if predicted_disease and 'healthy' in predicted_disease|lower %}#f0fdf4; border: 1px solid #86efac; color: #166534;{% elif predicted_disease %}#fef2f2; border: 1px solid #fecaca; color: #991b1b;{% else %}#f8fafc; border: 1px solid #e2e8f0; color: #334155;{% endif %} display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+                    <div style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 14.5px;">
+                        <span style="font-size: 18px;">🍃</span>
+                        <div>
+                            <span data-en="Plant Health & Disease Status:" data-kn="ಸಸ್ಯದ ಆರೋಗ್ಯ ಮತ್ತು ರೋಗ ಸ್ಥಿತಿ:" data-hi="पौधे का स्वास्थ्य एवं रोग स्थिति:">Plant Health & Disease Status:</span>
+                            <strong style="margin-left: 6px;"
+                                data-en="{{ predicted_disease_en or (predicted_crop ~ ' — ' ~ predicted_disease if predicted_crop and predicted_disease else (predicted_disease or 'No Active Disease Reported (Preventive IPM Active)')) }}"
+                                data-kn="{{ predicted_disease_kn or (predicted_crop ~ ' — ' ~ predicted_disease if predicted_crop and predicted_disease else (predicted_disease or 'ಯಾವುದೇ ಸಕ್ರಿಯ ರೋಗವಿಲ್ಲ (ಮುನ್ನೆಚ್ಚರಿಕೆ IPM ಸಕ್ರಿಯ)')) }}"
+                                data-hi="{{ predicted_disease_hi or (predicted_crop ~ ' — ' ~ predicted_disease if predicted_crop and predicted_disease else (predicted_disease or 'कोई सक्रिय रोग नहीं (निवारक IPM सक्रिय)')) }}">
+                                {% if lang == 'kn' %}
+                                    {{ predicted_disease_kn or (predicted_crop ~ ' — ' ~ predicted_disease if predicted_crop and predicted_disease else (predicted_disease or 'ಯಾವುದೇ ಸಕ್ರಿಯ ರೋಗವಿಲ್ಲ (ಮುನ್ನೆಚ್ಚರಿಕೆ IPM ಸಕ್ರಿಯ)')) }}
+                                {% elif lang == 'hi' %}
+                                    {{ predicted_disease_hi or (predicted_crop ~ ' — ' ~ predicted_disease if predicted_crop and predicted_disease else (predicted_disease or 'कोई सक्रिय रोग नहीं (निवारक IPM सक्रिय)')) }}
+                                {% else %}
+                                    {{ predicted_disease_en or (predicted_crop ~ ' — ' ~ predicted_disease if predicted_crop and predicted_disease else (predicted_disease or 'No Active Disease Reported (Preventive IPM Active)')) }}
+                                {% endif %}
+                            </strong>
+                        </div>
+                    </div>
+                    {% if predicted_disease %}
+                        {% if 'healthy' in predicted_disease|lower %}
+                        <span style="background: #166534; color: #ffffff; padding: 3px 9px; border-radius: 10px; font-size: 11px; font-weight: 700;">✅ HEALTHY</span>
+                        {% else %}
+                        <span style="background: #dc2626; color: #ffffff; padding: 3px 9px; border-radius: 10px; font-size: 11px; font-weight: 700;">🚨 ACTIVE PATHOGEN</span>
+                        {% endif %}
+                    {% else %}
+                        <span style="background: #475569; color: #ffffff; padding: 3px 9px; border-radius: 10px; font-size: 11px; font-weight: 700;">ℹ PREVENTIVE IPM</span>
+                    {% endif %}
+                </div>
+
+                <!-- AI Strategic Agronomist Advisory -->
+                {% if planner_ai_plan %}
+                <div style="margin-top: 18px; padding: 14px; background: #ffffff; border-radius: 8px; border: 1px solid #e2e8f0;">
+                    <div style="font-weight: 700; color: #166534; margin-bottom: 8px; font-size: 15px;"
+                         data-en="💡 AI Agronomist Strategic Blueprint"
+                         data-kn="💡 AI ಕೃಷಿ ತಜ್ಞರ ಕಾರ್ಯತಂತ್ರದ ನೀಲನಕ್ಷೆ"
+                         data-hi="💡 AI कृषि विशेषज्ञ रणनीतिक ब्लूप्रिंट">
+                         💡 AI Agronomist Strategic Blueprint
+                    </div>
+                    <div class="plan-card-body" id="plannerAiBody" style="white-space: pre-line; font-size: 14.5px; line-height: 1.8; color: #1e293b;"
+                        data-en="{{ planner_ai_plan_en or planner_ai_plan }}"
+                        data-kn="{{ planner_ai_plan_kn or planner_ai_plan }}"
+                        data-hi="{{ planner_ai_plan_hi or planner_ai_plan }}">
+                        {{ planner_ai_plan }}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Telemetry, Advice & Alerts Integrated Section -->
+                {% if planner_priority or planner_advice or planner_alerts %}
+                <div style="width: 100%; box-sizing: border-box; margin-top: 18px; display: flex; flex-direction: column; gap: 10px;">
+                    {% if planner_priority %}
+                        {% for p in planner_priority %}
+                        {% set p_idx = loop.index0 %}
+                        <div class="result-card critical-result" style="width: 100% !important; box-sizing: border-box !important; margin: 0;"
+                            data-en="{{ planner_priority_en[p_idx] if planner_priority_en and loop.index0 < planner_priority_en|length else p }}"
+                            data-kn="{{ planner_priority_kn[p_idx] if planner_priority_kn and loop.index0 < planner_priority_kn|length else p }}"
+                            data-hi="{{ planner_priority_hi[p_idx] if planner_priority_hi and loop.index0 < planner_priority_hi|length else p }}">{{ p }}</div>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if planner_advice %}
+                        {% for advice in planner_advice %}
+                        {% set a_idx = loop.index0 %}
+                        <div class="result-card crop-result" style="width: 100% !important; box-sizing: border-box !important; margin: 0; background: #f0fdf4; border-color: #86efac;"
+                            data-en="{{ planner_advice_en[a_idx] if planner_advice_en and loop.index0 < planner_advice_en|length else advice }}"
+                            data-kn="{{ planner_advice_kn[a_idx] if planner_advice_kn and loop.index0 < planner_advice_kn|length else advice }}"
+                            data-hi="{{ planner_advice_hi[a_idx] if planner_advice_hi and loop.index0 < planner_advice_hi|length else advice }}">{{ advice }}</div>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if planner_alerts %}
+                        {% for alert in planner_alerts %}
+                        {% set al_idx = loop.index0 %}
+                        <div class="result-card alert-result" style="width: 100% !important; box-sizing: border-box !important; margin: 0;"
+                            data-en="{{ planner_alerts_en[al_idx] if planner_alerts_en and loop.index0 < planner_alerts_en|length else alert }}"
+                            data-kn="{{ planner_alerts_kn[al_idx] if planner_alerts_kn and loop.index0 < planner_alerts_kn|length else alert }}"
+                            data-hi="{{ planner_alerts_hi[al_idx] if planner_alerts_hi and loop.index0 < planner_alerts_hi|length else alert }}">{{ alert }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!-- Structured Field Operations Matrix -->
+                {% if planting_schedule %}
+                <div style="width: 100%; box-sizing: border-box; margin-top: 22px; padding-top: 18px; border-top: 1px dashed #cbd5e1;" id="farmPlanSection">
+                    <div style="font-weight: 700; color: #1e293b; font-size: 15px; margin-bottom: 14px;"
+                        data-en="📋 Operations & Production Calendar"
+                        data-kn="📋 ಕಾರ್ಯಾಚರಣೆ ಮತ್ತು ಉತ್ಪಾದನಾ ಕ್ಯಾಲೆಂಡರ್"
+                        data-hi="📋 कृषि संचालन एवं उत्पादन कैलेंडर">
+                        📋 Operations & Production Calendar
+                    </div>
+                    <div class="plan-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; width: 100%; box-sizing: border-box;">
+                        <div class="plan-card green-card" style="box-sizing: border-box;">
+                            <div class="plan-card-title"
+                                data-en="🌱 Planting Schedule"
+                                data-kn="🌱 ಬಿತ್ತನೆ ವೇಳಾಪಟ್ಟಿ"
+                                data-hi="🌱 बुवाई समय-सारणी">🌱 Planting Schedule</div>
+                            <div class="plan-card-body"
+                                data-en="{{ planting_schedule_en or planting_schedule }}"
+                                data-kn="{{ planting_schedule_kn or planting_schedule }}"
+                                data-hi="{{ planting_schedule_hi or planting_schedule }}">{{ planting_schedule }}</div>
+                        </div>
+                        <div class="plan-card green-card" style="box-sizing: border-box;">
+                            <div class="plan-card-title"
+                                data-en="🌾 Harvest Schedule"
+                                data-kn="🌾 ಕೊಯ್ಲು ವೇಳಾಪಟ್ಟಿ"
+                                data-hi="🌾 कटाई समय-सारणी">🌾 Harvest Schedule</div>
+                            <div class="plan-card-body"
+                                data-en="{{ harvest_schedule_en or harvest_schedule }}"
+                                data-kn="{{ harvest_schedule_kn or harvest_schedule }}"
+                                data-hi="{{ harvest_schedule_hi or harvest_schedule }}">{{ harvest_schedule }}</div>
+                        </div>
+                        <div class="plan-card blue-card" style="box-sizing: border-box;">
+                            <div class="plan-card-title"
+                                data-en="🌿 Fertilizer Plan"
+                                data-kn="🌿 ಗೊಬ್ಬರ ಯೋಜನೆ"
+                                data-hi="🌿 उर्वरक योजना">🌿 Fertilizer Plan</div>
+                            <div class="plan-card-body"
+                                data-en="{{ fertilizer_plan_en or fertilizer_plan }}"
+                                data-kn="{{ fertilizer_plan_kn or fertilizer_plan }}"
+                                data-hi="{{ fertilizer_plan_hi or fertilizer_plan }}">{{ fertilizer_plan }}</div>
+                        </div>
+                        <div class="plan-card purple-card" style="box-sizing: border-box;">
+                            <div class="plan-card-title"
+                                data-en="💰 Selling Recommendation"
+                                data-kn="💰 ಮಾರಾಟ ಶಿಫಾರಸು"
+                                data-hi="💰 बिक्री अनुशंसा">💰 Selling Recommendation</div>
+                            <div class="plan-card-body"
+                                data-en="{{ sell_recommendation_en or sell_recommendation }}"
+                                data-kn="{{ sell_recommendation_kn or sell_recommendation }}"
+                                data-hi="{{ sell_recommendation_hi or sell_recommendation }}">{{ sell_recommendation }}</div>
+                        </div>
+                    </div>
+                    {% if pest_guide %}
+                    <div class="plan-card orange-card" style="margin-top:12px;">
+                        <div class="plan-card-title"
+                            data-en="🐛 Pest Treatment Guide"
+                            data-kn="🐛 ಕೀಟ ನಿಯಂತ್ರಣ ಮಾರ್ಗದರ್ಶಿ"
+                            data-hi="🐛 कीट नियंत्रण गाइड">🐛 Pest Treatment Guide</div>
+                        {% for pest in pest_guide %}
+                        {% set pest_idx = loop.index0 %}
+                        <div class="pest-item"
+                            data-en="• {{ pest_guide_en[pest_idx] if pest_guide_en and loop.index0 < pest_guide_en|length else pest }}"
+                            data-kn="• {{ pest_guide_kn[pest_idx] if pest_guide_kn and loop.index0 < pest_guide_kn|length else pest }}"
+                            data-hi="• {{ pest_guide_hi[pest_idx] if pest_guide_hi and loop.index0 < pest_guide_hi|length else pest }}">• {{ pest }}</div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="gov-footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <strong>🌾 SmartAgri AI</strong><br>
+                Agent-Based AI System for Farmer Decision Support
+            </div>
+            <div class="footer-center">
+                Developed for Agricultural Decision Making<br>
+                Powered by Machine Learning & Deep Learning
+            </div>
+            <div class="footer-right">
+                Models: Random Forest | CNN<br>
+                API: OpenWeatherMap
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 SmartAgri AI — All Rights Reserved
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

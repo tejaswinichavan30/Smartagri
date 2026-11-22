@@ -1,0 +1,140 @@
+{
+  "_metadata": {
+    "title": "Integrated Pest Management (IPM) & DPPQ&S Chemical Safety Protocol",
+    "authority": "Directorate of Plant Protection, Quarantine & Storage (DPPQ&S), Ministry of Agriculture, Govt of India",
+    "source_url": "https://ppqs.gov.in/divisions/cib-rc/registered-products",
+    "retrieval_date": "2026-10-04",
+    "policy": "Allowlist-first approach: chemical names and doses are shown ONLY when label_claim_verified=true. Restricted and banned pesticides are strictly prohibited."
+  },
+  "dppqs_restricted_or_banned_list": {
+    "carbofuran": {
+      "status": "banned_or_restricted",
+      "regulatory_action": "Banned / Refused Registration under Insecticides Act, 1968",
+      "source_url": "https://ppqs.gov.in",
+      "retrieval_date": "2026-10-04"
+    },
+    "carbosulfan": {
+      "status": "under_review",
+      "regulatory_action": "Under Review (Draft Banning Notification S.O. 539(E))",
+      "source_url": "https://ppqs.gov.in",
+      "retrieval_date": "2026-10-04"
+    },
+    "monocrotophos": {
+      "status": "banned_or_restricted",
+      "regulatory_action": "Restricted (Banned on vegetables / high-toxicity red triangle)",
+      "source_url": "https://ppqs.gov.in",
+      "retrieval_date": "2026-10-04"
+    },
+    "phorate": {
+      "status": "banned_or_restricted",
+      "regulatory_action": "Banned / Phased out under Gazette Notification",
+      "source_url": "https://ppqs.gov.in",
+      "retrieval_date": "2026-10-04"
+    },
+    "methyl_parathion": {
+      "status": "banned_or_restricted",
+      "regulatory_action": "Banned for manufacture, import and use",
+      "source_url": "https://ppqs.gov.in",
+      "retrieval_date": "2026-10-04"
+    },
+    "endosulfan": {
+      "status": "banned_or_restricted",
+      "regulatory_action": "Complete Supreme Court nationwide ban",
+      "source_url": "https://ppqs.gov.in",
+      "retrieval_date": "2026-10-04"
+    },
+    "paraquat": {
+      "status": "banned_or_restricted",
+      "regulatory_action": "Restricted use strictly under medical supervision",
+      "source_url": "https://ppqs.gov.in",
+      "retrieval_date": "2026-10-04"
+    }
+  },
+  "crops": {
+    "rice": {
+      "stem_borer": {
+        "problem_en": "Stem Borer",
+        "problem_kn": "ಕಾಂಡ ಕೊರೆಯುವ ಹುಳು",
+        "problem_hi": "तना छेदक",
+        "monitoring": {
+          "en": "Monitor for dead hearts at vegetative stage and white earheads at maturity.",
+          "kn": "ಬೆಳೆಯ ಆರಂಭದಲ್ಲಿ ಒಣಗಿದ ಸುಳಿ ಮತ್ತು ಕೊನೆಯಲ್ಲಿ ಬಿಳಿ ತೆನೆಗಳನ್ನು ಗಮನಿಸಿ.",
+          "hi": "शुरुआती अवस्था में मृत तना और बाद में सफेद बालियों की निगरानी करें।"
+        },
+        "cultural": {
+          "en": "Install pheromone traps @ 5/acre and clip seedling tips before transplanting.",
+          "kn": "ಎಕರೆಗೆ 5 ಮೋಹಕ ಬಲೆಗಳನ್ನು ಅಳವಡಿಸಿ ಮತ್ತು ನಾಟಿಗೆ ಮುನ್ನ ಸಸಿಗಳ ತುದಿಯನ್ನು ಚಿವುಟಿ.",
+          "hi": "प्रति एकड़ 5 फेरोमोन ट्रैप लगाएं और रोपाई से पहले पौधों की ऊपरी पत्ती काटें।"
+        },
+        "biological": {
+          "en": "Release egg parasitoid Trichogramma japonicum @ 50,000/ha at 30 DAT.",
+          "kn": "ಟ್ರೈಕೋಗ್ರಾಮಾ ಜಪೋನಿಕಮ್ ಪರಾವಲಂಬಿ ಕೀಟಗಳನ್ನು ನಾಟಿಯ 30 ದಿನಗಳ ನಂತರ ಬಿಡಿ.",
+          "hi": "रोपाई के 30 दिन बाद ट्राइकोग्रामा जपोनिकम परजीवी छोड़ें।"
+        },
+        "chemical": {
+          "label_claim_verified": false,
+          "verified_by_expert": false,
+          "advisory_en": "For safe chemical management, consult your local KVK or Krishi officer.",
+          "advisory_kn": "ರಾಸಾಯನಿಕ ನಿರ್ವಹಣೆಗೆ ನಿಮ್ಮ ಸ್ಥಳೀಯ ಕೆವಿಕೆ ಅಥವಾ ಕೃಷಿ ಅಧಿಕಾರಿಯನ್ನು ಸಂಪರ್ಕಿಸಿ.",
+          "advisory_hi": "सुरक्षित रासायनिक प्रबंधन हेतु अपने नजदीकी केवीके या कृषि अधिकारी से परामर्श लें।"
+        }
+      },
+      "brown_planthopper": {
+        "problem_en": "Brown Planthopper",
+        "problem_kn": "ಕಂದು ಜಿಗಿಹುಳು",
+        "problem_hi": "भूरा फुदका",
+        "monitoring": {
+          "en": "Part the canopy and inspect the base of tillers for hopper nymphs.",
+          "kn": "ಗಿಡಗಳ ಬುಡದಲ್ಲಿ ಜಿಗಿಹುಳುಗಳಿವೆಯೇ ಎಂದು ಎಲೆ ಸರಿಸಿ ಪರಿಶೀಲಿಸಿ.",
+          "hi": "पौधों के आधार पर भूरे फुदके की उपस्थिति की जांच करें।"
+        },
+        "cultural": {
+          "en": "Alternate wetting and drying (AWD); avoid standing water and excess nitrogen.",
+          "kn": "ಹೊಲವನ್ನು ಆಗಾಗ್ಗೆ ಒಣಗಿಸಿ ನೀರು ಕೊಡಿ; ಅತಿಯಾದ ಯೂರಿಯಾ ಬಳಕೆ ತಪ್ಪಿಸಿ.",
+          "hi": "खेत से बीच-बीच में पानी निकालें; अधिक नाइट्रोजन देने से बचें।"
+        },
+        "biological": {
+          "en": "Conserve natural predators like mirid bugs and spiders in the field.",
+          "kn": "ಜೇಡಗಳು ಮತ್ತು ನೈಸರ್ಗಿಕ ಪರಭಕ್ಷಕ ಕೀಟಗಳನ್ನು ಸಂರಕ್ಷಿಸಿ.",
+          "hi": "खेत में मकड़ियों और प्राकृतिक शिकारी कीटों का संरक्षण करें।"
+        },
+        "chemical": {
+          "label_claim_verified": false,
+          "verified_by_expert": false,
+          "advisory_en": "For safe chemical management, consult your local KVK or Krishi officer.",
+          "advisory_kn": "ರಾಸಾಯನಿಕ ನಿರ್ವಹಣೆಗೆ ನಿಮ್ಮ ಸ್ಥಳೀಯ ಕೆವಿಕೆ ಅಥವಾ ಕೃಷಿ ಅಧಿಕಾರಿಯನ್ನು ಸಂಪರ್ಕಿಸಿ.",
+          "advisory_hi": "सुरक्षित रासायनिक प्रबंधन हेतु अपने नजदीकी केवीKE या कृषि अधिकारी से परामर्श लें।"
+        }
+      }
+    },
+    "maize": {
+      "fall_armyworm": {
+        "problem_en": "Fall Armyworm (Spodoptera frugiperda)",
+        "problem_kn": "ಲದ್ದಿ ಹುಳು / ಫಾಲ್ ಆರ್ಮಿವರ್ಮ್",
+        "problem_hi": "फॉल आर्मीवॉर्म कीट",
+        "monitoring": {
+          "en": "Scout 20 consecutive plants in 5 locations for whorl damage and frass pellets.",
+          "kn": "ಸುಳಿಯಲ್ಲಿ ರಂಧ್ರಗಳು ಮತ್ತು ಹಿಕ್ಕೆಯ ಕಣಗಳಿವೆಯೇ ಎಂದು 5 ಕಡೆ ತಲಾ 20 ಗಿಡಗಳನ್ನು ಪರಿಶೀಲಿಸಿ.",
+          "hi": "पौधे के बीच के भाग (व्होर्ल) में छेद और कीट के मल की 5 स्थानों पर 20 पौधों में निगरानी करें।"
+        },
+        "cultural": {
+          "en": "Install pheromone traps @ 5/acre and apply dry sand/sawdust with neem cake into whorls.",
+          "kn": "ಎಕರೆಗೆ 5 ಮೋಹಕ ಬಲೆ ಅಳವಡಿಸಿ ಮತ್ತು ಸುಳಿಗೆ ಮರಳು-ಬೇವಿನ ಹಿಂಡಿ ಮಿಶ್ರಣ ಹಾಕಿ.",
+          "hi": "प्रति एकड़ 5 फेरोमोन ट्रैप लगाएं और व्होर्ल में रेत व नीम की खली का मिश्रण डालें।"
+        },
+        "biological": {
+          "en": "Spray Bacillus thuringiensis (Bt) or Beauveria bassiana @ 5 g/L during early instar stage.",
+          "kn": "ಆರಂಭಿಕ ಹಂತದಲ್ಲಿ ಬ್ಯಾಸಿಲಸ್ ತುರಿಂಜಿಯೆನ್ಸಿಸ್ (Bt) ಅಥವಾ ಬವೇರಿಯಾ ಬಾಸಿಯಾನಾ (5 ಗ್ರಾಂ/ಲೀ) ಸಿಂಪಡಿಸಿ.",
+          "hi": "शुरुआती अवस्था में बैसिलस थुरिंजिएंसिस (Bt) या बवेरिया बासियाना (5 ग्राम/लीटर) का छिड़काव करें।"
+        },
+        "chemical": {
+          "label_claim_verified": false,
+          "verified_by_expert": false,
+          "advisory_en": "For safe chemical management, consult your local KVK or Krishi officer.",
+          "advisory_kn": "ರಾಸಾಯನಿಕ ನಿರ್ವಹಣೆಗೆ ನಿಮ್ಮ ಸ್ಥಳೀಯ ಕೆವಿಕೆ ಅಥವಾ ಕೃಷಿ ಅಧಿಕಾರಿಯನ್ನು ಸಂಪರ್ಕಿಸಿ.",
+          "advisory_hi": "सुरक्षित रासायनिक प्रबंधन हेतु अपने नजदीकी केवीके या कृषि अधिकारी से परामर्श लें।"
+        }
+      }
+    }
+  }
+}

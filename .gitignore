@@ -1,0 +1,28 @@
+# Raw image datasets (trained models in Datasets/*.keras and models/saved_models/ are used)
+Datasets/plantvillage dataset/
+Datasets/rice_data/
+Datasets/wheat_data/
+Datasets/disease_combined/
+
+# Node modules (installed automatically by build script)
+node_modules/
+smartagri-react/node_modules/
+
+# Python cache & virtual environment
+__pycache__/
+*.pyc
+venv/
+.venv/
+.pytest_cache/
+flask_sessions/
+static/uploads/
+
+# Environment secrets
+.env
+
+# Backups and temporary files
+_backup*/
+backup*/
+.backup*/
+scratch/
+

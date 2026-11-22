@@ -1,0 +1,74 @@
+{
+  "_comment": "Standard Agronomic Fertilizer Guidelines for Karnataka Crops. All values marked verified_by_expert=false pending final agronomist sign-off.",
+  "crops": {
+    "ragi": {
+      "name_en": "Finger Millet (Ragi)",
+      "verified_by_expert": false,
+      "rainfed": {
+        "organic_manure": "7.5 tonnes FYM/ha (approx 3 tonnes/acre)",
+        "nitrogen_n_kgha": 50,
+        "phosphorus_p2o5_kgha": 40,
+        "potassium_k2o_kgha": 25,
+        "splits": {
+          "basal_at_sowing": "50% N + 100% P2O5 + 100% K2O",
+          "top_dressing_30_das": "50% N at tillering stage (30-35 days after sowing)"
+        },
+        "verified_by_expert": false
+      },
+      "irrigated": {
+        "organic_manure": "10 tonnes FYM/ha (approx 4 tonnes/acre)",
+        "nitrogen_n_kgha": 100,
+        "phosphorus_p2o5_kgha": 50,
+        "potassium_k2o_kgha": 50,
+        "splits": {
+          "basal_at_sowing": "50% N + 100% P2O5 + 100% K2O",
+          "top_dressing_30_das": "25% N at tillering, 25% N at panicle initiation"
+        },
+        "verified_by_expert": false
+      }
+    },
+    "maize": {
+      "name_en": "Maize (Corn)",
+      "verified_by_expert": false,
+      "irrigated": {
+        "organic_manure": "10 tonnes FYM/ha",
+        "nitrogen_n_kgha": 150,
+        "phosphorus_p2o5_kgha": 75,
+        "potassium_k2o_kgha": 40,
+        "splits": {
+          "basal_at_sowing": "33% N + 100% P2O5 + 100% K2O + 25 kg ZnSO4",
+          "top_dressing_30_das": "33% N at knee-high (30 DAS)",
+          "top_dressing_50_das": "33% N at tasseling/silking (50 DAS)"
+        },
+        "verified_by_expert": false
+      },
+      "rainfed": {
+        "organic_manure": "7.5 tonnes FYM/ha",
+        "nitrogen_n_kgha": 100,
+        "phosphorus_p2o5_kgha": 50,
+        "potassium_k2o_kgha": 25,
+        "splits": {
+          "basal_at_sowing": "50% N + 100% P2O5 + 100% K2O",
+          "top_dressing_30_das": "50% N at knee-high"
+        },
+        "verified_by_expert": false
+      }
+    },
+    "rice": {
+      "name_en": "Paddy (Rice)",
+      "verified_by_expert": false,
+      "irrigated": {
+        "organic_manure": "10-12 tonnes FYM/ha",
+        "nitrogen_n_kgha": 100,
+        "phosphorus_p2o5_kgha": 50,
+        "potassium_k2o_kgha": 50,
+        "splits": {
+          "basal_at_sowing": "50% N + 100% P2O5 + 50% K2O + 25 kg ZnSO4",
+          "top_dressing_30_das": "25% N at active tillering (25-30 DAT)",
+          "top_dressing_50_das": "25% N + 50% K2O at panicle initiation (45-50 DAT)"
+        },
+        "verified_by_expert": false
+      }
+    }
+  }
+}

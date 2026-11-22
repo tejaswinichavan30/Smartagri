@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Prediction Result — SmartAgri AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="gov-header">
+    <div class="header-top">
+        <div class="header-logo" role="img" aria-label="Wheat sheaf icon">🌾</div>
+        <div class="header-text">
+            <h1>SmartAgri AI</h1>
+            <p>Agent-Based Intelligent System for Farmer Decision Support</p>
+        </div>
+        <div class="header-emblem" role="img" aria-label="Indian flag">🇮🇳</div>
+    </div>
+</header>
+
+<div class="main-container">
+
+    <div class="breadcrumb">
+        <a href="/">🏠 Home</a>
+        <span> › </span>
+        <span>Market Price Prediction Result</span>
+    </div>
+
+    <div class="section-box" style="max-width: 600px; margin: 30px auto;">
+        <div class="section-header">
+            <span class="section-icon" role="img" aria-label="Money bag">💰</span>
+            <div>
+                <h2>Market Price Prediction Result</h2>
+                <p class="section-desc">AI-predicted mandi price for your selected crop</p>
+            </div>
+        </div>
+
+        <div class="price-display-box">
+            <div class="price-label">Predicted Market Price</div>
+            <div class="price-value">₹ {{ prediction }}</div>
+            <div class="price-unit">per quintal</div>
+        </div>
+
+        <div class="info-note" style="margin-top: 20px;">
+            📌 This price is predicted based on historical mandi data.
+            Actual market prices may vary. Always verify with your local mandi
+            before making selling decisions.
+        </div>
+
+        <div style="text-align: center; margin-top: 24px;">
+            <a href="/" class="gov-btn" style="text-decoration: none; display: inline-block;">
+                ← Go Back to Dashboard
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+<footer class="gov-footer">
+    <div class="footer-content">
+        <div class="footer-left">
+            <strong>🌾 SmartAgri AI</strong><br>
+            Agent-Based AI System for Farmer Decision Support
+        </div>
+        <div class="footer-center">
+            Developed for Agricultural Decision Making<br>
+            Powered by Machine Learning & Deep Learning
+        </div>
+        <div class="footer-right">
+            Models: Random Forest | CNN<br>
+            API: OpenWeatherMap
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2025 SmartAgri AI — All Rights Reserved
+    </div>
+</footer>
+
+</body>
+</html>

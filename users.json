@@ -1,0 +1,5 @@
+{
+    "farmer1":  {"password": "farmer123",  "type": "farmer",  "name": "Raju"},
+    "officer1": {"password": "officer123", "type": "officer", "name": "Mr. Sharma"},
+    "admin":    {"password": "admin123",   "type": "admin",   "name": "Admin"}
+}

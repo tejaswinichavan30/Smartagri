@@ -1,0 +1,195 @@
+{
+  "_comment": "Karnataka Crop Sowing Windows and Seasonal Boundaries. All entries have verified_by_expert=false pending final agronomic review.",
+  "crops": {
+    "ragi": {
+      "name_en": "Finger Millet (Ragi)",
+      "name_kn": "ರಾಗಿ",
+      "name_hi": "रागी",
+      "kharif": {
+        "sowing_start_month": 7,
+        "sowing_start_day": 1,
+        "sowing_end_month": 8,
+        "sowing_end_day": 31,
+        "harvest_start_month": 11,
+        "harvest_end_month": 12,
+        "window_label": "July - August (Monsoon sowing)",
+        "verified_by_expert": false
+      },
+      "summer": {
+        "sowing_start_month": 1,
+        "sowing_start_day": 15,
+        "sowing_end_month": 2,
+        "sowing_end_day": 28,
+        "harvest_start_month": 4,
+        "harvest_end_month": 5,
+        "window_label": "January - February (Irrigated summer)",
+        "verified_by_expert": false
+      }
+    },
+    "maize": {
+      "name_en": "Maize (Corn)",
+      "name_kn": "ಮೆಕ್ಕೆಜೋಳ",
+      "name_hi": "मक्का",
+      "kharif": {
+        "sowing_start_month": 6,
+        "sowing_start_day": 1,
+        "sowing_end_month": 7,
+        "sowing_end_day": 31,
+        "harvest_start_month": 9,
+        "harvest_end_month": 10,
+        "window_label": "June - July",
+        "verified_by_expert": false
+      },
+      "rabi": {
+        "sowing_start_month": 10,
+        "sowing_start_day": 15,
+        "sowing_end_month": 11,
+        "sowing_end_day": 30,
+        "harvest_start_month": 2,
+        "harvest_end_month": 3,
+        "window_label": "October - November",
+        "verified_by_expert": false
+      }
+    },
+    "rice": {
+      "name_en": "Paddy (Rice)",
+      "name_kn": "ಭತ್ತ",
+      "name_hi": "धान / चावल",
+      "kharif": {
+        "sowing_start_month": 6,
+        "sowing_start_day": 1,
+        "sowing_end_month": 7,
+        "sowing_end_day": 31,
+        "harvest_start_month": 10,
+        "harvest_end_month": 12,
+        "window_label": "June - July (Transplanting)",
+        "verified_by_expert": false
+      },
+      "rabi": {
+        "sowing_start_month": 11,
+        "sowing_start_day": 1,
+        "sowing_end_month": 12,
+        "sowing_end_day": 31,
+        "harvest_start_month": 3,
+        "harvest_end_month": 4,
+        "window_label": "November - December (Summer/Rabi)",
+        "verified_by_expert": false
+      }
+    },
+    "cotton": {
+      "name_en": "Cotton",
+      "name_kn": "ಹತ್ತಿ",
+      "name_hi": "कपास",
+      "kharif": {
+        "sowing_start_month": 5,
+        "sowing_start_day": 15,
+        "sowing_end_month": 6,
+        "sowing_end_day": 30,
+        "harvest_start_month": 11,
+        "harvest_end_month": 1,
+        "window_label": "Late May - June",
+        "verified_by_expert": false
+      }
+    },
+    "groundnut": {
+      "name_en": "Groundnut",
+      "name_kn": "ಕಡಲೆಕಾಯಿ / ಶೇಂಗಾ",
+      "name_hi": "मूंगफली",
+      "kharif": {
+        "sowing_start_month": 6,
+        "sowing_start_day": 1,
+        "sowing_end_month": 7,
+        "sowing_end_day": 15,
+        "harvest_start_month": 10,
+        "harvest_end_month": 11,
+        "window_label": "June - Mid July",
+        "verified_by_expert": false
+      },
+      "rabi": {
+        "sowing_start_month": 11,
+        "sowing_start_day": 15,
+        "sowing_end_month": 12,
+        "sowing_end_day": 31,
+        "harvest_start_month": 3,
+        "harvest_end_month": 4,
+        "window_label": "November - December (Summer groundnut)",
+        "verified_by_expert": false
+      }
+    },
+    "soybean": {
+      "name_en": "Soybean",
+      "name_kn": "ಸೋಯಾಬೀನ್",
+      "name_hi": "सोयाबीन",
+      "kharif": {
+        "sowing_start_month": 6,
+        "sowing_start_day": 15,
+        "sowing_end_month": 7,
+        "sowing_end_day": 15,
+        "harvest_start_month": 9,
+        "harvest_end_month": 10,
+        "window_label": "Mid June - Mid July",
+        "verified_by_expert": false
+      }
+    },
+    "pigeonpeas": {
+      "name_en": "Redgram (Tur)",
+      "name_kn": "ತೊಗರಿ",
+      "name_hi": "अरहर / तुअर",
+      "kharif": {
+        "sowing_start_month": 6,
+        "sowing_start_day": 1,
+        "sowing_end_month": 7,
+        "sowing_end_day": 15,
+        "harvest_start_month": 12,
+        "harvest_end_month": 1,
+        "window_label": "June - Mid July",
+        "verified_by_expert": false
+      }
+    },
+    "chickpea": {
+      "name_en": "Chickpea (Bengal Gram)",
+      "name_kn": "ಕಡಲೆ",
+      "name_hi": "चना",
+      "rabi": {
+        "sowing_start_month": 10,
+        "sowing_start_day": 1,
+        "sowing_end_month": 11,
+        "sowing_end_day": 15,
+        "harvest_start_month": 1,
+        "harvest_end_month": 2,
+        "window_label": "October - Mid November",
+        "verified_by_expert": false
+      }
+    },
+    "wheat": {
+      "name_en": "Wheat",
+      "name_kn": "ಗೋಧಿ",
+      "name_hi": "गेहूं",
+      "rabi": {
+        "sowing_start_month": 10,
+        "sowing_start_day": 15,
+        "sowing_end_month": 11,
+        "sowing_end_day": 30,
+        "harvest_start_month": 2,
+        "harvest_end_month": 3,
+        "window_label": "Mid October - November",
+        "verified_by_expert": false
+      }
+    },
+    "sugarcane": {
+      "name_en": "Sugarcane",
+      "name_kn": "ಕಬ್ಬು",
+      "name_hi": "गन्ना",
+      "annual": {
+        "sowing_start_month": 1,
+        "sowing_start_day": 1,
+        "sowing_end_month": 12,
+        "sowing_end_day": 31,
+        "harvest_start_month": 1,
+        "harvest_end_month": 12,
+        "window_label": "Adsali (July-Aug) / Eksali (Jan-Feb)",
+        "verified_by_expert": false
+      }
+    }
+  }
+}

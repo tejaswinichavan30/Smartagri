@@ -1,0 +1,18 @@
+{
+  "_comment": "Karnataka district-wise recommended named vegetable crops. Replaces generic 'vegetables' entry.",
+  "district_vegetables": {
+    "Hassan": ["potato", "tomato", "beans", "chilli"],
+    "Bengaluru Rural": ["tomato", "brinjal", "beans", "cabbage"],
+    "Bengaluru Urban": ["tomato", "leafy vegetables", "cucumber", "beans"],
+    "Kolar": ["tomato", "capsicum", "chilli", "beans"],
+    "Chikkaballapura": ["tomato", "onion", "chilli", "potato"],
+    "Chikkamagaluru": ["beans", "tomato", "chilli", "ginger"],
+    "Dharwad": ["chilli", "onion", "tomato", "brinjal"],
+    "Belagavi": ["onion", "tomato", "cabbage", "brinjal"],
+    "Mysuru": ["tomato", "brinjal", "beans", "cucumber"],
+    "Mandya": ["tomato", "okra", "brinjal", "cucumber"],
+    "Shivamogga": ["ginger", "chilli", "tomato", "okra"],
+    "Tumakuru": ["tomato", "onion", "chilli", "brinjal"],
+    "default": ["tomato", "chilli", "onion", "beans"]
+  }
+}

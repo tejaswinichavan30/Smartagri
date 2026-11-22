@@ -1,0 +1,43 @@
+crop,disease,expected_filename,expected_path,reason
+soybean,mosaic_virus,mosaic_virus.jpg,static/disease_samples/soybean/mosaic_virus.jpg,needs_review
+wheat,leaf_blight,leaf_blight.jpg,static/disease_samples/wheat/leaf_blight.jpg,needs_review
+maize,cercospora_spot,cercospora_spot.jpg,static/disease_samples/maize/cercospora_spot.jpg,needs_review
+maize,healthy,healthy.jpg,static/disease_samples/maize/healthy.jpg,needs_review
+cotton,bacterial_blight,bacterial_blight.jpg,static/disease_samples/cotton/bacterial_blight.jpg,wrong_crop
+cotton,leaf_curl,leaf_curl.jpg,static/disease_samples/cotton/leaf_curl.jpg,wrong_crop
+cotton,alternaria_spot,alternaria_spot.jpg,static/disease_samples/cotton/alternaria_spot.jpg,wrong_crop
+cotton,healthy,healthy.jpg,static/disease_samples/cotton/healthy.jpg,wrong_crop
+coconut,stem_bleeding,stem_bleeding.jpg,static/disease_samples/coconut/stem_bleeding.jpg,needs_review
+pigeonpeas,sterility_mosaic,sterility_mosaic.jpg,static/disease_samples/pigeonpeas/sterility_mosaic.jpg,needs_review
+ragi,foot_rot,brown_spot.jpg,static/disease_samples/ragi/brown_spot.jpg,needs_review
+ragi,brown_spot,brown_spot.jpg,static/disease_samples/ragi/brown_spot.jpg,needs_review
+ragi,healthy,healthy.jpg,static/disease_samples/ragi/healthy.jpg,needs_review
+corn,cercospora_spot,cercospora_spot.jpg,static/disease_samples/maize/cercospora_spot.jpg,needs_review
+corn,healthy,healthy.jpg,static/disease_samples/maize/healthy.jpg,needs_review
+orange,citrus_greening,citrus_greening.jpg,static/disease_samples/orange/citrus_greening.jpg,missing
+orange,citrus_canker,canker.jpg,static/disease_samples/orange/canker.jpg,missing
+squash,powdery_mildew,powdery_mildew.jpg,static/disease_samples/squash/powdery_mildew.jpg,missing
+squash,downy_mildew,downy_mildew.jpg,static/disease_samples/squash/downy_mildew.jpg,missing
+arecanut,koleroga,koleroga.jpg,static/disease_samples/arecanut/koleroga.jpg,missing
+arecanut,yellow_leaf,yellow_leaf.jpg,static/disease_samples/arecanut/yellow_leaf.jpg,missing
+turmeric,leaf_blotch,leaf_blotch.jpg,static/disease_samples/turmeric/leaf_blotch.jpg,missing
+cashew,tea_mosquito_dieback,dieback.jpg,static/disease_samples/cashew/dieback.jpg,missing
+mulberry,leaf_spot,leaf_spot.jpg,static/disease_samples/mulberry/leaf_spot.jpg,missing
+horse gram,anthracnose,anthracnose.jpg,static/disease_samples/horse_gram/anthracnose.jpg,missing
+tobacco,black_shank,black_shank.jpg,static/disease_samples/tobacco/black_shank.jpg,missing
+ginger,soft_rot,soft_rot.jpg,static/disease_samples/ginger/soft_rot.jpg,missing
+papaya,ring_spot,ring_spot.jpg,static/disease_samples/papaya/ring_spot.jpg,missing
+watermelon,anthracnose,anthracnose.jpg,static/disease_samples/watermelon/anthracnose.jpg,missing
+muskmelon,downy_mildew,downy_mildew.jpg,static/disease_samples/muskmelon/downy_mildew.jpg,missing
+peach,bacterial_spot,bacterial_spot.jpg,static/disease_samples/peach/bacterial_spot.jpg,missing
+peach,healthy,healthy.jpg,static/disease_samples/peach/healthy.jpg,missing
+cherry,powdery_mildew,powdery_mildew.jpg,static/disease_samples/cherry/powdery_mildew.jpg,missing
+cherry,healthy,healthy.jpg,static/disease_samples/cherry/healthy.jpg,missing
+strawberry,leaf_scorch,leaf_scorch.jpg,static/disease_samples/strawberry/leaf_scorch.jpg,missing
+strawberry,healthy,healthy.jpg,static/disease_samples/strawberry/healthy.jpg,missing
+blueberry,healthy,healthy.jpg,static/disease_samples/blueberry/healthy.jpg,missing
+raspberry,healthy,healthy.jpg,static/disease_samples/raspberry/healthy.jpg,missing
+corn_(maize),cercospora_spot,cercospora_spot.jpg,static/disease_samples/maize/cercospora_spot.jpg,needs_review
+corn_(maize),healthy,healthy.jpg,static/disease_samples/maize/healthy.jpg,needs_review
+maize (corn),cercospora_spot,cercospora_spot.jpg,static/disease_samples/maize/cercospora_spot.jpg,needs_review
+maize (corn),healthy,healthy.jpg,static/disease_samples/maize/healthy.jpg,needs_review

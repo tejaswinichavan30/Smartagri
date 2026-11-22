@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartAgri AI — Register New Account</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1b5e20;
+            --primary-light: #2e7d32;
+            --primary-lighter: #43a047;
+            --primary-dark: #0d3b13;
+            --bg-gradient: linear-gradient(135deg, #0b2e13 0%, #14461b 35%, #1b5e20 70%, #0d3b13 100%);
+            --card-bg: rgba(255, 255, 255, 0.96);
+            --text-main: #1c2e1f;
+            --text-muted: #526354;
+            --border-color: #d7ebd8;
+            --focus-ring: rgba(46, 125, 50, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--bg-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow-x: hidden;
+            padding: 24px 16px;
+        }
+
+        /* Ambient Glow & Decorative Elements */
+        .ambient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        .orb-1 {
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.35) 0%, rgba(27, 94, 32, 0) 70%);
+            top: -80px;
+            left: -100px;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(251, 192, 45, 0.2) 0%, rgba(27, 94, 32, 0) 70%);
+            bottom: -100px;
+            right: -120px;
+        }
+
+        .login-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Language Switcher */
+        .lang-bar {
+            display: inline-flex;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 4px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 12.5px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .lang-btn.active {
+            background: #ffffff;
+            color: var(--primary-dark);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+        }
+
+        /* Card */
+        .login-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 36px 32px 28px 32px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 25px 60px -15px rgba(0, 30, 10, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.2);
+        }
+
+        .brand-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-emblem {
+            width: 54px;
+            height: 54px;
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border: 2px solid #a5d6a7;
+            border-radius: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 8px 16px rgba(46, 125, 50, 0.18);
+            margin-bottom: 10px;
+        }
+
+        .brand-header h1 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .brand-header p {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #2e6033;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 6px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 14px;
+            font-size: 16px;
+            color: #6c8c6f;
+            pointer-events: none;
+        }
+
+        .gov-input {
+            width: 100%;
+            padding: 11px 14px 11px 40px;
+            border: 1.5px solid var(--border-color);
+            background: #ffffff;
+            border-radius: 12px;
+            font-size: 13.5px;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        select.gov-input {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%232e7d32' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            cursor: pointer;
+        }
+
+        .gov-input:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 4px var(--focus-ring);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 13px 20px;
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 14px rgba(27, 94, 32, 0.35);
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #388e3c 0%, #2e7d32 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(27, 94, 32, 0.45);
+        }
+
+        .alert-toast {
+            padding: 11px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            margin-bottom: 16px;
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-footer-links {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .card-footer-links a {
+            color: var(--primary-light);
+            font-weight: 700;
+            text-decoration: none;
+            margin-left: 4px;
+        }
+
+        .card-footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .login-page-footer {
+            margin-top: 22px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+
+    <div class="login-wrapper">
+
+        <!-- Language Bar -->
+        <div class="lang-bar">
+            <button type="button" class="lang-btn active" onclick="switchRegisterLang('en', this)">🇬🇧 English</button>
+            <button type="button" class="lang-btn" onclick="switchRegisterLang('kn', this)">🇮🇳 ಕನ್ನಡ</button>
+            <button type="button" class="lang-btn" onclick="switchRegisterLang('hi', this)">🇮🇳 हिंदी</button>
+        </div>
+
+        <div class="login-card">
+
+            <div class="brand-header">
+                <div class="logo-emblem">🌾</div>
+                <h1 data-en="Create Account" data-kn="ಹೊಸ ಖಾತೆ ರಚಿಸಿ" data-hi="नया खाता बनाएं">Create Account</h1>
+                <p data-en="Join SmartAgri AI Farmer Decision Support Platform"
+                   data-kn="SmartAgri AI ರೈತ ಬೆಂಬಲ ವೇದಿಕೆಗೆ ಸೇರಿ"
+                   data-hi="SmartAgri AI किसान सहायता मंच से जुड़ें">
+                   Join SmartAgri AI Farmer Decision Support Platform
+                </p>
+            </div>
+
+            {% if error %}
+            <div class="alert-toast">
+                <span>⚠️</span>
+                <span>{{ error }}</span>
+            </div>
+            {% endif %}
+
+            <form action="/register" method="POST">
+                <div class="form-group">
+                    <label class="form-label" data-en="Full Name" data-kn="ಪೂರ್ಣ ಹೆಸರು" data-hi="पूरा नाम">Full Name</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">👤</span>
+                        <input type="text" name="full_name" class="gov-input"
+                            data-placeholder-en="Enter your full name"
+                            data-placeholder-kn="ನಿಮ್ಮ ಪೂರ್ಣ ಹೆಸರನ್ನು ನಮೂದಿಸಿ"
+                            data-placeholder-hi="अपना पूरा नाम दर्ज करें"
+                            placeholder="Enter your full name" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" data-en="Username / Mobile Number" data-kn="ಬಳಕೆದಾರ ಹೆಸರು / ಮೊಬೈಲ್ ಸಂಖ್ಯೆ" data-hi="उपयोगकर्ता नाम / मोबाइल नंबर">Username / Mobile Number</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">📱</span>
+                        <input type="text" name="username" class="gov-input"
+                            data-placeholder-en="Choose a username or mobile"
+                            data-placeholder-kn="ಬಳಕೆದಾರ ಹೆಸರು ಅಥವಾ ಮೊಬೈಲ್ ಆಯ್ಕೆಮಾಡಿ"
+                            data-placeholder-hi="उपयोगकर्ता नाम या मोबाइल चुनें"
+                            placeholder="Choose a username or mobile" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" data-en="Register As" data-kn="ನೋಂದಣಿ ಪ್ರಕಾರ" data-hi="पंजीकरण प्रकार">Register As</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🏷️</span>
+                        <select name="user_type" class="gov-input">
+                            <option value="farmer" data-en="👨‍🌾 Farmer (ಕೃಷಿಕ / ರೈತ)" data-kn="👨‍🌾 ರೈತ" data-hi="👨‍🌾 किसान">👨‍🌾 Farmer (ಕೃಷಿಕ / ರೈತ)</option>
+                            <option value="officer" data-en="👨‍💼 Agriculture Officer" data-kn="👨‍💼 ಕೃಷಿ ಅಧಿಕಾರಿ" data-hi="👨‍💼 कृषि अधिकारी">👨‍💼 Agriculture Officer</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" data-en="Password" data-kn="ಪಾಸ್‌ವರ್ಡ್" data-hi="पासवर्ड">Password</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" name="password" class="gov-input"
+                            data-placeholder-en="At least 6 characters"
+                            data-placeholder-kn="ಕನಿಷ್ಠ 6 ಅಕ್ಷರಗಳು"
+                            data-placeholder-hi="कम से कम 6 अक्षर"
+                            placeholder="At least 6 characters" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" data-en="Confirm Password" data-kn="ಪಾಸ್‌ವರ್ಡ್ ದೃಢೀಕರಿಸಿ" data-hi="पासवर्ड पुष्टि करें">Confirm Password</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔐</span>
+                        <input type="password" name="confirm_password" class="gov-input"
+                            data-placeholder-en="Re-enter your password"
+                            data-placeholder-kn="ನಿಮ್ಮ ಪಾಸ್‌ವರ್ಡ್ ಅನ್ನು ಪುನಃ ನಮೂದಿಸಿ"
+                            data-placeholder-hi="अपना पासवर्ड पुनः दर्ज करें"
+                            placeholder="Re-enter your password" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn"
+                    data-en="📝 Create Account"
+                    data-kn="📝 ಖಾತೆ ರಚಿಸಿ"
+                    data-hi="📝 खाता बनाएं">
+                    📝 Create Account
+                </button>
+            </form>
+
+            <div class="card-footer-links">
+                <span data-en="Already have an account?"
+                      data-kn="ಈಗಾಗಲೇ ಖಾತೆ ಹೊಂದಿದ್ದೀರಾ?"
+                      data-hi="क्या आपके पास पहले से एक खाता है?">Already have an account?</span>
+                <a href="/login"
+                   data-en="Login Here →"
+                   data-kn="ಇಲ್ಲಿ ಲಾಗಿನ್ ಮಾಡಿ →"
+                   data-hi="यहाँ लॉगिन करें →">Login Here →</a>
+            </div>
+
+        </div>
+
+        <div class="login-page-footer">
+            <p><strong>SmartAgri AI</strong> — Karnataka State Agricultural Decision Support</p>
+        </div>
+
+    </div>
+
+    <script>
+        function switchRegisterLang(lang, btn) {
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            document.querySelectorAll('[data-en]').forEach(el => {
+                if (el.tagName === 'INPUT') return;
+                const text = el.getAttribute('data-' + lang);
+                if (text) el.textContent = text;
+            });
+
+            document.querySelectorAll('[data-placeholder-en]').forEach(el => {
+                const ph = el.getAttribute('data-placeholder-' + lang);
+                if (ph) el.placeholder = ph;
+            });
+        }
+    </script>
+</body>
+</html>

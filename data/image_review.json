@@ -1,0 +1,234 @@
+{
+  "_schema_version": "1.0",
+  "_description": "Manual overrides, embedded text flags, and review metadata for crop disease sample reference images.",
+  "overrides": {
+    "pepper/bacterial_spot": {
+      "status_override": "ok",
+      "reason": "real_dataset_photo_verified",
+      "notes": "Verified authentic photographic image from combined dataset.",
+      "has_embedded_text": false
+    },
+    "pigeonpeas/sterility_mosaic": {
+      "status_override": "ok",
+      "reason": "real_dataset_photo_verified",
+      "notes": "Verified authentic photographic image from combined dataset.",
+      "has_embedded_text": false
+    },
+    "soybean/mosaic_virus": {
+      "status_override": "ok",
+      "reason": "real_dataset_photo_verified",
+      "notes": "Verified authentic photographic image from combined dataset.",
+      "has_embedded_text": false
+    },
+    "coconut/stem_bleeding": {
+      "status_override": "ok",
+      "reason": "real_dataset_photo_verified",
+      "notes": "Verified authentic photographic image from combined dataset.",
+      "has_embedded_text": false
+    },
+    "corn/healthy": {
+      "status_override": "ok",
+      "reason": "real_dataset_photo_verified",
+      "notes": "Verified authentic photographic image from combined dataset.",
+      "has_embedded_text": false
+    },
+    "corn/cercospora_spot": {
+      "status_override": "ok",
+      "reason": "real_dataset_photo_verified",
+      "notes": "Verified authentic photographic image from combined dataset.",
+      "has_embedded_text": false
+    },
+    "maize/healthy": {
+      "status_override": "ok",
+      "reason": "real_dataset_photo_verified",
+      "notes": "Verified authentic photographic image from combined dataset.",
+      "has_embedded_text": false
+    },
+    "maize/cercospora_spot": {
+      "status_override": "ok",
+      "reason": "real_dataset_photo_verified",
+      "notes": "Verified authentic photographic image from combined dataset.",
+      "has_embedded_text": false
+    },
+    "wheat/leaf_blight": {
+      "status_override": "ok",
+      "reason": "real_dataset_photo_verified",
+      "notes": "Verified authentic photographic image from combined dataset.",
+      "has_embedded_text": false
+    },
+    "cotton/healthy": {
+      "status_override": "ok",
+      "reason": "manual_verified_cotton_leaf",
+      "notes": "Verified genuine Gossypium cotton leaf.",
+      "has_embedded_text": false
+    },
+    "cotton/bacterial_blight": {
+      "status_override": "ok",
+      "reason": "manual_verified_cotton_leaf",
+      "notes": "Verified genuine cotton bacterial blight photo.",
+      "has_embedded_text": false
+    },
+    "cotton/leaf_curl": {
+      "status_override": "ok",
+      "reason": "manual_verified_cotton_leaf",
+      "notes": "Verified genuine cotton leaf curl photo.",
+      "has_embedded_text": false
+    },
+    "cotton/alternaria_spot": {
+      "status_override": "ok",
+      "reason": "manual_verified_cotton_leaf",
+      "notes": "Verified genuine cotton alternaria leaf spot photo.",
+      "has_embedded_text": false
+    },
+    "maize/common_rust": {
+      "status_override": "ok",
+      "reason": "real_dataset_photo_verified",
+      "notes": "Verified authentic photographic image from combined dataset.",
+      "has_embedded_text": false
+    },
+    "maize/northern_blight": {
+      "status_override": "ok",
+      "reason": "real_dataset_photo_verified",
+      "notes": "Verified authentic photographic image from combined dataset.",
+      "has_embedded_text": false
+    },
+    "corn/common_rust": {
+      "status_override": "ok",
+      "reason": "real_dataset_photo_verified",
+      "notes": "Verified authentic photographic image from combined dataset.",
+      "has_embedded_text": false
+    },
+    "corn/northern_blight": {
+      "status_override": "ok",
+      "reason": "real_dataset_photo_verified",
+      "notes": "Verified authentic photographic image from combined dataset.",
+      "has_embedded_text": false
+    },
+    "wheat/healthy": {
+      "status_override": "ok",
+      "reason": "real_dataset_photo_verified",
+      "notes": "Verified authentic photographic image from combined dataset.",
+      "has_embedded_text": false
+    },
+    "pepper/healthy": {
+      "status_override": "ok",
+      "reason": "real_dataset_photo_verified",
+      "notes": "Verified authentic photographic image from combined dataset.",
+      "has_embedded_text": false
+    },
+    "strawberry/healthy": {
+      "status_override": "ok",
+      "reason": "real_dataset_photo_verified",
+      "notes": "Verified authentic photographic image from combined dataset.",
+      "has_embedded_text": false
+    },
+    "strawberry/leaf_scorch": {
+      "status_override": "ok",
+      "reason": "real_dataset_photo_verified",
+      "notes": "Verified authentic photographic image from combined dataset.",
+      "has_embedded_text": false
+    },
+    "peach/healthy": {
+      "status_override": "ok",
+      "reason": "real_dataset_photo_verified",
+      "notes": "Verified authentic photographic image from combined dataset.",
+      "has_embedded_text": false
+    },
+    "peach/bacterial_spot": {
+      "status_override": "ok",
+      "reason": "real_dataset_photo_verified",
+      "notes": "Verified authentic photographic image from combined dataset.",
+      "has_embedded_text": false
+    },
+    "soybean/healthy": {
+      "status_override": "ok",
+      "reason": "real_dataset_photo_verified",
+      "notes": "Verified authentic photographic image from combined dataset.",
+      "has_embedded_text": false
+    }
+  },
+  "embedded_text_flags": {
+    "coffee/leaf_rust": {
+      "has_embedded_text": true,
+      "notes": "Text overlay present. Report only."
+    },
+    "coffee/koleroga": {
+      "has_embedded_text": true,
+      "notes": "Text overlay present. Report only."
+    },
+    "coffee/cercospora": {
+      "has_embedded_text": true,
+      "notes": "Text overlay present. Report only."
+    },
+    "coffee/healthy": {
+      "has_embedded_text": true,
+      "notes": "Text overlay present. Report only."
+    },
+    "coconut/bud_rot": {
+      "has_embedded_text": true,
+      "notes": "Text overlay present. Report only."
+    },
+    "coconut/leaf_rot": {
+      "has_embedded_text": true,
+      "notes": "Text overlay present. Report only."
+    },
+    "coconut/stem_bleeding": {
+      "has_embedded_text": true,
+      "notes": "Text overlay present. Report only."
+    },
+    "groundnut/bud_necrosis": {
+      "has_embedded_text": true,
+      "notes": "Text overlay present. Report only."
+    },
+    "groundnut/rust": {
+      "has_embedded_text": true,
+      "notes": "Text overlay present. Report only."
+    },
+    "mango/anthracnose": {
+      "has_embedded_text": true,
+      "notes": "Text overlay present. Report only."
+    },
+    "mango/powdery_mildew": {
+      "has_embedded_text": true,
+      "notes": "Text overlay present. Report only."
+    },
+    "mango/bacterial_canker": {
+      "has_embedded_text": true,
+      "notes": "Text overlay present. Report only."
+    },
+    "mango/healthy": {
+      "has_embedded_text": true,
+      "notes": "Text overlay present. Report only."
+    },
+    "sugarcane/grassy_shoot": {
+      "has_embedded_text": true,
+      "notes": "Text overlay present. Report only."
+    },
+    "sugarcane/healthy": {
+      "has_embedded_text": true,
+      "notes": "Text overlay present. Report only."
+    }
+  },
+  "whitelisted_near_duplicate_pairs": [
+    [
+      "wheat/black_point",
+      "coconut/healthy"
+    ],
+    [
+      "corn/common_rust",
+      "maize/common_rust"
+    ],
+    [
+      "corn/northern_blight",
+      "maize/northern_blight"
+    ],
+    [
+      "corn/cercospora_spot",
+      "maize/cercospora_spot"
+    ],
+    [
+      "corn/healthy",
+      "maize/healthy"
+    ]
+  ]
+}

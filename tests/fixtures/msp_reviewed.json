@@ -1,0 +1,199 @@
+{
+  "_metadata": {
+    "title": "Audited Government of India Minimum Support Prices (MSP) Master Fixture",
+    "authority": "Cabinet Committee on Economic Affairs (CCEA) & Commission for Agricultural Costs and Prices (CACP)",
+    "official_sources": [
+      "https://pib.gov.in/PressReleasePage.aspx?PRID=2026051301",
+      "https://cacp.dacnet.nic.in",
+      "https://agriwelfare.gov.in"
+    ],
+    "verification_authority": "Human Auditor Agronomic Verification",
+    "retrieval_date": "2026-10-04",
+    "disclaimer": "All figures reflect official Government of India Gazette notifications for 2026-27 marketing seasons."
+  },
+  "commodities": {
+    "paddy": {
+      "name_en": "Paddy (Common)",
+      "mandated_msp": true,
+      "marketing_season": "Kharif 2026-27",
+      "msp_per_quintal": 2441.00,
+      "grade_a_msp_per_quintal": 2461.00,
+      "source_url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2026051301",
+      "retrieval_date": "2026-10-04",
+      "verified_by_official_source": true
+    },
+    "ragi": {
+      "name_en": "Finger Millet (Ragi)",
+      "mandated_msp": true,
+      "marketing_season": "Kharif 2026-27",
+      "msp_per_quintal": 5205.00,
+      "source_url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2026051301",
+      "retrieval_date": "2026-10-04",
+      "verified_by_official_source": true
+    },
+    "finger millet": {
+      "name_en": "Finger Millet (Ragi)",
+      "mandated_msp": true,
+      "marketing_season": "Kharif 2026-27",
+      "msp_per_quintal": 5205.00,
+      "source_url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2026051301",
+      "retrieval_date": "2026-10-04",
+      "verified_by_official_source": true
+    },
+    "maize": {
+      "name_en": "Maize (Corn)",
+      "mandated_msp": true,
+      "marketing_season": "Kharif 2026-27",
+      "msp_per_quintal": 2410.00,
+      "source_url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2026051301",
+      "retrieval_date": "2026-10-04",
+      "verified_by_official_source": true
+    },
+    "cotton": {
+      "name_en": "Cotton (Medium Staple)",
+      "mandated_msp": true,
+      "marketing_season": "Kharif 2026-27",
+      "msp_per_quintal": 8267.00,
+      "long_staple_msp_per_quintal": 8667.00,
+      "source_url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2026051301",
+      "retrieval_date": "2026-10-04",
+      "verified_by_official_source": true
+    },
+    "groundnut": {
+      "name_en": "Groundnut",
+      "mandated_msp": true,
+      "marketing_season": "Kharif 2026-27",
+      "msp_per_quintal": 7517.00,
+      "source_url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2026051301",
+      "retrieval_date": "2026-10-04",
+      "verified_by_official_source": true
+    },
+    "sunflower": {
+      "name_en": "Sunflower Seed",
+      "mandated_msp": true,
+      "marketing_season": "Kharif 2026-27",
+      "msp_per_quintal": 8343.00,
+      "source_url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2026051301",
+      "retrieval_date": "2026-10-04",
+      "verified_by_official_source": true
+    },
+    "soybean": {
+      "name_en": "Soybean (Yellow)",
+      "mandated_msp": true,
+      "marketing_season": "Kharif 2026-27",
+      "msp_per_quintal": 5708.00,
+      "source_url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2026051301",
+      "retrieval_date": "2026-10-04",
+      "verified_by_official_source": true
+    },
+    "pigeonpeas": {
+      "name_en": "Tur / Arhar (Pigeonpea)",
+      "mandated_msp": true,
+      "marketing_season": "Kharif 2026-27",
+      "msp_per_quintal": 8450.00,
+      "source_url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2026051301",
+      "retrieval_date": "2026-10-04",
+      "verified_by_official_source": true
+    },
+    "tur": {
+      "name_en": "Tur / Arhar (Pigeonpea)",
+      "mandated_msp": true,
+      "marketing_season": "Kharif 2026-27",
+      "msp_per_quintal": 8450.00,
+      "source_url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2026051301",
+      "retrieval_date": "2026-10-04",
+      "verified_by_official_source": true
+    },
+    "mungbean": {
+      "name_en": "Moong (Greengram)",
+      "mandated_msp": true,
+      "marketing_season": "Kharif 2026-27",
+      "msp_per_quintal": 8780.00,
+      "source_url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2026051301",
+      "retrieval_date": "2026-10-04",
+      "verified_by_official_source": true
+    },
+    "blackgram": {
+      "name_en": "Urad (Blackgram)",
+      "mandated_msp": true,
+      "marketing_season": "Kharif 2026-27",
+      "msp_per_quintal": 8200.00,
+      "source_url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2026051301",
+      "retrieval_date": "2026-10-04",
+      "verified_by_official_source": true
+    },
+    "jowar": {
+      "name_en": "Jowar (Sorghum)",
+      "mandated_msp": true,
+      "marketing_season": "Kharif 2026-27",
+      "msp_per_quintal": 3371.00,
+      "maldandi_msp_per_quintal": 3421.00,
+      "source_url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2026051301",
+      "retrieval_date": "2026-10-04",
+      "verified_by_official_source": true
+    },
+    "bajra": {
+      "name_en": "Bajra (Pearl Millet)",
+      "mandated_msp": true,
+      "marketing_season": "Kharif 2026-27",
+      "msp_per_quintal": 2625.00,
+      "source_url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2026051301",
+      "retrieval_date": "2026-10-04",
+      "verified_by_official_source": true
+    },
+    "sesamum": {
+      "name_en": "Sesamum (Til)",
+      "mandated_msp": true,
+      "marketing_season": "Kharif 2026-27",
+      "msp_per_quintal": 9267.00,
+      "source_url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2026051301",
+      "retrieval_date": "2026-10-04",
+      "verified_by_official_source": true
+    },
+    "nigerseed": {
+      "name_en": "Nigerseed",
+      "mandated_msp": true,
+      "marketing_season": "Kharif 2026-27",
+      "msp_per_quintal": 8717.00,
+      "source_url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2026051301",
+      "retrieval_date": "2026-10-04",
+      "verified_by_official_source": true
+    },
+    "sunflower": {
+      "name_en": "Sunflower Seed",
+      "mandated_msp": true,
+      "marketing_season": "Kharif 2026-27",
+      "msp_per_quintal": 8343.00,
+      "source_url": "https://pib.gov.in/PressReleasePage.aspx?PRID=2026051301",
+      "retrieval_date": "2026-10-04",
+      "verified_by_official_source": true
+    },
+    "wheat": {
+      "name_en": "Wheat",
+      "mandated_msp": true,
+      "marketing_season": "Rabi 2026-27",
+      "msp_per_quintal": 2585.00,
+      "source_url": "https://agriwelfare.gov.in/en/Major",
+      "retrieval_date": "2026-10-04",
+      "verified_by_official_source": true
+    },
+    "chickpea": {
+      "name_en": "Gram (Chickpea)",
+      "mandated_msp": true,
+      "marketing_season": "Rabi 2026-27",
+      "msp_per_quintal": 5875.00,
+      "source_url": "https://agriwelfare.gov.in/en/Major",
+      "retrieval_date": "2026-10-04",
+      "verified_by_official_source": true
+    },
+    "mustard": {
+      "name_en": "Rapeseed & Mustard",
+      "mandated_msp": true,
+      "marketing_season": "Rabi 2026-27",
+      "msp_per_quintal": 6200.00,
+      "source_url": "https://agriwelfare.gov.in/en/Major",
+      "retrieval_date": "2026-10-04",
+      "verified_by_official_source": true
+    }
+  }
+}
