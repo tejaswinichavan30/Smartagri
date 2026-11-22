@@ -15,7 +15,7 @@ An intelligent, multi-agent agricultural decision support platform designed to e
 ```
                         ┌────────────────────────────────────────┐
                         │   Farmer Web / Voice / Mobile UI       │
-                        │     (Kannada & English Interface)      │
+                        │    (English, Kannada, Hindi UI)        │
                         └───────────────────┬────────────────────┘
                                             │
                         ┌───────────────────▼────────────────────┐
@@ -34,14 +34,14 @@ An intelligent, multi-agent agricultural decision support platform designed to e
 - **Sowing Window Validator:** Dynamic detection of `open`, `closing_soon`, and `passed` sowing windows with penalty scoring for late-season risk prevention.
 
 ### 2. 🔬 Plant Disease Diagnostic Agent
-- **Convolutional Neural Network (CNN):** Automated leaf pathology classification across Rice, Wheat, Tomato, Corn, and Potato.
-- **Reference Symptom Guide:** Visual diagnosis fallback for regional pulses (Chickpea, Jowar) complete with symptom profiles.
+- **Convolutional Neural Network (CNN):** Automated leaf pathology classification and vision grounding across 20+ crops (Rice, Wheat, Tomato, Maize, Potato, Soybean, Cotton, Ragi, Sugarcane, Pepper, etc.).
+- **Reference Symptom Guide:** Visual diagnosis fallback for regional pulses (Chickpea, Jowar, Cowpea, Horse Gram) complete with symptom profiles.
 - **Integrated Pest Management (IPM):** KVK-verified biological (Trichoderma, neem extracts) and chemical fungicide interventions with safety disclaimers.
 
 ### 3. 📈 Market Price & MSP Intelligence Agent
-- **APMC Mandi Spot Feeds:** Live benchmark spot rates with granular variety tracking (e.g., Maldandi vs. Hybrid Jowar, Lokwan Durum Wheat).
-- **4-Month Trend Regression:** Rolling polynomial price outlook for harvest timing decisions.
-- **Statutory MSP Verification:** Real-time compliance check against official Cabinet Committee on Economic Affairs (CCEA) Minimum Support Prices, with immediate warning alerts if mandi forecasts dip below MSP.
+- **APMC Mandi Spot Feeds & Benchmarks:** Live benchmark spot rates with local district APMC yard attribution (Bidar, Hubballi-Dharwad, Kalaburagi, Davanagere, etc.) and transparent `₹/kg wholesale` conversion.
+- **4-Month Trend Horizon:** Seasonality-anchored price projections for harvest timing decisions (reporting "Insufficient data" responsibly when multi-year historical data is unavailable to prevent hallucinations).
+- **Statutory MSP Verification:** Real-time compliance check against official Cabinet Committee on Economic Affairs (CCEA) Minimum Support Prices, with immediate warning alerts if mandi forecasts dip below MSP to protect farmers from distress sales.
 
 ### 4. 💧 Precision Irrigation Scheduling Agent
 - **FAO-56 Dynamic Penman-Monteith:** Computes actual crop evapotranspiration:
@@ -50,8 +50,8 @@ An intelligent, multi-agent agricultural decision support platform designed to e
 - **Field Calibration:** Accounts for soil texture moisture retention, effective rainfall deduction ($P_{\text{eff}}$), irrigation efficiency (drip/sprinkler), and pump flow delivery rates (L/hr).
 
 ### 5. 🤖 Multilingual Agri-Copilot (RAG)
-- **Generative AI Assistant:** Powered by Google Gemini API & LangChain vector search.
-- **Audio Voice Synthesis:** Native text-to-speech (gTTS) enabling accessible advisory delivery in **Kannada (ಕನ್ನಡ)** and **English**.
+- **Generative AI Assistant:** Powered by Google Gemini API & LangChain vector search grounded in verified UAS Dharwad agronomy documents.
+- **Audio Voice Synthesis:** Native text-to-speech (gTTS) enabling accessible advisory delivery in **English**, **Kannada (ಕನ್ನಡ)**, and **Hindi (हिन्दी)**.
 
 ---
 
@@ -89,7 +89,7 @@ venv\Scripts\activate      # On Windows
 # source venv/bin/activate  # On Linux/macOS
 
 # Install dependencies
-pip install -r requirments.txt
+pip install -r requirements.txt
 ```
 
 ### 3. Frontend Setup
@@ -120,7 +120,7 @@ Open your browser and navigate to `http://localhost:5000`.
 
 Run the automated agronomy and validation test suite:
 ```bash
-pytest tests/test_dharwad_agronomy_fixes.py -v
+pytest tests/test_audit_fixes.py tests/test_district_crops.py -v
 ```
 
 ---
