@@ -1052,20 +1052,24 @@ def get_general_disease_model():
                 )
             except Exception as e2:
                 print(f"[Model] keras load_model failed ({e2}). Trying tf.keras...")
-                # 3. Try tf.keras
-                import tensorflow as tf
-                class SafeTfInputLayer(tf.keras.layers.InputLayer):
-                    def __init__(self, *args, **kwargs):
-                        kwargs.pop('optional', None)
-                        super().__init__(*args, **kwargs)
-                    @classmethod
-                    def from_config(cls, config):
-                        cfg = dict(config)
-                        cfg.pop('optional', None)
-                        return cls(**cfg)
-                general_disease_model = tf.keras.models.load_model(
-                    model_path, compile=False, custom_objects={'InputLayer': SafeTfInputLayer}
-                )
+                # 3. Try tf.keras safely
+                try:
+                    import tensorflow as tf
+                    class SafeTfInputLayer(tf.keras.layers.InputLayer):
+                        def __init__(self, *args, **kwargs):
+                            kwargs.pop('optional', None)
+                            super().__init__(*args, **kwargs)
+                        @classmethod
+                        def from_config(cls, config):
+                            cfg = dict(config)
+                            cfg.pop('optional', None)
+                            return cls(**cfg)
+                    general_disease_model = tf.keras.models.load_model(
+                        model_path, compile=False, custom_objects={'InputLayer': SafeTfInputLayer}
+                    )
+                except Exception as e3:
+                    print(f"[Model] All load_model attempts failed for general_disease_model ({e3}). Model unavailable.")
+                    general_disease_model = None
     return general_disease_model
 
 def get_wheat_disease_model():
@@ -1076,15 +1080,19 @@ def get_wheat_disease_model():
             model_path = "Datasets/wheat_model_final.keras"
         print(f"[Model] Loading wheat_disease_model from {model_path}...")
         try:
-            import keras
-            wheat_disease_model = keras.models.load_model(model_path, compile=False)
+            import tf_keras
+            wheat_disease_model = tf_keras.models.load_model(model_path, compile=False)
         except Exception as e1:
-            print(f"[Model] keras load failed for wheat model ({e1}). Trying tf.keras...")
             try:
-                wheat_disease_model = tf.keras.models.load_model(model_path, compile=False)
+                import keras
+                wheat_disease_model = keras.models.load_model(model_path, compile=False)
             except Exception as e2:
-                print(f"[Model] tf.keras load failed for wheat model ({e2}). Trying tf_keras...")
-                wheat_disease_model = tf_keras.models.load_model(model_path, compile=False)
+                try:
+                    import tensorflow as tf
+                    wheat_disease_model = tf.keras.models.load_model(model_path, compile=False)
+                except Exception as e3:
+                    print(f"[Model] All load attempts failed for wheat model ({e3}).")
+                    wheat_disease_model = None
     return wheat_disease_model
 
 def get_rice_disease_model():
@@ -1097,15 +1105,19 @@ def get_rice_disease_model():
             model_path = "models/saved_models/rice_model.keras"
         print(f"[Model] Loading rice_disease_model from {model_path}...")
         try:
-            import keras
-            rice_disease_model = keras.models.load_model(model_path, compile=False)
+            import tf_keras
+            rice_disease_model = tf_keras.models.load_model(model_path, compile=False)
         except Exception as e1:
-            print(f"[Model] keras load failed for rice model ({e1}). Trying tf.keras...")
             try:
-                rice_disease_model = tf.keras.models.load_model(model_path, compile=False)
+                import keras
+                rice_disease_model = keras.models.load_model(model_path, compile=False)
             except Exception as e2:
-                print(f"[Model] tf.keras load failed for rice model ({e2}). Trying tf_keras...")
-                rice_disease_model = tf_keras.models.load_model(model_path, compile=False)
+                try:
+                    import tensorflow as tf
+                    rice_disease_model = tf.keras.models.load_model(model_path, compile=False)
+                except Exception as e3:
+                    print(f"[Model] All load attempts failed for rice model ({e3}).")
+                    rice_disease_model = None
     return rice_disease_model
 
 rice_classes = ['bacterial_leaf_blight', 'brown_spot', 'healthy', 'leaf_blast', 'leaf_scald', 'narrow_brown_spot']

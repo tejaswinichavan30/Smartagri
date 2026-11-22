@@ -359,7 +359,12 @@ export default function AskMyFarmSection({ moduleState = {}, onResult }) {
       }
     } catch (err) {
       console.error('Visual Copilot Error:', err);
-      alert('Error consulting Visual Copilot. Please verify backend connection.');
+      const errMsg = err?.message || '';
+      if (errMsg.includes('502') || errMsg.includes('Failed to fetch') || errMsg.includes('NetworkError')) {
+        alert('The server is currently waking up or completing an analysis. Please wait a few seconds and tap Get Farm Advice again.');
+      } else {
+        alert(errMsg || 'Error consulting Visual Copilot. Please verify backend connection.');
+      }
     } finally {
       setLoading(false);
     }
