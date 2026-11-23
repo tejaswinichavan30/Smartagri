@@ -1748,9 +1748,24 @@ def compute_price_forecast(crop, district, month=None, year=None, live_price=Non
         horizon_label_kn = f"📈 ಅಂದಾಜು ಬೆಲೆ ಪ್ರವೃತ್ತಿ (ಅಂದಾಜು ಪ್ರವೃತ್ತಿ, ಗ್ಯಾರಂಟಿ ಅಲ್ಲ — ಐತಿಹಾಸಿಕ ಋತುಮಾನ ಪ್ರಕ್ಷೇಪಣೆ): ಸರಾಸರಿ ₹{avg_price} (ವ್ಯಾಪ್ತಿ: ₹{min_price} - ₹{max_price}) [{months_str_kn}]"
         horizon_label_hi = f"📈 अनुमानित मूल्य रुझान (अनुमानित रुझान, कोई गारंटी नहीं — ऐतिहासिक मौसमी अनुमान): औसत ₹{avg_price} (दायरा: ₹{min_price} - ₹{max_price}) [{months_str_hi}]"
 
-        forecast_clean_en = f"{horizon_label_en}\n{below_msp_warning_en}\n{jump_warning_en}".strip()
-        forecast_clean_kn = f"{horizon_label_kn}\n{below_msp_warning_kn}\n{jump_warning_kn}".strip()
-        forecast_clean_hi = f"{horizon_label_hi}\n{below_msp_warning_hi}\n{jump_warning_hi}".strip()
+        # Check divergence between Live Mandi Spot Price and First Forecast Month
+        divergence_warning_en = ""
+        divergence_warning_kn = ""
+        divergence_warning_hi = ""
+        if m_spot_val > 0 and first_month_pred > 0:
+            divergence_ratio = abs(first_month_pred - m_spot_val) / m_spot_val
+            if divergence_ratio > 0.40:
+                divergence_warning_en = f"⚠️ Live Market Divergence Notice: ML historical seasonal projection (₹{first_month_pred}) differs from current live mandi spot price (₹{m_spot_val:.0f}). Recent spot market conditions and arrival volumes may not be reflected in long-term historical trends."
+                divergence_warning_kn = f"⚠️ ನೇರ ಮಂಡಿ ದರ ವ್ಯತ್ಯಾಸ ಸೂಚನೆ: ಐತಿಹಾಸಿಕ ಮುನ್ಸೂಚನೆಯು (₹{first_month_pred}) ಪ್ರಸ್ತುತ ಲೈವ್ ಮಂಡಿ ದರಕ್ಕಿಂತ (₹{m_spot_val:.0f}) ಗಣನೀಯವಾಗಿ ಭಿನ್ನವಾಗಿದೆ. ಇತ್ತೀಚಿನ ಸ್ಥಳೀಯ ಪೂರೈಕೆ ಮತ್ತು ಹರಾಜು ವ್ಯತ್ಯಾಸಗಳು ದೀರ್ಘಾವಧಿಯ ಟ್ರೆಂಡ್‌ಗಿಂತ ಭಿನ್ನವಾಗಿರಬಹುದು."
+                divergence_warning_hi = f"⚠️ लाइव मंडी मूल्य अंतर सूचना: ऐतिहासिक मॉडल का अनुमान (₹{first_month_pred}) वर्तमान लाइव मंडी भाव (₹{m_spot_val:.0f}) से काफी भिन्न है। वर्तमान स्थानीय आवक और बाजार स्थितियों के कारण अंतर संभव है।"
+
+        warnings_en = [w for w in [below_msp_warning_en, jump_warning_en, divergence_warning_en] if w]
+        warnings_kn = [w for w in [below_msp_warning_kn, jump_warning_kn, divergence_warning_kn] if w]
+        warnings_hi = [w for w in [below_msp_warning_hi, jump_warning_hi, divergence_warning_hi] if w]
+
+        forecast_clean_en = (horizon_label_en + ("\n" + "\n".join(warnings_en) if warnings_en else "")).strip()
+        forecast_clean_kn = (horizon_label_kn + ("\n" + "\n".join(warnings_kn) if warnings_kn else "")).strip()
+        forecast_clean_hi = (horizon_label_hi + ("\n" + "\n".join(warnings_hi) if warnings_hi else "")).strip()
 
     else:
         # Show price trend ONLY when real multi-year history exists; otherwise "Insufficient data"
@@ -2351,16 +2366,16 @@ def predict_crop():
             except (ValueError, TypeError):
                 return default
 
-        N        = safe_float(request.form.get('nitrogen'), 55.0)
-        P        = safe_float(request.form.get('phosphorus'), 42.0)
-        K        = safe_float(request.form.get('potassium'), 35.0)
-        ph       = safe_float(request.form.get('ph'), 6.8)
+        N        = safe_float(request.form.get('nitrogen') or req_json.get('nitrogen'), 55.0)
+        P        = safe_float(request.form.get('phosphorus') or req_json.get('phosphorus'), 42.0)
+        K        = safe_float(request.form.get('potassium') or req_json.get('potassium'), 35.0)
+        ph       = safe_float(request.form.get('ph') or req_json.get('ph'), 6.8)
         if norm_rain is None:
-            rainfall = safe_float(request.form.get('rainfall'), 75.0)
+            rainfall = safe_float(request.form.get('rainfall') or req_json.get('rainfall'), 75.0)
 
         query_city = DISTRICT_WEATHER_CITY.get(district, district)
 
-        API_KEY = "b9592880d7ec9f2a8e4de876eaa84c09"
+        API_KEY = os.getenv("OWM_API_KEY", "b9592880d7ec9f2a8e4de876eaa84c09")
         url = f"http://api.openweathermap.org/data/2.5/weather?q={query_city},IN&appid={API_KEY}&units=metric"
         try:
             response = requests.get(url, timeout=3.0)
@@ -2382,8 +2397,27 @@ def predict_crop():
         weather_info_kn = translations.format_weather_status(district, weather_temp, weather_humidity, weather_desc, 'kn')
         weather_info_hi = translations.format_weather_status(district, weather_temp, weather_humidity, weather_desc, 'hi')
 
-        input_features = np.array([[N, P, K, weather_temp, weather_humidity, ph, rainfall]])
-        input_scaled   = crop_scaler.transform(input_features)
+        # Run Random Forest ML Crop Recommendation Model (trained on 22 agricultural commodities)
+        ml_crop_scores = {}
+        try:
+            feat_df = pd.DataFrame(
+                [[N, P, K, weather_temp, weather_humidity, ph, rainfall]],
+                columns=['Nitrogen', 'Phosphorus', 'Potassium', 'Temperature', 'Humidity', 'pH_Value', 'Rainfall']
+            )
+            input_scaled = crop_scaler.transform(feat_df)
+            if crop_model is not None:
+                probs = crop_model.predict_proba(input_scaled)[0]
+                CROP_MODEL_CLASSES = [
+                    'apple', 'banana', 'blackgram', 'chickpea', 'coconut', 'coffee',
+                    'cotton', 'grapes', 'jute', 'kidneybeans', 'lentil', 'maize',
+                    'mango', 'mothbeans', 'mungbean', 'muskmelon', 'orange', 'papaya',
+                    'pigeonpeas', 'pomegranate', 'rice', 'watermelon'
+                ]
+                for idx_c, prob_val in enumerate(probs):
+                    if idx_c < len(CROP_MODEL_CLASSES):
+                        ml_crop_scores[CROP_MODEL_CLASSES[idx_c]] = float(prob_val)
+        except Exception as _ml_e:
+            print(f"[CropModel] ML inference notice: {_ml_e}")
         
         # Ensure only crops grown in Karnataka and suited to the selected district and season are recommended
         NON_KARNATAKA_CROPS = {'jute'}
@@ -2449,6 +2483,13 @@ def predict_crop():
                 )
 
                 base_weather_score = w_eval['score']
+                # Incorporate ML Model prediction probability (soil N, P, K, pH match)
+                ml_prob = ml_crop_scores.get(crop_name, 0.0)
+                if ml_prob > 0.05:
+                    combined_base = min(100.0, base_weather_score * 0.70 + (ml_prob * 100.0) * 0.30)
+                else:
+                    combined_base = base_weather_score
+
                 # Window multiplier per Requirement 2d:
                 # Open: 1.00x, Closing soon: 0.95x, Late sowing: 0.85x
                 if st == 'open':
@@ -2460,7 +2501,7 @@ def predict_crop():
                 else:
                     multiplier = 0.0
 
-                raw_final = base_weather_score * multiplier
+                raw_final = combined_base * multiplier
                 final_score = round(raw_final, 1)
 
                 scored_candidates.append({
@@ -2902,12 +2943,19 @@ def predict_crop():
         }
 
         if request.headers.get('Accept') == 'application/json' or request.is_json:
+            fert_plan_en = f"🌿 Fertilizer plan for {crop_tr_en.upper()}: {c_meta.get('fertilizer', {}).get('en', 'Apply balanced NPK according to soil test.')}"
+            fert_plan_kn = f"🌿 {crop_tr_kn.upper()} ಗೊಬ್ಬರದ ಪ್ರಮಾಣ: {c_meta.get('fertilizer', {}).get('kn', 'ಮಣ್ಣು ಪರೀಕ್ಷೆಯ ಪ್ರಕಾರ ಸಮತೋಲಿತ NPK ಗೊಬ್ಬರ ಬಳಸಿ.')}"
+            fert_plan_hi = f"🌿 {crop_tr_hi.upper()} उर्वरक योजना: {c_meta.get('fertilizer', {}).get('hi', 'मिट्टी परीक्षण के अनुसार संतुलित NPK उर्वरक का प्रयोग करें।')}"
             return jsonify({
                 'crop': crop_tr_en,
                 'crop_kn': crop_tr_kn,
                 'crop_hi': crop_tr_hi,
                 'preferred_crop': primary_crop,
                 'top_crops': top_crops,
+                'fertilizer_plan': fert_plan_kn if lang == 'kn' else (fert_plan_hi if lang == 'hi' else fert_plan_en),
+                'fertilizer_plan_en': fert_plan_en,
+                'fertilizer_plan_kn': fert_plan_kn,
+                'fertilizer_plan_hi': fert_plan_hi,
                 'season': season_badge_kn if lang == 'kn' else (season_badge_hi if lang == 'hi' else season_badge_en),
                 'season_en': season_badge_en,
                 'season_kn': season_badge_kn,
@@ -3015,6 +3063,8 @@ district_weather_fallback = {
     'Haveri': {'temp': 27, 'humidity': 58},
     'Kalaburagi': {'temp': 28, 'humidity': 52},
     'Kodagu': {'temp': 20, 'humidity': 80},
+    'Kolar': {'temp': 26, 'humidity': 60},
+    'Koppal': {'temp': 29, 'humidity': 52},
     'Mandya': {'temp': 27, 'humidity': 61},
     'Mysuru': {'temp': 26, 'humidity': 60},
     'Raichur': {'temp': 29, 'humidity': 51},
@@ -3102,12 +3152,14 @@ def predict_price():
     except Exception as e:
         session['price_result'] = f"Error: {str(e)}"
         session['price_form_data'] = {
-            'crop': request.form.get('crop', ''),
-            'district': request.form.get('district', '') or request.form.get('state', ''),
-            'state': request.form.get('district', '') or request.form.get('state', ''),
-            'month': request.form.get('month', ''),
-            'year': request.form.get('year', '')
+            'crop': request.form.get('crop', '') or (request.get_json(silent=True) or {}).get('crop', ''),
+            'district': request.form.get('district', '') or request.form.get('state', '') or (request.get_json(silent=True) or {}).get('district', ''),
+            'state': request.form.get('district', '') or request.form.get('state', '') or (request.get_json(silent=True) or {}).get('state', ''),
+            'month': request.form.get('month', '') or (request.get_json(silent=True) or {}).get('month', ''),
+            'year': request.form.get('year', '') or (request.get_json(silent=True) or {}).get('year', '')
         }
+        if request.headers.get('Accept') == 'application/json' or request.is_json:
+            return jsonify({'status': 'error', 'message': str(e)}), 500
         return render_template(
             "index.html",
             **get_session_data()

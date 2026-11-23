@@ -248,3 +248,58 @@ class AgmarknetLiveService:
         return None
 
 agmarknet_service = AgmarknetLiveService.get_instance()
+
+
+# ======================================================================
+# LIVE OVERRIDE: data.gov.in via mandi_live.py
+# Replaces the old fetch so the benchmark fallback is never used.
+# Returns None when there is no real data.
+# ======================================================================
+def _install_live_override():
+    import logging
+    try:
+        from mandi_live import get_price_smart, CROP_MAP
+    except Exception as e:
+        logging.getLogger("mandi").error("mandi_live import failed: %s", e)
+        return
+
+    def _resolve(crop):
+        c = (crop or "").strip().lower()
+        if c in CROP_MAP:
+            return CROP_MAP[c]
+        for key in sorted(CROP_MAP, key=len, reverse=True):
+            if key in c:
+                return CROP_MAP[key]
+        return (crop or "").strip()
+
+    def fetch_live_mandi_price(crop, district=None, *args, **kwargs):
+        res = get_price_smart(_resolve(crop), district)
+        if not res:
+            return None
+        if res.get("scope") == "district":
+            mandi = ", ".join(res["markets"])
+        else:
+            mandi = ("Karnataka-wide median of %d record(s) in %d market(s); "
+                     "no market in %s reported today"
+                     % (res["n_records"], len(res["markets"]), district or "your district"))
+        return {
+            "status": "LIVE_API" if res.get("status") == "live" else "LIVE_CACHED",
+            "is_live": res.get("status") in ("live", "cached"),
+            "modal_price": float(res["modal"]),
+            "min_price": float(res["min"]),
+            "max_price": float(res["max"]),
+            "commodity": res.get("commodity") or crop,
+            "district": district or res.get("district_used"),
+            "mandi": mandi,
+            "market": mandi,
+            "date": res["as_of"],
+            "source": res["source"],
+            "price_field": "Modal Price (median)",
+            "scope": res.get("scope"),
+            "n_records": res.get("n_records"),
+            "wide_spread": res.get("wide_spread"),
+        }
+
+    agmarknet_service.fetch_live_mandi_price = fetch_live_mandi_price
+
+_install_live_override()

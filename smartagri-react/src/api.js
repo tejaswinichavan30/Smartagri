@@ -30,8 +30,8 @@ async function postForm(url, formData) {
     // so real validation errors (e.g. "username taken") are distinguishable
     // from server errors (500s) or misconfigured routes (404s returning HTML).
     const detail =
-      typeof body === 'object' && body?.error
-        ? body.error
+      typeof body === 'object' && (body?.message || body?.error)
+        ? (body.message || body.error)
         : typeof body === 'string'
           ? body.slice(0, 300)
           : `HTTP ${res.status}`;

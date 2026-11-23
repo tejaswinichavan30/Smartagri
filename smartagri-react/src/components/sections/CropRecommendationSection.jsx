@@ -72,7 +72,8 @@ export default function CropRecommendationSection({ onResult }) {
         }
       }, 100);
     } catch (err) {
-      setResult('Could not get a crop recommendation. Please try again.');
+      console.error('Crop Recommendation Error:', err);
+      setResult(err?.message || 'Could not get a crop recommendation. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -233,6 +234,11 @@ export default function CropRecommendationSection({ onResult }) {
           {displaySeasonAdvice && (
             <div style={{ fontSize: '13px', fontWeight: 'normal', color: '#33691e', background: 'rgba(255,255,255,0.7)', padding: '8px 12px', borderRadius: '6px', width: '100%', border: '1px dashed #a5d6a7', lineHeight: 1.4 }}>
               💡 {displaySeasonAdvice}
+            </div>
+          )}
+          {cropData?.fertilizer_plan && (
+            <div style={{ fontSize: '13px', fontWeight: 'normal', color: '#1b5e20', background: 'rgba(232, 245, 233, 0.9)', padding: '8px 12px', borderRadius: '6px', width: '100%', border: '1px solid #81c784', lineHeight: 1.4 }}>
+              {cropData.fertilizer_plan}
             </div>
           )}
 
