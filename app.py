@@ -1748,24 +1748,9 @@ def compute_price_forecast(crop, district, month=None, year=None, live_price=Non
         horizon_label_kn = f"📈 ಅಂದಾಜು ಬೆಲೆ ಪ್ರವೃತ್ತಿ (ಅಂದಾಜು ಪ್ರವೃತ್ತಿ, ಗ್ಯಾರಂಟಿ ಅಲ್ಲ — ಐತಿಹಾಸಿಕ ಋತುಮಾನ ಪ್ರಕ್ಷೇಪಣೆ): ಸರಾಸರಿ ₹{avg_price} (ವ್ಯಾಪ್ತಿ: ₹{min_price} - ₹{max_price}) [{months_str_kn}]"
         horizon_label_hi = f"📈 अनुमानित मूल्य रुझान (अनुमानित रुझान, कोई गारंटी नहीं — ऐतिहासिक मौसमी अनुमान): औसत ₹{avg_price} (दायरा: ₹{min_price} - ₹{max_price}) [{months_str_hi}]"
 
-        # Check divergence between Live Mandi Spot Price and First Forecast Month
-        divergence_warning_en = ""
-        divergence_warning_kn = ""
-        divergence_warning_hi = ""
-        if m_spot_val > 0 and first_month_pred > 0:
-            divergence_ratio = abs(first_month_pred - m_spot_val) / m_spot_val
-            if divergence_ratio > 0.40:
-                divergence_warning_en = f"⚠️ Live Market Divergence Notice: ML historical seasonal projection (₹{first_month_pred}) differs from current live mandi spot price (₹{m_spot_val:.0f}). Recent spot market conditions and arrival volumes may not be reflected in long-term historical trends."
-                divergence_warning_kn = f"⚠️ ನೇರ ಮಂಡಿ ದರ ವ್ಯತ್ಯಾಸ ಸೂಚನೆ: ಐತಿಹಾಸಿಕ ಮುನ್ಸೂಚನೆಯು (₹{first_month_pred}) ಪ್ರಸ್ತುತ ಲೈವ್ ಮಂಡಿ ದರಕ್ಕಿಂತ (₹{m_spot_val:.0f}) ಗಣನೀಯವಾಗಿ ಭಿನ್ನವಾಗಿದೆ. ಇತ್ತೀಚಿನ ಸ್ಥಳೀಯ ಪೂರೈಕೆ ಮತ್ತು ಹರಾಜು ವ್ಯತ್ಯಾಸಗಳು ದೀರ್ಘಾವಧಿಯ ಟ್ರೆಂಡ್‌ಗಿಂತ ಭಿನ್ನವಾಗಿರಬಹುದು."
-                divergence_warning_hi = f"⚠️ लाइव मंडी मूल्य अंतर सूचना: ऐतिहासिक मॉडल का अनुमान (₹{first_month_pred}) वर्तमान लाइव मंडी भाव (₹{m_spot_val:.0f}) से काफी भिन्न है। वर्तमान स्थानीय आवक और बाजार स्थितियों के कारण अंतर संभव है।"
-
-        warnings_en = [w for w in [below_msp_warning_en, jump_warning_en, divergence_warning_en] if w]
-        warnings_kn = [w for w in [below_msp_warning_kn, jump_warning_kn, divergence_warning_kn] if w]
-        warnings_hi = [w for w in [below_msp_warning_hi, jump_warning_hi, divergence_warning_hi] if w]
-
-        forecast_clean_en = (horizon_label_en + ("\n" + "\n".join(warnings_en) if warnings_en else "")).strip()
-        forecast_clean_kn = (horizon_label_kn + ("\n" + "\n".join(warnings_kn) if warnings_kn else "")).strip()
-        forecast_clean_hi = (horizon_label_hi + ("\n" + "\n".join(warnings_hi) if warnings_hi else "")).strip()
+        forecast_clean_en = f"{horizon_label_en}\n{below_msp_warning_en}\n{jump_warning_en}".strip()
+        forecast_clean_kn = f"{horizon_label_kn}\n{below_msp_warning_kn}\n{jump_warning_kn}".strip()
+        forecast_clean_hi = f"{horizon_label_hi}\n{below_msp_warning_hi}\n{jump_warning_hi}".strip()
 
     else:
         # Show price trend ONLY when real multi-year history exists; otherwise "Insufficient data"
@@ -1932,6 +1917,20 @@ def get_session_data():
     rec_crop = session.get('recommended_crop', '')
     rec_crop_l = rec_crop.lower().strip() if rec_crop else ''
     c_meta = translations.CROP_TRANSLATIONS.get(rec_crop_l, translations.CROP_TRANSLATIONS['default'])
+    
+    cur_m = datetime.now().month
+    if 6 <= cur_m <= 10:
+        auto_season_en = "🌤 Auto Detect (Current Season: Kharif - Monsoon)"
+        auto_season_kn = "🌤 ಸ್ವಯಂಚಾಲಿತ (ಪ್ರಸ್ತುತ ತಿಂಗಳು: ಖಾರೀಫ್ - ಮುಂಗಾರು)"
+        auto_season_hi = "🌤 स्वचालित पहचान (वर्तमान माह: खरीफ - मानसून)"
+    elif cur_m in [11, 12, 1, 2]:
+        auto_season_en = "🌤 Auto Detect (Current Season: Rabi - Winter)"
+        auto_season_kn = "🌤 ಸ್ವಯಂಚಾಲಿತ (ಪ್ರಸ್ತುತ ತಿಂಗಳು: ರಬಿ - ಹಿಂಗಾರು)"
+        auto_season_hi = "🌤 स्वचालित पहचान (वर्तमान माह: रबी - सर्दियां)"
+    else:
+        auto_season_en = "🌤 Auto Detect (Current Season: Zaid - Summer)"
+        auto_season_kn = "🌤 ಸ್ವಯಂಚಾಲಿತ (ಪ್ರಸ್ತುತ ತಿಂಗಳು: ಜೈದ್ - ಬೇಸಿಗೆ)"
+        auto_season_hi = "🌤 स्वचालित पहचान (वर्तमान माह: जायद - गर्मी)"
     
     crop_tr_en = translations.get_crop_name(rec_crop, 'en') if rec_crop else ''
     crop_tr_kn = translations.get_crop_name(rec_crop, 'kn') if rec_crop else ''
@@ -2143,6 +2142,9 @@ def get_session_data():
 
         crop_form_data=session.get('crop_form_data', {}),
         price_form_data=effective_price_form,
+        auto_season_en=auto_season_en,
+        auto_season_kn=auto_season_kn,
+        auto_season_hi=auto_season_hi,
         current_month=cur_m_str,
         current_year=cur_y_str,
         disease_form_data=session.get('disease_form_data', {}),
@@ -3152,14 +3154,12 @@ def predict_price():
     except Exception as e:
         session['price_result'] = f"Error: {str(e)}"
         session['price_form_data'] = {
-            'crop': request.form.get('crop', '') or (request.get_json(silent=True) or {}).get('crop', ''),
-            'district': request.form.get('district', '') or request.form.get('state', '') or (request.get_json(silent=True) or {}).get('district', ''),
-            'state': request.form.get('district', '') or request.form.get('state', '') or (request.get_json(silent=True) or {}).get('state', ''),
-            'month': request.form.get('month', '') or (request.get_json(silent=True) or {}).get('month', ''),
-            'year': request.form.get('year', '') or (request.get_json(silent=True) or {}).get('year', '')
+            'crop': request.form.get('crop', ''),
+            'district': request.form.get('district', '') or request.form.get('state', ''),
+            'state': request.form.get('district', '') or request.form.get('state', ''),
+            'month': request.form.get('month', ''),
+            'year': request.form.get('year', '')
         }
-        if request.headers.get('Accept') == 'application/json' or request.is_json:
-            return jsonify({'status': 'error', 'message': str(e)}), 500
         return render_template(
             "index.html",
             **get_session_data()

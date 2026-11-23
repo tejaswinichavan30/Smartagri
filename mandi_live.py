@@ -1,4 +1,4 @@
-﻿import os, json, time, logging, requests
+import os, json, time, logging, requests
 from datetime import datetime
 from statistics import mean
 from dotenv import load_dotenv

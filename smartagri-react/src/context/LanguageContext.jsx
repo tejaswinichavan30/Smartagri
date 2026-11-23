@@ -1,5 +1,28 @@
 import { createContext, useContext, useState } from 'react';
 
+function getAutoSeasonStrings() {
+  const m = new Date().getMonth() + 1; // 1 to 12
+  if (m >= 6 && m <= 10) {
+    return {
+      en: '🌤 Auto Detect (Current Season: Kharif - Monsoon)',
+      kn: '🌤 ಸ್ವಯಂಚಾಲಿತ (ಪ್ರಸ್ತುತ ತಿಂಗಳು: ಖಾರೀಫ್ - ಮುಂಗಾರು)',
+      hi: '🌤 स्वचालित पहचान (वर्तमान माह: खरीफ - मानसून)'
+    };
+  } else if (m === 11 || m === 12 || m === 1 || m === 2) {
+    return {
+      en: '🌤 Auto Detect (Current Season: Rabi - Winter)',
+      kn: '🌤 ಸ್ವಯಂಚಾಲಿತ (ಪ್ರಸ್ತುತ ತಿಂಗಳು: ರಬಿ - ಹಿಂಗಾರು)',
+      hi: '🌤 स्वचालित पहचान (वर्तमान माह: रबी - सर्दियां)'
+    };
+  } else {
+    return {
+      en: '🌤 Auto Detect (Current Season: Zaid - Summer)',
+      kn: '🌤 ಸ್ವಯಂಚಾಲಿತ (ಪ್ರಸ್ತುತ ತಿಂಗಳು: ಜೈದ್ - ಬೇಸಿಗೆ)',
+      hi: '🌤 स्वचालित पहचान (वर्तमान माह: जायद - गर्मी)'
+    };
+  }
+}
+
 // Every UI string that had data-en / data-kn / data-hi attributes in the
 // original Jinja templates lives here, keyed the same way across pages.
 // AI-generated result text (crop/disease/price/planner/query answers) stays
@@ -103,11 +126,7 @@ const translations = {
     hi: 'जिला चुनें (मिट्टी के मान स्वचालित भरें)'
   },
   farmingSeason: { en: 'Farming Season', kn: 'ಕೃಷಿ ಋತು', hi: 'कृषि मौसम / ऋतु' },
-  seasonAuto: {
-    en: '🌤 Auto Detect (Current Season: Kharif - Monsoon)',
-    kn: '🌤 ಸ್ವಯಂಚಾಲಿತ (ಪ್ರಸ್ತುತ ತಿಂಗಳು: ಖಾರೀಫ್ - ಮುಂಗಾರು)',
-    hi: '🌤 स्वचालित पहचान (वर्तमान माह: खरीफ - मानसून)'
-  },
+  seasonAuto: getAutoSeasonStrings(),
   seasonKharif: {
     en: '🌧 Kharif (Monsoon: June - October)',
     kn: '🌧 ಖಾರೀಫ್ (ಮುಂಗಾರು: ಜೂನ್ - ಅಕ್ಟೋಬರ್)',

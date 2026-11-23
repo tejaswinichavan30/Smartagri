@@ -196,10 +196,10 @@
                         </label>
                         <select name="season" id="season" class="gov-select">
                             <option value="auto" {% if not selected_season or selected_season=='auto' %}selected{% endif
-                                %} data-en="🌤 Auto Detect (Current Season: Kharif - Monsoon)"
-                                data-kn="🌤 ಸ್ವಯಂಚಾಲಿತ (ಪ್ರಸ್ತುತ ತಿಂಗಳು: ಖಾರೀಫ್ - ಮುಂಗಾರು)"
-                                data-hi="🌤 स्वचालित पहचान (वर्तमान माह: खरीफ - मानसून)">
-                                🌤 Auto Detect (Current Season: Kharif - Monsoon)
+                                %} data-en="{{ auto_season_en or '🌤 Auto Detect (Current Season: Rabi - Winter)' }}"
+                                data-kn="{{ auto_season_kn or '🌤 ಸ್ವಯಂಚಾಲಿತ (ಪ್ರಸ್ತುತ ತಿಂಗಳು: ರಬಿ - ಹಿಂಗಾರು)' }}"
+                                data-hi="{{ auto_season_hi or '🌤 स्वचालित पहचान (वर्तमान माह: रबी - सर्दियां)' }}">
+                                {{ auto_season_en or '🌤 Auto Detect (Current Season: Rabi - Winter)' }}
                             </option>
                             <option value="Kharif" {% if selected_season=='Kharif' %}selected{% endif %}
                                 data-en="🌧 Kharif (Monsoon: June - October)"
