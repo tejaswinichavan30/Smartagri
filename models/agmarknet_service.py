@@ -70,6 +70,7 @@ class AgmarknetLiveService:
             "Yadgir": "Yadgir APMC Yard",
             "Bidar": "Bidar APMC Market",
             "Chamarajanagara": "Chamarajanagar APMC",
+            "Davanagere": "Davanagere APMC Market",
             "Kodagu": "Gonikoppa APMC",
             "Ramanagara": "Ramanagara APMC Market",
             "Uttara Kannada": "Sirsi APMC Market",
@@ -168,8 +169,8 @@ class AgmarknetLiveService:
                     
                 if rec:
                     # If specific mandi mapped for this district, customize the display mandi & attribution
-                    m_display = mandi_name if (district and district in self.apmc_mandi_mapping) else rec.get("mandi", mandi_name)
-                    s_display = f"{m_display} / KSAMB Mandi Feed" if (district and district in self.apmc_mandi_mapping) else rec.get("source", "Karnataka APMC Mandi Benchmark Record")
+                    m_display = mandi_name if district else rec.get("mandi", mandi_name)
+                    s_display = f"{m_display} / KSAMB Mandi Feed" if district else rec.get("source", "Karnataka APMC Mandi Benchmark Record")
                     return {
                         "status": "BENCHMARK_RECORD",
                         "is_live": False,
